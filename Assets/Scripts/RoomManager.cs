@@ -24,8 +24,21 @@ public class RoomManager : MonoBehaviour
     private int roomCount;
 
     private bool generationComplete = false;
+
+    public static RoomManager Instance;  // Singleton for easy access
+    public GameObject player;  // Reference to the player gameobject
+
+    private Camera mainCamera;
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
+        mainCamera = Camera.main;
+
         roomGrid = new int[gridSizeX, gridSizeY];
         roomQueue = new Queue<Vector2Int>();
 
@@ -57,6 +70,35 @@ public class RoomManager : MonoBehaviour
             generationComplete = true;
         }
     }
+    public void MovePlayerToRoom(Vector2Int newRoomIndex, Vector2Int enteredFromDirection)
+    {
+        GameObject newRoom = roomObjects.Find(room => room.GetComponent<Room>().RoomIndex == newRoomIndex);
+        if (newRoom == null)
+        {
+            Debug.LogWarning("Room not found at " + newRoomIndex);
+            return;
+        }
+        // Move the camera instantly to the new room center (same x,y but keep camera's z)
+        mainCamera.transform.position = new Vector3(newRoom.transform.position.x, newRoom.transform.position.y, mainCamera.transform.position.z);
+
+        Vector3 newPos = newRoom.transform.position;
+
+        float halfRoomWidth = roomWidth * 0.5f;
+        float halfRoomHeight = roomHeight * 0.5f;
+        float offset = 3.5f; // tweak this as needed
+
+        if (enteredFromDirection == Vector2Int.up)
+            newPos += new Vector3(0, -halfRoomHeight + offset, 0);
+        else if (enteredFromDirection == Vector2Int.down)
+            newPos += new Vector3(0, halfRoomHeight - offset, 0);
+        else if (enteredFromDirection == Vector2Int.left)
+            newPos += new Vector3(halfRoomWidth - offset, 0, 0);
+        else if (enteredFromDirection == Vector2Int.right)
+            newPos += new Vector3(-halfRoomWidth + offset, 0, 0);
+
+        player.transform.position = newPos;
+    }
+
 
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
     {
