@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum RoomType
 {
-    Room,  
+    Normal,  
     Shop,   
     Boss    
 }

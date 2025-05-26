@@ -135,27 +135,15 @@ public class RoomManager : MonoBehaviour
     // attemps to generate a room at the specified index
     private bool TryGenerateRoom(Vector2Int roomIndex)
     {
-
         int x = roomIndex.x;
         int y = roomIndex.y;
 
-        //Bounds check
-        if (x < 0 || x >= gridSizeX || y < 0 || y >= gridSizeY)
-            return false;
-
-        //Check if room already exists here
-        if (roomGrid[x, y] != 0)
-            return false;
-
-        //stop if reach max amt of rooms
         if (roomCount >= maxRooms)
             return false;
 
-        //random spawning of rooms
         if (Random.value < 0.5f && roomIndex != Vector2Int.zero)
             return false;
 
-        //ensure not frequent neighbouring rooms, less clutter
         if (CountAdjacentRooms(roomIndex) > 1)
             return false;
 
@@ -163,15 +151,40 @@ public class RoomManager : MonoBehaviour
         roomGrid[x, y] = 1;
         roomCount++;
 
-        var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        GameObject newRoom;
+
+        // Assign a random room type based on a single random value
+        float rand = Random.value;
+        RoomType randomType = RoomType.Normal;
+
+        if (rand > 0.9f)  // 10% chance Boss room
+        {
+            randomType = RoomType.Boss;
+            newRoom = Instantiate(bossRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        }
+        else if (rand > 0.6f)  // 30% chance Shop room
+        {
+            randomType = RoomType.Shop;
+            newRoom = Instantiate(shopRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        }
+        else
+        {
+            randomType = RoomType.Normal;
+            newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        }
+
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
+        newRoom.GetComponent<Room>().SetRoomType(randomType);
+
         roomObjects.Add(newRoom);
 
         OpenDoors(newRoom, x, y);
 
         return true;
     }
+
+
     // reset the room generation, destroy and redo, use to retry for the regeneration
     private void RegenerateRooms()
     {

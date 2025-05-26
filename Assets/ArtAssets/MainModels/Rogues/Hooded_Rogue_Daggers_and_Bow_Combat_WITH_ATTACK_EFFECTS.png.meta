@@ -1,0 +1,2028 @@
+fileFormatVersion: 2
+guid: 19ee26b019fc14d47b651f2cbe62b9c9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 460
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c782c2d9cb8778f489d2c237e8d0b508
+      internalID: 248919046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 460
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3da5532ffeada4bb1b187a8b4601b2
+      internalID: 1058044870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_2
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 460
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce22e188ace081f43a675a6d530bc9f8
+      internalID: 707756748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 460
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e6b863e1eeb0ec4382929cf73a5c335
+      internalID: 503227137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_4
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 436
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe1be505153271499194da592e417df
+      internalID: -1109507693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_5
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 436
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02c22541d52c6194eb30a6505f334320
+      internalID: -34136626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_6
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 436
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2313bc0f60ed6584cb80323bfff31657
+      internalID: 828503775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_7
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 436
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0991db8677742a4ba11e429b54c68cc
+      internalID: -683680573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_8
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 437
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be03613ae7587614bbed0fe81e678e73
+      internalID: -705378481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_9
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 412
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4e75464ea3929e419563c5582bb96b0
+      internalID: -684991071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_10
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 412
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4db0f3affdbfae4a812ddab7f5874a4
+      internalID: 68585732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_11
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 412
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e99d9c1e4f9c504f98e0fa14efd9afe
+      internalID: -894637720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_12
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 412
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68c1adf214aa3e34fadcbb3325b3ad8e
+      internalID: -1992554194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_13
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 388
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e45d8bac05802ac4db5f2f27dd423ae0
+      internalID: -758488342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_14
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 388
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcb224c43ef0c7343a3f266e0fe4cf3b
+      internalID: -874132125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_15
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 388
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a882c8a0831db0745854ffda8a91aee7
+      internalID: -1756748765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_16
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 389
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6388c3599df22a4ea57a50028232d0d
+      internalID: 562998367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_17
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 388
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1783f1050e0abd409fe5619e7dd13fc
+      internalID: -828059265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_18
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 365
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f4407f6bb17034e991a9e31c9b7e95
+      internalID: 1005458360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_19
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 365
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cd6a9c5e0f901441b4ad40fa5cb1780
+      internalID: 2007643308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_20
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 360
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d21c5d19572974b88b86e4cb342770
+      internalID: -1026292521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_21
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 364
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b8f73ce1a9e2840ac7cf131d0bee6e
+      internalID: -1553672048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_22
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 360
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46828218848c9534684ee4eb1b3db9fd
+      internalID: -1302112877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_23
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 360
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e6a4298e4523764eb71f0557ed71d5e
+      internalID: 683954101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_24
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 340
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b515b9509896a2a4784bcaed7d77ba89
+      internalID: -1573219822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_25
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 341
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0025ede930149348b2f0da2044daa60
+      internalID: 1875216142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_26
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 336
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0882fb9355bf7214c8a23b44c4b3cfe5
+      internalID: -1167800075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_27
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 341
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1be1d907aa5e234fa3f5abaab9361fe
+      internalID: 527915808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_28
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 337
+        width: 4
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 287921d29b86f024a8183abdfeec4529
+      internalID: 1088211462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_29
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 336
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d871a1891279d543af1e4e6fbea8d43
+      internalID: -1232107460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_30
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 316
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b0ed22121d4d8748a61b28af6e3cd0d
+      internalID: 183101297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_31
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 316
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4afb14dedfa58374b83832c6af4106de
+      internalID: 705357820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_32
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 317
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5464163c25fbe6741a6b61d242face74
+      internalID: 1218434362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_33
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 317
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1c1023da80dac44e9c52334a2313548
+      internalID: 472233732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_34
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 293
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc15849bd54f6ff48938fd05b86efdba
+      internalID: -1314979903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_35
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 293
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 010339dce1a2687409d51ae468761a50
+      internalID: -44671192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_36
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 292
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d7950fed4cda54f81ea1112a70021e
+      internalID: 726600087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_37
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 292
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856fcd5f9b7cc8244a009f6aa02248e5
+      internalID: 558277471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_38
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 302
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c85d9b3c243b9434c80ebfec6663f061
+      internalID: 522585764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_39
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 268
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1192f49fcbda46c478cbc4ae2091777a
+      internalID: -1406599328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_40
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 268
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71960b6a595de37418c653c536a5ef60
+      internalID: -1907795560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_41
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 268
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75abacea0c895694d88927bb3843307e
+      internalID: -734424519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_42
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 268
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf072279e45111846a91901e3833db91
+      internalID: -1227850276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_43
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 244
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0094a0bb1caebfc45bdefe93c8126e01
+      internalID: 453105172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_44
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 244
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c013de3c62fd6b8458c1937bfbdaef08
+      internalID: -1541564748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_45
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 244
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54436bc5b72716c4a92692199f110c2c
+      internalID: 871922033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_46
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 244
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a151790ae5569d04aadd21e8b385c2f7
+      internalID: -1014693243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_47
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 220
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b29a317ffa8f35e40b197aa75ab9cfcc
+      internalID: 531546453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_48
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 220
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60ac7613f42daa4a8681cb030296cd3
+      internalID: -2038969637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_49
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 220
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80978e4a76f2bc046b7971c3fda05027
+      internalID: -1529055442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_50
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 220
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3ed0798b06918f409638ad994f448ab
+      internalID: -802996895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_51
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 196
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21a3666ccfb6b70498aba07906602658
+      internalID: -985871797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_52
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 196
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e98ffa8b85ee91b4dab1b7993f8371ac
+      internalID: -84249572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_53
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 196
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1903cdee822e1c44aceaaa198f347cd
+      internalID: -1371761963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_54
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 196
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23922436f6620804fbd0d1fc649041ee
+      internalID: 1911524928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_55
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 172
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7052289b306b3884a99841c5c5891381
+      internalID: 1410946470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_56
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 172
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8794a38b2e752847bc98d6bf960478f
+      internalID: -915916648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_57
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 172
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9619f3128a2930c48bf61e80b051934c
+      internalID: -1957502362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_58
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 172
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce1c8ce56e4c12e41b8965a3b6b0e53c
+      internalID: -532449940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_59
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 148
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 492312995ed9fc848bd60edae3bdb7bb
+      internalID: -1679742865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_60
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 148
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e8de93d2711bb54d9104e070e3c9e56
+      internalID: -1521882174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_61
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 148
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb3dd36c56d526429874a0411dd4299
+      internalID: 151138700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_62
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 148
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37501e548bff325459a266b9a8b26ad5
+      internalID: 836930612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_63
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 124
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b9b851019cc6684fafd9e666bfacb17
+      internalID: -140863185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_64
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 125
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9740c6ac70e4870418fd08387aba6038
+      internalID: 368248664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_65
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 125
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d346c793aec5004989c0f96e6bd14ec
+      internalID: 157878120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_66
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 125
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 629bfe8d52cc51a47b4d3ead33b749c2
+      internalID: 109371435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_67
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 100
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b88c73767a8af2746a73ec09fcec3ae6
+      internalID: -561685223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_68
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 100
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 194076fe5a5852145b743ee7a154b725
+      internalID: 1858984275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_69
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 100
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c0151c462bde154f88f7dc14e834a3c
+      internalID: -5645879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_70
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 100
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b32f9288d8dc9408d9c7c703cdf5d3
+      internalID: 1055158272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_71
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 76
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 703fd572d92fd6d478fb49221cde1b7a
+      internalID: -252292044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_72
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 76
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15e50b484af99eb42afe5cdb05f9fb29
+      internalID: 973847755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_73
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 76
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa39729abcac30345bf94ce0a8f5d331
+      internalID: 901156371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_74
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 76
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8a794793bd80945a06bcf909f76759
+      internalID: -1901482183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_75
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 52
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df3e2feae17027140b7aa27fec52e1bd
+      internalID: -497097759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_76
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 52
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aec5eb49c911fb648bb828cd9999f8d2
+      internalID: 1035235551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_77
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 52
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e6b62b0d7e78df44964ec1b588a8562
+      internalID: 1644267755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_78
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 52
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4714221f7261fd04986707ce5ba146f0
+      internalID: 1187183011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_79
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 28
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e735f59b1715247abbee20597a93a1
+      internalID: 847140365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_80
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 28
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47ae4c89bbe71fc4a95b627fd0e892f1
+      internalID: 1737985208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_81
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 28
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d5550e8ed7215c4892112266633177a
+      internalID: -1094822928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_82
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 28
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b548c8c28ed9f419c0e585a37f6902
+      internalID: 1991871087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_83
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 4
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ddf96dbc9d12e94db3d1be0fb945936
+      internalID: -1643763071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_84
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 4
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31e83c5bf4bea0640a658124a0260f9b
+      internalID: 397619218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_85
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 4
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac9b08822db6ae84f908ed0b9a0a6e03
+      internalID: 1482125738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_86
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 4
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce4c13c1dde3974294cbfa69e92457d
+      internalID: -266057494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_0: 248919046
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_1: 1058044870
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_10: 68585732
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_11: -894637720
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_12: -1992554194
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_13: -758488342
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_14: -874132125
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_15: -1756748765
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_16: 562998367
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_17: -828059265
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_18: 1005458360
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_19: 2007643308
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_2: 707756748
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_20: -1026292521
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_21: -1553672048
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_22: -1302112877
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_23: 683954101
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_24: -1573219822
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_25: 1875216142
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_26: -1167800075
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_27: 527915808
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_28: 1088211462
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_29: -1232107460
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_3: 503227137
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_30: 183101297
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_31: 705357820
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_32: 1218434362
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_33: 472233732
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_34: -1314979903
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_35: -44671192
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_36: 726600087
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_37: 558277471
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_38: 522585764
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_39: -1406599328
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_4: -1109507693
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_40: -1907795560
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_41: -734424519
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_42: -1227850276
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_43: 453105172
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_44: -1541564748
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_45: 871922033
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_46: -1014693243
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_47: 531546453
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_48: -2038969637
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_49: -1529055442
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_5: -34136626
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_50: -802996895
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_51: -985871797
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_52: -84249572
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_53: -1371761963
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_54: 1911524928
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_55: 1410946470
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_56: -915916648
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_57: -1957502362
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_58: -532449940
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_59: -1679742865
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_6: 828503775
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_60: -1521882174
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_61: 151138700
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_62: 836930612
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_63: -140863185
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_64: 368248664
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_65: 157878120
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_66: 109371435
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_67: -561685223
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_68: 1858984275
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_69: -5645879
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_7: -683680573
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_70: 1055158272
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_71: -252292044
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_72: 973847755
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_73: 901156371
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_74: -1901482183
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_75: -497097759
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_76: 1035235551
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_77: 1644267755
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_78: 1187183011
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_79: 847140365
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_8: -705378481
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_80: 1737985208
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_81: -1094822928
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_82: 1991871087
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_83: -1643763071
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_84: 397619218
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_85: 1482125738
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_86: -266057494
+      Hooded_Rogue_Daggers_and_Bow_Combat_WITH_ATTACK_EFFECTS_9: -684991071
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
