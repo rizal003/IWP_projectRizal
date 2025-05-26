@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] GameObject roomPrefab;
+    [SerializeField] GameObject bossRoomPrefab;
+    [SerializeField] GameObject shopRoomPrefab;
     [SerializeField] private int maxRooms = 11;
     [SerializeField] private int minRooms = 7;
 
@@ -25,8 +27,8 @@ public class RoomManager : MonoBehaviour
 
     private bool generationComplete = false;
 
-    public static RoomManager Instance;  // Singleton for easy access
-    public GameObject player;  // Reference to the player gameobject
+    public static RoomManager Instance;  
+    public GameObject player;  
 
     private Camera mainCamera;
 
@@ -39,54 +41,71 @@ public class RoomManager : MonoBehaviour
     {
         mainCamera = Camera.main;
 
+        //initialize the 2D grid to track room placement
         roomGrid = new int[gridSizeX, gridSizeY];
+
+        //initialise the queue that stores which rooms to proceed
         roomQueue = new Queue<Vector2Int>();
 
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeX / 2);
+
+        //generate room from the first/initial room
         StartRoomGenerationFromRoom(initialRoomIndex);
     }
 
     private void Update()
     {
+        //check if there are rooms to process, room count is below max, and generation hasnt finished
         if (roomQueue.Count > 0 && roomCount < maxRooms && !generationComplete)
         {
+            // Dequeue the next room to process
             Vector2Int roomIndex = roomQueue.Dequeue();
             int gridX = roomIndex.x;
             int gridY = roomIndex.y;
 
+            //to generate rooms for all four directions
             TryGenerateRoom(new Vector2Int(gridX - 1, gridY));
             TryGenerateRoom(new Vector2Int(gridX + 1, gridY));
             TryGenerateRoom(new Vector2Int(gridX, gridY + 1));
             TryGenerateRoom(new Vector2Int(gridX, gridY - 1));
         }
+        //if generating room dosent meet the max, retry again
         else if(roomCount < minRooms)
         {
             Debug.Log("Roomcount was less than min amt of rooms, try again");
             RegenerateRooms();
         }
+        //if generating room hits max or min, good
         else if (!generationComplete)
         {
             Debug.Log($"Generation complete, {roomCount} rooms created");
             generationComplete = true;
         }
     }
+
+    // Moves the player and camera to the next room and position the player infront of the door
     public void MovePlayerToRoom(Vector2Int newRoomIndex, Vector2Int enteredFromDirection)
     {
+        // find the room then the next target room that player enters
         GameObject newRoom = roomObjects.Find(room => room.GetComponent<Room>().RoomIndex == newRoomIndex);
         if (newRoom == null)
         {
             Debug.LogWarning("Room not found at " + newRoomIndex);
             return;
         }
-        // Move the camera instantly to the new room center (same x,y but keep camera's z)
+
+        // Move the camera instantly to the new room center
         mainCamera.transform.position = new Vector3(newRoom.transform.position.x, newRoom.transform.position.y, mainCamera.transform.position.z);
 
+        //start at centre
         Vector3 newPos = newRoom.transform.position;
 
+        
         float halfRoomWidth = roomWidth * 0.5f;
         float halfRoomHeight = roomHeight * 0.5f;
-        float offset = 3.5f; // tweak this as needed
+        float offset = 3.5f;
 
+        //adjust player position based on which direction they came from
         if (enteredFromDirection == Vector2Int.up)
             newPos += new Vector3(0, -halfRoomHeight + offset, 0);
         else if (enteredFromDirection == Vector2Int.down)
@@ -99,7 +118,7 @@ public class RoomManager : MonoBehaviour
         player.transform.position = newPos;
     }
 
-
+    //starts the room generation process from a given starting index
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
     {
         roomQueue.Enqueue(roomIndex);
@@ -113,26 +132,30 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(initialRoom);
     }
 
+    // attemps to generate a room at the specified index
     private bool TryGenerateRoom(Vector2Int roomIndex)
     {
 
         int x = roomIndex.x;
         int y = roomIndex.y;
 
-        // 1) Bounds check
+        //Bounds check
         if (x < 0 || x >= gridSizeX || y < 0 || y >= gridSizeY)
             return false;
 
-        // 2) Check if room already exists here
+        //Check if room already exists here
         if (roomGrid[x, y] != 0)
             return false;
 
+        //stop if reach max amt of rooms
         if (roomCount >= maxRooms)
             return false;
 
+        //random spawning of rooms
         if (Random.value < 0.5f && roomIndex != Vector2Int.zero)
             return false;
 
+        //ensure not frequent neighbouring rooms, less clutter
         if (CountAdjacentRooms(roomIndex) > 1)
             return false;
 
@@ -149,7 +172,7 @@ public class RoomManager : MonoBehaviour
 
         return true;
     }
-
+    // reset the room generation, destroy and redo, use to retry for the regeneration
     private void RegenerateRooms()
     {
         roomObjects.ForEach(Destroy);
@@ -173,7 +196,7 @@ public class RoomManager : MonoBehaviour
         Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
         Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
 
-        // Determine which doors to open based on the direction
+        // see which doors to open based on the direction
         if (x > 0 && roomGrid[x - 1, y] != 0)
         {
             // Neighbouring room to the left
@@ -200,7 +223,7 @@ public class RoomManager : MonoBehaviour
         }
 
     }
-
+    //rooom script
     Room GetRoomScriptAt(Vector2Int index)
     {
         GameObject roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
@@ -209,7 +232,7 @@ public class RoomManager : MonoBehaviour
         return null;
     }
 
-
+    //count how many adjacent room around the initial room
     private int CountAdjacentRooms(Vector2Int roomIndex)
     {
         int x = roomIndex.x;

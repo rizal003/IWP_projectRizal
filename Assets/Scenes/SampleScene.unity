@@ -580,6 +580,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 8759998086927342674, guid: c000d80a14a1ae54faf7cb57f046b362, type: 3}
+  bossRoomPrefab: {fileID: 0}
+  shopRoomPrefab: {fileID: 0}
   maxRooms: 11
   minRooms: 7
   gridSizeX: 15
