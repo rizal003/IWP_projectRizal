@@ -8,29 +8,33 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject bottomDoor;
     [SerializeField] GameObject leftDoor;
     [SerializeField] GameObject rightDoor;
-    public RoomType roomType;
+    
+
+    private RoomType roomType;
+    public RoomType RoomType { get { return roomType; } private set { roomType = value; } }
+    public bool IsExplored { get; set; } = false;
+
     public Vector2Int RoomIndex { get; set; }
+
     public void SetRoomType(RoomType type)
     {
-        roomType = type;
+        RoomType = type;
 
-        switch (roomType)
+        switch (RoomType)
         {
             case RoomType.Shop:
-                // You can modify the room's behavior to open a shop, show items, etc.
                 Debug.Log("This is a Shop Room");
                 break;
             case RoomType.Boss:
-                // Boss room setup: large room, boss spawns, etc.
                 Debug.Log("This is a Boss Room");
                 break;
             case RoomType.Normal:
             default:
-                // Normal room setup: enemy spawns, regular room behavior
                 Debug.Log("This is a Normal Room");
                 break;
         }
     }
+
     public void OpenDoor(Vector2Int direction)
     {
         if (direction == Vector2Int.up)
@@ -53,4 +57,5 @@ public class Room : MonoBehaviour
             rightDoor.SetActive(true);
         }
     }
+
 }

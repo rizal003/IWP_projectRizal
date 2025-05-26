@@ -8,6 +8,11 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject roomPrefab;
     [SerializeField] GameObject bossRoomPrefab;
     [SerializeField] GameObject shopRoomPrefab;
+    [SerializeField] GameObject puzzleRoomPrefab;    
+    [SerializeField] GameObject treasureRoomPrefab;  
+    [SerializeField] GameObject enemyRoomPrefab;     
+
+
     [SerializeField] private int maxRooms = 11;
     [SerializeField] private int minRooms = 7;
 
@@ -31,6 +36,7 @@ public class RoomManager : MonoBehaviour
     public GameObject player;  
 
     private Camera mainCamera;
+    public bool IsExplored { get; set; } = false;
 
 
     private void Awake()
@@ -80,8 +86,11 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log($"Generation complete, {roomCount} rooms created");
             generationComplete = true;
+            AssignBossRoom();
         }
+
     }
+    
 
     // Moves the player and camera to the next room and position the player infront of the door
     public void MovePlayerToRoom(Vector2Int newRoomIndex, Vector2Int enteredFromDirection)
@@ -132,7 +141,6 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(initialRoom);
     }
 
-    // attemps to generate a room at the specified index
     private bool TryGenerateRoom(Vector2Int roomIndex)
     {
         int x = roomIndex.x;
@@ -141,41 +149,69 @@ public class RoomManager : MonoBehaviour
         if (roomCount >= maxRooms)
             return false;
 
-        if (Random.value < 0.5f && roomIndex != Vector2Int.zero)
-            return false;
+        // Always allow room at (0,0)
+        if (roomIndex != Vector2Int.zero)
+        {
+            if (Random.value < 0.5f)
+                return false;
 
-        if (CountAdjacentRooms(roomIndex) > 1)
-            return false;
+            if (CountAdjacentRooms(roomIndex) > 1)
+                return false;
+        }
 
         roomQueue.Enqueue(roomIndex);
         roomGrid[x, y] = 1;
         roomCount++;
 
-        GameObject newRoom;
+        RoomType chosenType;
 
-        // Assign a random room type based on a single random value
-        float rand = Random.value;
-        RoomType randomType = RoomType.Normal;
-
-        if (rand > 0.9f)  // 10% chance Boss room
+        // Force spawn room to be Normal
+        if (roomIndex == Vector2Int.zero)
         {
-            randomType = RoomType.Boss;
-            newRoom = Instantiate(bossRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-        }
-        else if (rand > 0.6f)  // 30% chance Shop room
-        {
-            randomType = RoomType.Shop;
-            newRoom = Instantiate(shopRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            chosenType = RoomType.Normal;
         }
         else
         {
-            randomType = RoomType.Normal;
-            newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            float rand = Random.value;
+
+            if (rand > 0.95f)
+                chosenType = RoomType.Treasure;
+            else if (rand > 0.85f)
+                chosenType = RoomType.Puzzle;
+            else if (rand > 0.75f)
+                chosenType = RoomType.Shop;
+            else if (rand > 0.50f)
+                chosenType = RoomType.Enemy;
+            else
+                chosenType = RoomType.Normal;
         }
 
+        GameObject prefabToSpawn;
+
+        switch (chosenType)
+        {
+            case RoomType.Treasure:
+                prefabToSpawn = treasureRoomPrefab;
+                break;
+            case RoomType.Puzzle:
+                prefabToSpawn = puzzleRoomPrefab;
+                break;
+            case RoomType.Shop:
+                prefabToSpawn = shopRoomPrefab;
+                break;
+            case RoomType.Enemy:
+                prefabToSpawn = enemyRoomPrefab;
+                break;
+            case RoomType.Normal:
+            default:
+                prefabToSpawn = roomPrefab;
+                break;
+        }
+
+        GameObject newRoom = Instantiate(prefabToSpawn, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
-        newRoom.GetComponent<Room>().SetRoomType(randomType);
+        newRoom.GetComponent<Room>().SetRoomType(chosenType);
 
         roomObjects.Add(newRoom);
 
@@ -184,6 +220,43 @@ public class RoomManager : MonoBehaviour
         return true;
     }
 
+
+
+    private void AssignBossRoom()
+    {
+        Vector2Int startRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
+        GameObject furthestRoom = null;
+        int maxDistance = -1;
+
+        foreach (var roomObj in roomObjects)
+        {
+            Vector2Int index = roomObj.GetComponent<Room>().RoomIndex;
+            int dist = Mathf.Abs(index.x - startRoomIndex.x) + Mathf.Abs(index.y - startRoomIndex.y);
+
+            if (dist > maxDistance)
+            {
+                maxDistance = dist;
+                furthestRoom = roomObj;
+            }
+        }
+
+        if (furthestRoom != null)
+        {
+            // Replace the room prefab with boss room prefab or update the type
+            Vector2Int bossRoomIndex = furthestRoom.GetComponent<Room>().RoomIndex;
+
+            // Destroy the current furthest room GameObject
+            Destroy(furthestRoom);
+
+            // Instantiate the boss room prefab at the same position
+            var newBossRoom = Instantiate(bossRoomPrefab, GetPositionFromGridIndex(bossRoomIndex), Quaternion.identity);
+            newBossRoom.GetComponent<Room>().RoomIndex = bossRoomIndex;
+            newBossRoom.name = "BossRoom";
+
+            roomObjects.Remove(furthestRoom);
+            roomObjects.Add(newBossRoom);
+        }
+    }
 
     // reset the room generation, destroy and redo, use to retry for the regeneration
     private void RegenerateRooms()
@@ -237,7 +310,7 @@ public class RoomManager : MonoBehaviour
 
     }
     //rooom script
-    Room GetRoomScriptAt(Vector2Int index)
+   public Room GetRoomScriptAt(Vector2Int index)
     {
         GameObject roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
         if (roomObject != null)
@@ -282,4 +355,6 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
+
+
 }

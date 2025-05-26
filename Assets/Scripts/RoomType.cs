@@ -7,5 +7,8 @@ public enum RoomType
 {
     Normal,  
     Shop,   
-    Boss    
+    Boss,
+    Treasure,
+    Enemy,
+    Puzzle
 }

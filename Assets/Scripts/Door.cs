@@ -11,8 +11,20 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Tell RoomManager or GameManager to move player to next room
-            RoomManager.Instance.MovePlayerToRoom(CurrentRoom.RoomIndex + Direction, Direction);
+            Vector2Int nextRoomIndex = CurrentRoom.RoomIndex + Direction;
+            Room nextRoom = RoomManager.Instance.GetRoomScriptAt(nextRoomIndex);
+
+            if (nextRoom != null)
+            {
+
+                RoomManager.Instance.MovePlayerToRoom(nextRoomIndex, Direction);
+            }
+            else
+            {
+                Debug.LogWarning("Next room not found!");
+            }
         }
     }
+
+
 }
