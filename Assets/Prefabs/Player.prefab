@@ -148,7 +148,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.014673114, y: -0.014673233}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -159,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.2}
+  m_Size: {x: 0.53150296, y: 0.8456204}
   m_EdgeRadius: 0
 --- !u!114 &3233657392201768308
 MonoBehaviour:
@@ -250,6 +250,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 72780782-deb3-46e9-8ac2-8efdf6b53081
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 568227e7-c996-4914-be33-e0bbe0231f74
+    m_ActionName: Player/Sprint[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
