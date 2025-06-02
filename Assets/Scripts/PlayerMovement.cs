@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
+    private Vector2 lastDirection = Vector2.down;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +34,19 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("LastInputX", moveInput.x);
             animator.SetFloat("LastInputY", moveInput.y);
         }
+
         moveInput = context.ReadValue<Vector2>();
         animator.SetFloat("InputX", moveInput.x);
         animator.SetFloat("InputY", moveInput.y);
+
+        if (moveInput != Vector2.zero)
+        {
+            lastDirection = moveInput;
+        }
     }
+    public Vector2 GetLastDirection()
+    {
+        return lastDirection;
+    }
+
 }
