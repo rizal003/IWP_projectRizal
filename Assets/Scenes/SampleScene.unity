@@ -139,6 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f881b74ed07dc0478265d527cf10d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPoint: {fileID: 1010065352}
+  attackRange: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  attackCooldown: 1
 --- !u!114 &110918893 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
@@ -194,10 +200,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ca59d31cf073a46852cf9e9f3ee265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 12
-  maxHealth: 12
+  currentHealth: 2
+  maxHealth: 2
   playerSr: {fileID: 110918897}
   playerMovement: {fileID: 110918893}
+  animator: {fileID: 110918901}
+--- !u!95 &110918901 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2616422938573485068, guid: 64d0fda62845023489881a09b0107959, type: 3}
+  m_PrefabInstance: {fileID: 3872016614331142109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &125306879
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +704,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616934694}
   m_CullTransparentMesh: 1
+--- !u!4 &1010065352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4149641105016905099, guid: 64d0fda62845023489881a09b0107959, type: 3}
+  m_PrefabInstance: {fileID: 3872016614331142109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1279788735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,9 +1231,17 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4149641105016905099, guid: 64d0fda62845023489881a09b0107959, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149641105016905099, guid: 64d0fda62845023489881a09b0107959, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.28
+      objectReference: {fileID: 0}
     - target: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
       propertyPath: moveSpeed
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -184,7 +184,8 @@ GameObject:
   - component: {fileID: 5202225403345339161}
   - component: {fileID: 7821866673108415819}
   - component: {fileID: 8000826783995564333}
-  m_Layer: 0
+  - component: {fileID: 6133924404012335372}
+  m_Layer: 7
   m_Name: Enemy1Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,10 +337,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   attackPoint: {fileID: 3443072017730245076}
-  weaponRange: 2.5
+  weaponRange: 1.5
+  knockbackForce: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  sunTime: 0.2
 --- !u!114 &5202225403345339161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,9 +356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
-  attackRange: 1.2
-  attackCooldown: 2
-  playerDetectRange: 4
+  attackRange: 1.1
+  attackCooldown: 1
+  playerDetectRange: 6
   detectionPoint: {fileID: 5389781320387954737}
   playerLayer:
     serializedVersion: 2
@@ -416,6 +419,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6133924404012335372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75948456925781252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49d79d7945257c49bbed0d50d9357cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 5
+  spriteRenderer: {fileID: 4464679358630196351}
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.3
 --- !u!1 &158024805099507821
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3443072017730245076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6178,7 +6197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5389781320387954737}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DetectionPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

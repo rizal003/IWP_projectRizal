@@ -82,7 +82,7 @@ public class Enemy_Movement : MonoBehaviour
             }
 
 
-            else if (distance > attackRange)
+            else if (distance > attackRange && enemyState != EnemyState.Attacking)
             {
                 ChangeState(EnemyState.Chasing);
             }

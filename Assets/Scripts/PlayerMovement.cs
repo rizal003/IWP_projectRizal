@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Animator animator;
     private Vector2 lastDirection = Vector2.down;
+    private bool isKnockedBack; 
 
     // Start is called before the first frame update
     void Start()
@@ -21,32 +22,51 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isKnockedBack) return;
+
         rb.velocity = moveInput * moveSpeed;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        animator.SetBool("isWalking", true);
-
-        if (context.canceled)
+        if (isKnockedBack == false)
         {
-            animator.SetBool("isWalking", false);
-            animator.SetFloat("LastInputX", moveInput.x);
-            animator.SetFloat("LastInputY", moveInput.y);
-        }
+            animator.SetBool("isWalking", true);
 
-        moveInput = context.ReadValue<Vector2>();
-        animator.SetFloat("InputX", moveInput.x);
-        animator.SetFloat("InputY", moveInput.y);
+            if (context.canceled)
+            {
+                animator.SetBool("isWalking", false);
+                animator.SetFloat("LastInputX", moveInput.x);
+                animator.SetFloat("LastInputY", moveInput.y);
+            }
 
-        if (moveInput != Vector2.zero)
-        {
-            lastDirection = moveInput;
+            moveInput = context.ReadValue<Vector2>();
+            animator.SetFloat("InputX", moveInput.x);
+            animator.SetFloat("InputY", moveInput.y);
+
+            if (moveInput != Vector2.zero)
+            {
+                lastDirection = moveInput;
+            }
         }
     }
     public Vector2 GetLastDirection()
     {
         return lastDirection;
     }
+    public void Knockback(Transform enemy, float force, float stunTime)
+    {
+        isKnockedBack = true;
+        Vector2 direction = (transform.position - enemy.position).normalized;
+        Debug.Log("Knockback direction: " + direction);
+        rb.velocity = direction * force;
+        StartCoroutine(KnockbackCounter(stunTime));
+    }
 
+    IEnumerator KnockbackCounter(float stunTime)
+    {
+        yield return new WaitForSeconds(stunTime);
+        rb.velocity = Vector2.zero;
+        isKnockedBack = false;
+    }
 }
