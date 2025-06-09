@@ -144,7 +144,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackCooldown: 1
+  attackCooldown: 1.5
 --- !u!114 &110918893 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ca59d31cf073a46852cf9e9f3ee265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 2
-  maxHealth: 2
+  currentHealth: 8
+  maxHealth: 8
   playerSr: {fileID: 110918897}
   playerMovement: {fileID: 110918893}
   animator: {fileID: 110918901}

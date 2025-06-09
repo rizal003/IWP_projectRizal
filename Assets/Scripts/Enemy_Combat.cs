@@ -10,6 +10,7 @@ public class Enemy_Combat : MonoBehaviour
     public float knockbackForce;
     public LayerMask playerLayer;
     public float sunTime;
+
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    if (collision.gameObject.tag == "Player")

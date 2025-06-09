@@ -338,7 +338,7 @@ MonoBehaviour:
   damage: 1
   attackPoint: {fileID: 3443072017730245076}
   weaponRange: 1.5
-  knockbackForce: 5
+  knockbackForce: 7
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -358,7 +358,7 @@ MonoBehaviour:
   speed: 2.5
   attackRange: 1.1
   attackCooldown: 1
-  playerDetectRange: 6
+  playerDetectRange: 5
   detectionPoint: {fileID: 5389781320387954737}
   playerLayer:
     serializedVersion: 2
