@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayer;
     public float attackCooldown = 0.5f;
     private float attackCooldownTimer = 0f;
+    public GameObject slashPrefab;
 
 
     void Start()
@@ -32,35 +33,49 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!context.performed || attackCooldownTimer > 0f) return;
 
-        attackCooldownTimer = attackCooldown; // Reset cooldown
+        attackCooldownTimer = attackCooldown;
 
-        // Get last direction from movement script
+        // Get last direction
         lastDirection = playerMovement.GetLastDirection();
 
         int direction = 3; // default = down
-
         if (Mathf.Abs(lastDirection.x) > Mathf.Abs(lastDirection.y))
-        {
             direction = lastDirection.x > 0 ? 0 : 1; // 0 = right, 1 = left
-        }
         else
-        {
             direction = lastDirection.y > 0 ? 2 : 3; // 2 = up, 3 = down
-        }
 
+        // Trigger the correct attack animation through the Animator
         animator.SetInteger("AttackDirection", direction);
         animator.SetTrigger("AttackTrigger");
-        animator.Play("Attack" + DirectionToString(direction));
+
+        // REMOVE this line — it overrides transitions and causes duplicate events
+        // animator.Play("Attack" + DirectionToString(direction));
+
+        // REMOVE this too — SpawnSlash should be called by animation event only
+        // GameObject slash = Instantiate(slashPrefab, attackPoint.position, Quaternion.identity);
+        // slash.GetComponent<SlashProjectile>().direction = lastDirection.normalized;
     }
+
 
     public void DealDamage()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            // You need to have a script like EnemyHealth with TakeDamage(int dmg)
-            enemy.GetComponent<Enemy_Health>().TakeDamage(1);
+            Debug.Log("Hit: " + enemy.name); // See what it hits
+            Enemy_Health eh = enemy.GetComponentInParent<Enemy_Health>();
+            if (eh != null)
+            {
+                eh.TakeDamage(1);
+            }
         }
+
+    }
+
+    public void SpawnSlash()
+    {
+        GameObject slash = Instantiate(slashPrefab, attackPoint.position, Quaternion.identity);
+        slash.GetComponent<SlashProjectile>().direction = lastDirection.normalized;
     }
 
     private string DirectionToString(int dir)

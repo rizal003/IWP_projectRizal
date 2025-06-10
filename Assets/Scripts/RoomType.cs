@@ -10,5 +10,6 @@ public enum RoomType
     Boss,
     Treasure,
     Enemy,
+    PressurePlatePuzzle,
     Puzzle
 }

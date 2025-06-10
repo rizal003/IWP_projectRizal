@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,6 +11,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject puzzleRoomPrefab;    
     [SerializeField] GameObject treasureRoomPrefab;  
     [SerializeField] GameObject enemyRoomPrefab;     
+    [SerializeField] GameObject PressurePlatePuzzlePrefab;     
 
 
     [SerializeField] private int maxRooms = 11;
@@ -127,29 +128,38 @@ public class RoomManager : MonoBehaviour
         player.transform.position = newPos;
     }
 
-    //starts the room generation process from a given starting index
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
     {
+        if (roomGrid[roomIndex.x, roomIndex.y] != 0)
+        {
+            Debug.LogWarning("Tried to start generation from an already occupied room position.");
+            return;
+        }
+
         roomQueue.Enqueue(roomIndex);
         int x = roomIndex.x;
         int y = roomIndex.y;
         roomGrid[x, y] = 1;
         roomCount++;
-        var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+
+        var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity); //CHANGE HERE THE ROOM PREFABN TO ANOTHER PREFAB
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
+        initialRoom.GetComponent<Room>().SetRoomType(RoomType.Normal); //CHANGE HERE
         roomObjects.Add(initialRoom);
     }
+
 
     private bool TryGenerateRoom(Vector2Int roomIndex)
     {
         int x = roomIndex.x;
         int y = roomIndex.y;
 
-        if (roomCount >= maxRooms)
+        // ✅ Prevent duplicate generation in the same grid cell
+        if (roomGrid[x, y] != 0 || roomCount >= maxRooms)
             return false;
 
-        // Always allow room at (0,0)
+        // Skip random checks for the origin room — already handled in StartRoomGenerationFromRoom
         if (roomIndex != Vector2Int.zero)
         {
             if (Random.value < 0.5f)
@@ -159,16 +169,16 @@ public class RoomManager : MonoBehaviour
                 return false;
         }
 
+        // ✅ Mark grid occupied before spawning
         roomQueue.Enqueue(roomIndex);
         roomGrid[x, y] = 1;
         roomCount++;
 
         RoomType chosenType;
 
-        // Force spawn room to be Normal
         if (roomIndex == Vector2Int.zero)
         {
-            chosenType = RoomType.Normal;
+            chosenType = RoomType.PressurePlatePuzzle;
         }
         else
         {
@@ -177,7 +187,7 @@ public class RoomManager : MonoBehaviour
             if (rand > 0.95f)
                 chosenType = RoomType.Treasure;
             else if (rand > 0.85f)
-                chosenType = RoomType.Puzzle;
+                chosenType = RoomType.PressurePlatePuzzle;
             else if (rand > 0.75f)
                 chosenType = RoomType.Shop;
             else if (rand > 0.50f)
@@ -202,6 +212,9 @@ public class RoomManager : MonoBehaviour
             case RoomType.Enemy:
                 prefabToSpawn = enemyRoomPrefab;
                 break;
+            case RoomType.PressurePlatePuzzle:
+                prefabToSpawn = PressurePlatePuzzlePrefab;
+                break;
             case RoomType.Normal:
             default:
                 prefabToSpawn = roomPrefab;
@@ -215,7 +228,11 @@ public class RoomManager : MonoBehaviour
 
         roomObjects.Add(newRoom);
 
-        OpenDoors(newRoom, x, y);
+        // Only open doors immediately if not a puzzle room
+        if (chosenType != RoomType.PressurePlatePuzzle)
+        {
+            OpenDoors(newRoom, x, y);
+        }
 
         return true;
     }
@@ -272,7 +289,7 @@ public class RoomManager : MonoBehaviour
         StartRoomGenerationFromRoom(initialRoomIndex);
     }
 
-    void OpenDoors(GameObject room, int x, int y)
+    public void OpenDoors(GameObject room, int x, int y)
     {
         Room newRoomScript = room.GetComponent<Room>();
 
@@ -282,30 +299,44 @@ public class RoomManager : MonoBehaviour
         Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
         Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
 
-        // see which doors to open based on the direction
+        // LEFT
         if (x > 0 && roomGrid[x - 1, y] != 0)
         {
-            // Neighbouring room to the left
-            newRoomScript.OpenDoor(Vector2Int.left);
-            leftRoomScript.OpenDoor(Vector2Int.right);
+            if (newRoomScript.RoomType != RoomType.PressurePlatePuzzle)
+                newRoomScript.OpenDoor(Vector2Int.left);
+
+            if (leftRoomScript != null && leftRoomScript.RoomType != RoomType.PressurePlatePuzzle)
+                leftRoomScript.OpenDoor(Vector2Int.right);
         }
+
+        // RIGHT
         if (x < gridSizeX - 1 && roomGrid[x + 1, y] != 0)
         {
-            // Neighbouring room to the right
-            newRoomScript.OpenDoor(Vector2Int.right);
-            rightRoomScript.OpenDoor(Vector2Int.left);
+            if (newRoomScript.RoomType != RoomType.PressurePlatePuzzle)
+                newRoomScript.OpenDoor(Vector2Int.right);
+
+            if (rightRoomScript != null && rightRoomScript.RoomType != RoomType.PressurePlatePuzzle)
+                rightRoomScript.OpenDoor(Vector2Int.left);
         }
+
+        // BOTTOM
         if (y > 0 && roomGrid[x, y - 1] != 0)
         {
-            // Neighbouring room below
-            newRoomScript.OpenDoor(Vector2Int.down);
-            bottomRoomScript.OpenDoor(Vector2Int.up);
+            if (newRoomScript.RoomType != RoomType.PressurePlatePuzzle)
+                newRoomScript.OpenDoor(Vector2Int.down);
+
+            if (bottomRoomScript != null && bottomRoomScript.RoomType != RoomType.PressurePlatePuzzle)
+                bottomRoomScript.OpenDoor(Vector2Int.up);
         }
+
+        // TOP
         if (y < gridSizeY - 1 && roomGrid[x, y + 1] != 0)
         {
-            // Neighbouring room above
-            newRoomScript.OpenDoor(Vector2Int.up);
-            topRoomScript.OpenDoor(Vector2Int.down);
+            if (newRoomScript.RoomType != RoomType.PressurePlatePuzzle)
+                newRoomScript.OpenDoor(Vector2Int.up);
+
+            if (topRoomScript != null && topRoomScript.RoomType != RoomType.PressurePlatePuzzle)
+                topRoomScript.OpenDoor(Vector2Int.down);
         }
 
     }

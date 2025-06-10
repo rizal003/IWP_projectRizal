@@ -140,11 +140,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1010065352}
-  attackRange: 0.5
+  attackRange: 0.1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackCooldown: 1.5
+  attackCooldown: 1
+  slashPrefab: {fileID: 7105280897961025419, guid: 85a5e19754ca1c24cbe604855d043fde, type: 3}
 --- !u!114 &110918893 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
@@ -204,12 +205,28 @@ MonoBehaviour:
   maxHealth: 8
   playerSr: {fileID: 110918897}
   playerMovement: {fileID: 110918893}
-  animator: {fileID: 110918901}
---- !u!95 &110918901 stripped
+  animator: {fileID: 0}
+--- !u!95 &110918906
 Animator:
-  m_CorrespondingSourceObject: {fileID: 2616422938573485068, guid: 64d0fda62845023489881a09b0107959, type: 3}
-  m_PrefabInstance: {fileID: 3872016614331142109}
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110918890}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f46c42561e1ca26439b6ae1e617c3ee0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &125306879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1076,7 @@ MonoBehaviour:
   puzzleRoomPrefab: {fileID: 8759998086927342674, guid: be58fc419365c9a4bb3cc0559860ee1c, type: 3}
   treasureRoomPrefab: {fileID: 8759998086927342674, guid: 8e3b77e7785897d4f975d9293fe57b6c, type: 3}
   enemyRoomPrefab: {fileID: 8759998086927342674, guid: ae41327eeeb98e74ca063e89ff03e28b, type: 3}
+  PressurePlatePuzzlePrefab: {fileID: 8759998086927342674, guid: be58fc419365c9a4bb3cc0559860ee1c, type: 3}
   maxRooms: 11
   minRooms: 7
   gridSizeX: 15
@@ -1153,7 +1171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3181886830705838025, guid: 64d0fda62845023489881a09b0107959, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9
+      value: -6.43
       objectReference: {fileID: 0}
     - target: {fileID: 3181886830705838025, guid: 64d0fda62845023489881a09b0107959, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1233,11 +1251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4149641105016905099, guid: 64d0fda62845023489881a09b0107959, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1
+      value: 0.039
       objectReference: {fileID: 0}
     - target: {fileID: 4149641105016905099, guid: 64d0fda62845023489881a09b0107959, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.28
+      value: -0.373
       objectReference: {fileID: 0}
     - target: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
       propertyPath: moveSpeed
@@ -1256,6 +1274,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2675858375829637206, guid: 64d0fda62845023489881a09b0107959, type: 3}
       insertIndex: -1
       addedObject: {fileID: 110918900}
+    - targetCorrespondingSourceObject: {fileID: 2675858375829637206, guid: 64d0fda62845023489881a09b0107959, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 110918906}
   m_SourcePrefab: {fileID: 100100000, guid: 64d0fda62845023489881a09b0107959, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

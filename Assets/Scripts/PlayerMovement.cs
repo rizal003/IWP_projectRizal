@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Animator animator;
     private Vector2 lastDirection = Vector2.down;
-    private bool isKnockedBack; 
+    private bool isKnockedBack;
+    [SerializeField] private LayerMask pushableLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +20,43 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();    
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isKnockedBack) return;
 
-        rb.velocity = moveInput * moveSpeed;
+        Vector2 targetVelocity = moveInput * moveSpeed;
+
+        if (moveInput != Vector2.zero)
+        {
+            // Try to detect a pushable object in front
+            RaycastHit2D hit = Physics2D.Raycast(rb.position, moveInput, 0.6f, pushableLayer);
+            if (hit.collider != null && hit.collider.CompareTag("Pushable"))
+            {
+                Rigidbody2D pushRb = hit.collider.attachedRigidbody;
+                if (pushRb != null)
+                {
+                    float pushSpeed = 2f;
+
+                    // Apply force instead of MovePosition for smoother response
+                    Vector2 pushDir = moveInput.normalized;
+                    pushRb.velocity = pushDir * pushSpeed;
+
+                    // Let player keep moving while pushing
+                    rb.velocity = targetVelocity * 0.9f;
+                }
+            }
+            else
+            {
+                rb.velocity = targetVelocity;
+            }
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
+
+
 
     public void Move(InputAction.CallbackContext context)
     {
