@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c196f8b61a5074d4cb14bd0f58602679
+guid: aef711a5054a5d34da46a6c35d65ff3a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemies-vampire_idle_0
+      name: HURT_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 3
-        width: 12
-        height: 16
+        x: 8
+        y: 2
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f80cfd4400c84145a4f01f6bec43aaf
-      internalID: -551731364
+      spriteID: 851bd8ff3f75c4a47b6441e4b4a57e39
+      internalID: 1059400595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_idle_1
+      name: HURT_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 3
-        width: 12
-        height: 16
+        x: 88
+        y: 8
+        width: 63
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f08b259d1bd5de9429c19a071fed3d48
-      internalID: -76179191
+      spriteID: 3dd48041cc8625f479f2e12c10627c05
+      internalID: 1530071177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_idle_2
+      name: HURT_2
       rect:
         serializedVersion: 2
-        x: 71
-        y: 3
-        width: 12
-        height: 17
+        x: 169
+        y: 8
+        width: 63
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a18fe03271e00243816d3f8aa8b183c
-      internalID: -1487586653
+      spriteID: 8c929713363c014498fea911383df4e5
+      internalID: -1606116979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_idle_3
+      name: HURT_3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 3
-        width: 12
-        height: 17
+        x: 250
+        y: 2
+        width: 63
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,50 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bcbf7363ed84b14b88217d64f5cece8
-      internalID: -1361332525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies-vampire_idle_4
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 3
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc56c1ca7a777d14b82130236d54dc1a
-      internalID: -2034822897
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies-vampire_idle_5
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 3
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cfe27d43ddf6e6d4180ff2a3f5f8d144
-      internalID: -1504793229
+      spriteID: ba283bbb1e8ed3b43b7470a30454f3f6
+      internalID: 806986689
       vertices: []
       indices: 
       edges: []
@@ -233,12 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemies-vampire_idle_0: -551731364
-      enemies-vampire_idle_1: -76179191
-      enemies-vampire_idle_2: -1487586653
-      enemies-vampire_idle_3: -1361332525
-      enemies-vampire_idle_4: -2034822897
-      enemies-vampire_idle_5: -1504793229
+      HURT_0: 1059400595
+      HURT_1: 1530071177
+      HURT_2: -1606116979
+      HURT_3: 806986689
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

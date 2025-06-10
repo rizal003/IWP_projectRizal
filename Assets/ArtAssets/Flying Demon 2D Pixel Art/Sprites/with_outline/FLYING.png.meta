@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c196f8b61a5074d4cb14bd0f58602679
+guid: 58a0ca6158a83bc45850beb728ee1e08
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemies-vampire_idle_0
+      name: FLYING_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 3
-        width: 12
-        height: 16
+        x: 1
+        y: 6
+        width: 78
+        height: 59
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f80cfd4400c84145a4f01f6bec43aaf
-      internalID: -551731364
+      spriteID: 8746382106cfc7b4bbfdda75d5a6e060
+      internalID: -1342688870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_idle_1
+      name: FLYING_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 3
-        width: 12
-        height: 16
+        x: 89
+        y: 2
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f08b259d1bd5de9429c19a071fed3d48
-      internalID: -76179191
+      spriteID: f93b289c7b199674995e55f09edf4266
+      internalID: -1196754816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_idle_2
+      name: FLYING_2
       rect:
         serializedVersion: 2
-        x: 71
-        y: 3
-        width: 12
-        height: 17
+        x: 169
+        y: 6
+        width: 68
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a18fe03271e00243816d3f8aa8b183c
-      internalID: -1487586653
+      spriteID: 89e8c35498c7ecb4287d99cb5626fd1b
+      internalID: 489953686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies-vampire_idle_3
+      name: FLYING_3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 3
-        width: 12
-        height: 17
+        x: 250
+        y: 6
+        width: 67
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,50 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bcbf7363ed84b14b88217d64f5cece8
-      internalID: -1361332525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies-vampire_idle_4
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 3
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc56c1ca7a777d14b82130236d54dc1a
-      internalID: -2034822897
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemies-vampire_idle_5
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 3
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cfe27d43ddf6e6d4180ff2a3f5f8d144
-      internalID: -1504793229
+      spriteID: b922a82caaa431642ba089028ca7ecd4
+      internalID: 2097348143
       vertices: []
       indices: 
       edges: []
@@ -233,12 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemies-vampire_idle_0: -551731364
-      enemies-vampire_idle_1: -76179191
-      enemies-vampire_idle_2: -1487586653
-      enemies-vampire_idle_3: -1361332525
-      enemies-vampire_idle_4: -2034822897
-      enemies-vampire_idle_5: -1504793229
+      FLYING_0: -1342688870
+      FLYING_1: -1196754816
+      FLYING_2: 489953686
+      FLYING_3: 2097348143
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

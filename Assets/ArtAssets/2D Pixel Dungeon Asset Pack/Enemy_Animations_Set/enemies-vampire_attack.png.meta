@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: enemies-vampire_attack_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 3
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3061d94b0a6c4d04e888dc64d904f07a
+      internalID: 2025382220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 3
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e921877f0cc28534a8edbc50fbb1fc48
+      internalID: 841845515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_2
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 3
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d9cbb0a95c2f74d8b0c88bba0dd17b
+      internalID: -1598556504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 3
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91675426c31f6ef419b91309a2f6f23d
+      internalID: 1077923854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_4
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 6
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85d4c8125c97f140a6cd616857d982f
+      internalID: -159890485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_5
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 6
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a76a9f5426996f24ab8d17a6d471d54f
+      internalID: 1016060655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_6
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 6
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84babaf194ce06742baf081e98c2b399
+      internalID: 600609754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_7
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 6
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2c9abfa23532f345b05edf40f51433f
+      internalID: -1914911828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_8
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 6
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ece32bfc667155448f00ef5a557b9e4
+      internalID: -27279818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_9
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 5
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2a9bec4789909b41a898b296f3b599b
+      internalID: 715388701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_10
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 4
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de029f6303c9ad24a8721877b993ec39
+      internalID: 318377912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_11
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 6
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d53e7349586e44eb2c303360feac68
+      internalID: 1841482324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_12
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 4
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b92b5c558f54e744a5aec3abc3acedd
+      internalID: -1644145964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_13
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 3
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8c9e91c0d8d79c4aa5729cbc1f14508
+      internalID: -263936929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_14
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 3
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae839ccbc6d1c942b747d546a954dae
+      internalID: 416447478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_attack_15
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 3
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b14579d02b8f8468af9e65d8567724
+      internalID: 335624648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +442,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemies-vampire_attack_0: 2025382220
+      enemies-vampire_attack_1: 841845515
+      enemies-vampire_attack_10: 318377912
+      enemies-vampire_attack_11: 1841482324
+      enemies-vampire_attack_12: -1644145964
+      enemies-vampire_attack_13: -263936929
+      enemies-vampire_attack_14: 416447478
+      enemies-vampire_attack_15: 335624648
+      enemies-vampire_attack_2: -1598556504
+      enemies-vampire_attack_3: 1077923854
+      enemies-vampire_attack_4: -159890485
+      enemies-vampire_attack_5: 1016060655
+      enemies-vampire_attack_6: 600609754
+      enemies-vampire_attack_7: -1914911828
+      enemies-vampire_attack_8: -27279818
+      enemies-vampire_attack_9: 715388701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
