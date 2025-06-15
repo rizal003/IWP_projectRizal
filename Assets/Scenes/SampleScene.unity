@@ -205,7 +205,7 @@ MonoBehaviour:
   maxHealth: 8
   playerSr: {fileID: 110918897}
   playerMovement: {fileID: 110918893}
-  animator: {fileID: 0}
+  animator: {fileID: 110918906}
 --- !u!95 &110918906
 Animator:
   serializedVersion: 5
@@ -777,7 +777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1192439248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1673075131
 SpriteRenderer:
   m_ObjectHideFlags: 0
