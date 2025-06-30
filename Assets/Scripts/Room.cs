@@ -28,7 +28,7 @@ public class Room : MonoBehaviour
         if (roomType == RoomType.Normal)
         {
             SpawnEnemyWithPatrol();
-            SpawnVampireWithSpecificPatrol();
+            // SpawnVampireWithSpecificPatrol(); // Commented out to remove vampire spawn in normal rooms
         }
     }
 
@@ -83,7 +83,7 @@ public class Room : MonoBehaviour
         }
 
         // Spawn 3 enemies or up to the number of patrol points
-        int spawnCount = Mathf.Min(2, patrolPoints.Length);
+        int spawnCount = Mathf.Min(3, patrolPoints.Length);
         for (int i = 0; i < spawnCount; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab, patrolPoints[i].position, Quaternion.identity, transform);
