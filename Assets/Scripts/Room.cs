@@ -11,21 +11,27 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject rightDoor;
 
     [Header("Enemy Spawning")]
-    [SerializeField] private GameObject enemyPrefab; // assign your enemy prefab here
-    [SerializeField] private Transform patrolPointsParent; // assign the PatrolPoints object here
+    [SerializeField] private GameObject enemyPrefab; 
+    [SerializeField] private Transform patrolPointsParent; 
+    [SerializeField] private GameObject vampirePrefab; 
 
     private RoomType roomType;
     public RoomType RoomType { get { return roomType; } private set { roomType = value; } }
     public bool IsExplored { get; set; } = false;
     public Vector2Int RoomIndex { get; set; }
-
+    private static bool vampireSpawned = false;
+    public bool spawnVampireHere = false;
     private void Start()
     {
+        Debug.Log($"Room initialization - Type: {roomType}, VampirePrefab: {vampirePrefab != null}, PatrolPoints: {patrolPointsParent != null}");
+
         if (roomType == RoomType.Normal)
         {
             SpawnEnemyWithPatrol();
+            SpawnVampireWithSpecificPatrol();
         }
     }
+
 
     public void SetRoomType(RoomType type)
     {
@@ -77,7 +83,7 @@ public class Room : MonoBehaviour
         }
 
         // Spawn 3 enemies or up to the number of patrol points
-        int spawnCount = Mathf.Min(4, patrolPoints.Length);
+        int spawnCount = Mathf.Min(2, patrolPoints.Length);
         for (int i = 0; i < spawnCount; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab, patrolPoints[i].position, Quaternion.identity, transform);
@@ -88,6 +94,90 @@ public class Room : MonoBehaviour
                 em.patrolPoints = patrolPoints;
             }
         }
+    }
+
+    private void SpawnVampireWithSpecificPatrol()
+    {
+        Debug.Log("Attempting to spawn vampires...");
+
+        if (vampirePrefab == null)
+        {
+            Debug.LogWarning("Cannot spawn vampire - vampirePrefab is not assigned!");
+            return;
+        }
+
+        if (patrolPointsParent == null)
+        {
+            Debug.LogWarning("Cannot spawn vampire - patrolPointsParent is not assigned!");
+            return;
+        }
+
+        Debug.Log($"Patrol points available: {patrolPointsParent.childCount}");
+
+        // Collect patrol points for vampires - using first 4 points (0-3) for two vampires
+        List<Transform> vampirePatrolList = new List<Transform>();
+        for (int i = 0; i < Mathf.Min(4, patrolPointsParent.childCount); i++) // Get first 4 points
+        {
+            vampirePatrolList.Add(patrolPointsParent.GetChild(i));
+            Debug.Log($"Added patrol point {i}");
+        }
+
+        // Need at least 2 patrol points per vampire
+        if (vampirePatrolList.Count < 4)
+        {
+            Debug.LogWarning($"Not enough patrol points for vampires (needs 4, found {vampirePatrolList.Count})");
+            return;
+        }
+
+        // Spawn two vampires
+        for (int vampireCount = 0; vampireCount < 2; vampireCount++)
+        {
+            // Use points 0-1 for first vampire, 2-3 for second
+            Transform[] vampirePoints = new Transform[2] {
+            vampirePatrolList[vampireCount * 2],
+            vampirePatrolList[vampireCount * 2 + 1]
+        };
+
+            Debug.Log($"Spawning vampire {vampireCount + 1} at position: {vampirePoints[0].position}");
+            GameObject vampire = Instantiate(vampirePrefab, vampirePoints[0].position, Quaternion.identity, transform);
+
+            if (vampire == null)
+            {
+                Debug.LogError("Failed to instantiate vampire prefab!");
+                continue;
+            }
+
+            // Set up movement
+            Enemy_Movement em = vampire.GetComponent<Enemy_Movement>();
+            if (em != null)
+            {
+                em.patrolPoints = vampirePoints;
+                em.attackRange = 5f;
+                em.playerDetectRange = 7f;
+                em.speed = 2f;
+                Debug.Log($"Enemy_Movement configured for vampire {vampireCount + 1}");
+            }
+            else
+            {
+                Debug.LogWarning("Vampire prefab is missing Enemy_Movement component!");
+            }
+
+            // Set up combat
+            RangedEnemyCombat rec = vampire.GetComponent<RangedEnemyCombat>();
+            if (rec != null)
+            {
+                rec.fireRange = 5f;
+                rec.projectileSpeed = 8f;
+                rec.fireCooldown = 2f;
+                Debug.Log($"RangedEnemyCombat configured for vampire {vampireCount + 1}");
+            }
+            else
+            {
+                Debug.LogWarning("Vampire prefab is missing RangedEnemyCombat component!");
+            }
+        }
+
+        Debug.Log("2 Vampires spawned successfully!");
     }
 
     public void LockAllDoors()

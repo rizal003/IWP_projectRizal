@@ -14,7 +14,6 @@ public class PuzzleManager : MonoBehaviour
         bool allPressed = true;
         foreach (var plate in plates)
         {
-            Debug.Log($"{plate.name} pressed: {plate.IsPressed}");
 
             if (!plate.IsPressed)
             {
@@ -28,7 +27,7 @@ public class PuzzleManager : MonoBehaviour
             puzzleSolved = true;
             Debug.Log("Puzzle Solved!");
 
-            Room room = GetComponentInParent<Room>(); // ✅ Fix here
+            Room room = GetComponentInParent<Room>(); 
             if (room != null)
             {
                 room.UnlockConnectedDoors();

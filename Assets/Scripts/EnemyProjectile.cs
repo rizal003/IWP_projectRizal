@@ -2,13 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class EnemyProjectile : MonoBehaviour
 {
     public int damage = 1;
-    public float lifetime = 5f;
+    public float lifetime = 2f;
     private Vector2 direction;
     private float speed;
+
+    void Start()
+    {
+        // Ignore collision with all enemies
+        Collider2D projCollider = GetComponent<Collider2D>();
+        if (projCollider != null)
+        {
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                Collider2D enemyCollider = enemy.GetComponent<Collider2D>();
+                if (enemyCollider != null)
+                {
+                    Physics2D.IgnoreCollision(projCollider, enemyCollider);
+                }
+            }
+        }
+    }
 
     public void Initialize(Vector2 dir, float spd)
     {
@@ -26,19 +42,12 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerHealth ph = other.GetComponent<PlayerHealth>();
-            if (ph != null)
-            {
-                ph.ChangeHealth(-damage);
-            }
-
+            other.GetComponent<PlayerHealth>()?.ChangeHealth(-damage);
             Destroy(gameObject);
         }
-
-        if (other.CompareTag("Wall") || other.CompareTag("Obstacle"))
+        else if (other.CompareTag("Wall")) // Only check for Wall tag
         {
             Destroy(gameObject);
         }
     }
 }
-

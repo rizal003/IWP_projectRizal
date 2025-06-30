@@ -13,9 +13,18 @@ public class RangedEnemyCombat : MonoBehaviour
 
     private float fireTimer;
     private Transform player;
+    private Room enemyRoom;
+
+    void Start()
+    {
+        enemyRoom = GetComponentInParent<Room>();
+    }
 
     void Update()
     {
+        // Only fire if player is in the same room
+        if (RoomManager.Instance.CurrentRoom != enemyRoom) return;
+
         fireTimer -= Time.deltaTime;
 
         if (player == null)
@@ -41,5 +50,23 @@ public class RangedEnemyCombat : MonoBehaviour
         EnemyProjectile projectile = proj.GetComponent<EnemyProjectile>();
         projectile.Initialize(dir, projectileSpeed);
     }
+
+    public void TryFireAtPlayer(Transform player)
+    {
+        if (fireTimer <= 0f && player != null)
+        {
+            Vector2 dir = (player.position - transform.position).normalized;
+            FireProjectile(dir);
+            fireTimer = fireCooldown;
+        }
+    }
+
+    private void FireProjectile(Vector2 dir)
+    {
+        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        EnemyProjectile projectile = proj.GetComponent<EnemyProjectile>();
+        projectile.Initialize(dir, projectileSpeed);
+    }
+
 }
 

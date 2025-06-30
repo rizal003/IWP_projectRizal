@@ -34,7 +34,8 @@ public class RoomManager : MonoBehaviour
     private bool generationComplete = false;
 
     public static RoomManager Instance;  
-    public GameObject player;  
+    public GameObject player;
+    public Room CurrentRoom { get; private set; }
 
     private Camera mainCamera;
     public bool IsExplored { get; set; } = false;
@@ -127,7 +128,10 @@ public class RoomManager : MonoBehaviour
 
         player.transform.position = newPos;
     }
-
+    public void SetCurrentRoom(Room room)
+    {
+        CurrentRoom = room;
+    }
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
     {
         if (roomGrid[roomIndex.x, roomIndex.y] != 0)

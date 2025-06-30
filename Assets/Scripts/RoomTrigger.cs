@@ -17,6 +17,7 @@ public class RoomTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Room currentRoom = GetComponentInParent<Room>();
+            RoomManager.Instance.SetCurrentRoom(currentRoom);
 
             if (!currentRoom.IsExplored)
             {
@@ -32,7 +33,6 @@ public class RoomTrigger : MonoBehaviour
                 }
             }
 
-            // ✅ Use the serialized field here
             RoomManager.Instance.MovePlayerToRoom(currentRoom.RoomIndex, entryDirection);
         }
     }

@@ -27,13 +27,15 @@ public class Enemy_Movement : MonoBehaviour
     private bool isPausingAtPoint = false;
     private bool overrideAnimation = false;
 
+    private RangedEnemyCombat rangedCombat;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        ChangeState(EnemyState.Patrol); 
+        ChangeState(EnemyState.Patrol);
+        rangedCombat = GetComponent<RangedEnemyCombat>(); 
 
     }
     void Update()
@@ -48,13 +50,19 @@ public class Enemy_Movement : MonoBehaviour
         else if (enemyState == EnemyState.Attacking)
         {
             rb.velocity = Vector2.zero;
+
+         
+            if (rangedCombat != null && player != null)
+            {
+                rangedCombat.TryFireAtPlayer(player);
+            }
         }
         else if (enemyState == EnemyState.Patrol)
         {
             Patrol();
         }
 
-        CheckForPlayer(); 
+        CheckForPlayer();
     }
 
 
@@ -99,8 +107,7 @@ public class Enemy_Movement : MonoBehaviour
 
     void Patrol()
     {
-        if (patrolPoints.Length == 0) return;
-
+        if (patrolPoints == null || patrolPoints.Length == 0) return;
         Transform target = patrolPoints[patrolIndex];
 
         if (isPausingAtPoint)

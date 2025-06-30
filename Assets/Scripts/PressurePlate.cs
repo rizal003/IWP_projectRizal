@@ -17,7 +17,6 @@ public class PressurePlate : MonoBehaviour
         if (other.CompareTag("Player") || other.CompareTag("Pushable"))
         {
             pressingObjects++;
-            Debug.Log($"{name} pressed by {other.name} (Count: {pressingObjects})");
 
             if (spriteRenderer != null && pressedSprite != null)
             {
@@ -31,7 +30,6 @@ public class PressurePlate : MonoBehaviour
         if (other.CompareTag("Player") || other.CompareTag("Pushable"))
         {
             pressingObjects = Mathf.Max(0, pressingObjects - 1);
-            Debug.Log($"{name} released by {other.name} (Count: {pressingObjects})");
 
             if (pressingObjects == 0 && spriteRenderer != null && unpressedSprite != null)
             {

@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Box
   - Pushable
+  - Wall
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Enemy
   - 'EnemyDetector '
   - Pushable
-  - 
+  - Wall
   - 
   - 
   - 
