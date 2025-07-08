@@ -365,7 +365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d79d7945257c49bbed0d50d9357cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 3
   currentHealth: 5
   spriteRenderer: {fileID: 8786890776393184230}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.3
+  deathEffect: {fileID: 8510529645783170190, guid: 815ade46da2e18443a8e216c4344b2d6, type: 3}

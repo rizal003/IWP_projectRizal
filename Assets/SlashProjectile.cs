@@ -45,7 +45,7 @@ public class SlashProjectile : MonoBehaviour
             if (eh != null)
             {
                 eh.TakeDamage(damage);
-                Destroy(gameObject); // Optional
+                Destroy(gameObject); 
             }
         }
     }

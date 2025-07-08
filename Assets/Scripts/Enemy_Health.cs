@@ -3,58 +3,71 @@ using UnityEngine;
 
 public class Enemy_Health : MonoBehaviour
 {
-    public int currentHealth = 3;
-    private Animator animator;
-    private bool isDead = false;
-    public SpriteRenderer spriteRenderer; 
+    [Header("Settings")]
+    public int maxHealth = 3;
+    [SerializeField] private int currentHealth;
+
+    [Header("Effects")]
+    public SpriteRenderer spriteRenderer;
     public Color hitColor = Color.red;
     public float flashDuration = 0.1f;
+    public GameObject deathEffect;
 
-    private Color originalColor;
-
+    private Animator animator;
+    private bool isDead = false;
+    private CameraShake _cameraShake;
     void Start()
     {
+        _cameraShake = Camera.main?.GetComponent<CameraShake>();
+
+    }
+    void Awake()
+    {
         animator = GetComponent<Animator>();
-        originalColor = spriteRenderer.color;
+        currentHealth = maxHealth;
 
+        if (!spriteRenderer) spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    public void FlashRed()
-    {
-        StopAllCoroutines(); 
-        StartCoroutine(FlashRedCoroutine());
-    }
-
-    private IEnumerator FlashRedCoroutine()
-    {
-        spriteRenderer.color = hitColor;
-        yield return new WaitForSeconds(flashDuration);
-        spriteRenderer.color = originalColor;
-    }
-
-
+    
     public void TakeDamage(int amount)
     {
+        _cameraShake?.Shake(0.1f, 0.15f); // Null-conditional operator
+
         if (isDead) return;
 
         currentHealth -= amount;
         animator.SetTrigger("Hit");
-        FlashRed(); 
+        StartCoroutine(FlashRed());
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
-
-
 
     void Die()
     {
         isDead = true;
         animator.SetTrigger("die");
+
+        // Disable components
         GetComponent<Collider2D>().enabled = false;
-        GetComponent<Rigidbody2D>().simulated = false;
-        // Optional: Destroy after animation
-        Destroy(gameObject, 1.5f); // adjust time to match your animation length
+        if (TryGetComponent<Rigidbody2D>(out var rb)) rb.simulated = false;
+        if (TryGetComponent<Enemy_Movement>(out var move)) move.enabled = false;
+
+        // Effects
+        if (deathEffect) Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        // Destroy after animation
+        float animLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        Destroy(gameObject, animLength);
+    }
+
+    IEnumerator FlashRed()
+    {
+        if (!spriteRenderer) yield break;
+
+        Color original = spriteRenderer.color;
+        spriteRenderer.color = hitColor;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = original;
     }
 }

@@ -10,8 +10,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject shopRoomPrefab;
     [SerializeField] GameObject puzzleRoomPrefab;    
     [SerializeField] GameObject treasureRoomPrefab;  
-    [SerializeField] GameObject enemyRoomPrefab;     
     [SerializeField] GameObject PressurePlatePuzzlePrefab;     
+    [SerializeField] GameObject VampireRoomPrefab;     
 
 
     [SerializeField] private int maxRooms = 11;
@@ -146,10 +146,10 @@ public class RoomManager : MonoBehaviour
         roomGrid[x, y] = 1;
         roomCount++;
 
-        var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity); //CHANGE HERE THE ROOM PREFABN TO ANOTHER PREFAB
+        var initialRoom = Instantiate(VampireRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity); //CHANGE HERE THE ROOM PREFABN TO ANOTHER PREFAB
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
-        initialRoom.GetComponent<Room>().SetRoomType(RoomType.Normal); //CHANGE HERE
+        initialRoom.GetComponent<Room>().SetRoomType(RoomType.Vampire); //CHANGE HERE
         roomObjects.Add(initialRoom);
     }
 
@@ -182,21 +182,21 @@ public class RoomManager : MonoBehaviour
 
         if (roomIndex == Vector2Int.zero)
         {
-            chosenType = RoomType.PressurePlatePuzzle;
+            chosenType = RoomType.PressurePlatePuzzle; 
         }
         else
         {
             float rand = Random.value;
 
-            if (rand > 0.95f)
+            if (rand > 0.95f)        
                 chosenType = RoomType.Treasure;
-            else if (rand > 0.85f)
+            else if (rand > 0.65f)  
+                chosenType = RoomType.Vampire;
+            else if (rand > 0.60f)   
                 chosenType = RoomType.PressurePlatePuzzle;
-            else if (rand > 0.75f)
+            else if (rand > 0.55f)  
                 chosenType = RoomType.Shop;
-            else if (rand > 0.50f)
-                chosenType = RoomType.Enemy;
-            else
+            else                   
                 chosenType = RoomType.Normal;
         }
 
@@ -210,11 +210,11 @@ public class RoomManager : MonoBehaviour
             case RoomType.Puzzle:
                 prefabToSpawn = puzzleRoomPrefab;
                 break;
+            case RoomType.Vampire:
+                prefabToSpawn = VampireRoomPrefab;
+                break;
             case RoomType.Shop:
                 prefabToSpawn = shopRoomPrefab;
-                break;
-            case RoomType.Enemy:
-                prefabToSpawn = enemyRoomPrefab;
                 break;
             case RoomType.PressurePlatePuzzle:
                 prefabToSpawn = PressurePlatePuzzlePrefab;

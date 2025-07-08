@@ -10,9 +10,22 @@ public class PlayerHealth : MonoBehaviour
     public SpriteRenderer playerSr;
     public PlayerMovement playerMovement;
     public Animator animator;
+    private const int DEATH_RIGHT = 0;
+    private const int DEATH_LEFT = 1;
+    private const int DEATH_UP = 2;
+    private const int DEATH_DOWN = 3;
+    private CameraShake _cameraShake;
 
+    void Start()
+    {
+        _cameraShake = Camera.main?.GetComponent<CameraShake>();
+    }
     public void ChangeHealth(int amount)
     {
+        if (amount < 0 && _cameraShake != null)
+        {
+            _cameraShake.Shake(0.3f, 0.35f); 
+        }
         currentHealth += amount;
 
         if (currentHealth <= 0)
@@ -25,22 +38,25 @@ public class PlayerHealth : MonoBehaviour
     {
         Vector2 lastDir = playerMovement.GetLastDirection();
 
-        int deathDir = 3; // Default: down
+        int deathDir = DEATH_DOWN; 
 
         if (Mathf.Abs(lastDir.x) > Mathf.Abs(lastDir.y))
         {
-            deathDir = lastDir.x > 0 ? 0 : 1; // right : left
+            deathDir = lastDir.x > 0 ? DEATH_RIGHT : DEATH_LEFT;
         }
         else
         {
-            deathDir = lastDir.y > 0 ? 2 : 3; // up : down
+            deathDir = lastDir.y > 0 ? DEATH_UP : DEATH_DOWN;
         }
 
+        // Set the death direction parameter
         animator.SetInteger("DeathDirection", deathDir);
-        animator.SetTrigger("DeathTrigger");
+        // Trigger the death animation
+        animator.SetTrigger("Die");
 
         playerMovement.enabled = false;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        // Optionally disable SpriteRenderer here if needed later
+        GetComponent<Collider2D>().enabled = false; 
     }
+
 }

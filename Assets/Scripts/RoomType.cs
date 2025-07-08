@@ -11,5 +11,6 @@ public enum RoomType
     Treasure,
     Enemy,
     PressurePlatePuzzle,
-    Puzzle
+    Puzzle,
+    Vampire
 }

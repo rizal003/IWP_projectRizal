@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using System.Collections;
 public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
@@ -14,11 +14,15 @@ public class PlayerCombat : MonoBehaviour
     private float attackCooldownTimer = 0f;
     public GameObject slashPrefab;
 
+    public float hitStopDuration = 0.05f;
+    private CameraShake _cameraShake;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        _cameraShake = Camera.main?.GetComponent<CameraShake>(); 
+
     }
     void Update()
     {
@@ -48,17 +52,15 @@ public class PlayerCombat : MonoBehaviour
         animator.SetInteger("AttackDirection", direction);
         animator.SetTrigger("AttackTrigger");
 
-        // REMOVE this line — it overrides transitions and causes duplicate events
-        // animator.Play("Attack" + DirectionToString(direction));
-
-        // REMOVE this too — SpawnSlash should be called by animation event only
-        // GameObject slash = Instantiate(slashPrefab, attackPoint.position, Quaternion.identity);
-        // slash.GetComponent<SlashProjectile>().direction = lastDirection.normalized;
+     
     }
 
 
     public void DealDamage()
     {
+        _cameraShake?.Shake(0.1f, 0.15f); // Null-conditional operator
+
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -72,21 +74,12 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
+   
     public void SpawnSlash()
     {
         GameObject slash = Instantiate(slashPrefab, attackPoint.position, Quaternion.identity);
         slash.GetComponent<SlashProjectile>().direction = lastDirection.normalized;
     }
 
-    private string DirectionToString(int dir)
-    {
-        return dir switch
-        {
-            0 => "Right",
-            1 => "Left",
-            2 => "Up",
-            3 => "Down",
-            _ => "Down"
-        };
-    }
+  
 }

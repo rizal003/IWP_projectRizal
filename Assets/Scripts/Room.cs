@@ -28,7 +28,11 @@ public class Room : MonoBehaviour
         if (roomType == RoomType.Normal)
         {
             SpawnEnemyWithPatrol();
-            // SpawnVampireWithSpecificPatrol(); // Commented out to remove vampire spawn in normal rooms
+        }
+        else if (roomType == RoomType.Vampire)
+        {
+            Debug.Log($"Attempting to spawn vampires in vampire room. Prefab: {vampirePrefab != null}, Points: {patrolPointsParent?.childCount ?? 0}");
+            SpawnVampireWithSpecificPatrol();
         }
     }
 
