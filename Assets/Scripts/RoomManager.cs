@@ -92,12 +92,11 @@ public class RoomManager : MonoBehaviour
         }
 
     }
-    
 
-    // Moves the player and camera to the next room and position the player infront of the door
+
     public void MovePlayerToRoom(Vector2Int newRoomIndex, Vector2Int enteredFromDirection)
     {
-        // find the room then the next target room that player enters
+        // Find the new room
         GameObject newRoom = roomObjects.Find(room => room.GetComponent<Room>().RoomIndex == newRoomIndex);
         if (newRoom == null)
         {
@@ -105,18 +104,30 @@ public class RoomManager : MonoBehaviour
             return;
         }
 
-        // Move the camera instantly to the new room center
-        mainCamera.transform.position = new Vector3(newRoom.transform.position.x, newRoom.transform.position.y, mainCamera.transform.position.z);
+        // Calculate new camera position
+        Vector3 newCameraPos = new Vector3(
+            newRoom.transform.position.x,
+            newRoom.transform.position.y,
+            mainCamera.transform.position.z
+        );
 
-        //start at centre
+        // Update camera shake with new room position
+        CameraShake cameraShake = mainCamera.GetComponent<CameraShake>();
+        if (cameraShake != null)
+        {
+            cameraShake.SetRoomCenter(newCameraPos);
+        }
+        else
+        {
+            mainCamera.transform.position = newCameraPos;
+        }
+
+        // Position player (your existing code)
         Vector3 newPos = newRoom.transform.position;
-
-        
         float halfRoomWidth = roomWidth * 0.5f;
         float halfRoomHeight = roomHeight * 0.5f;
         float offset = 3.5f;
 
-        //adjust player position based on which direction they came from
         if (enteredFromDirection == Vector2Int.up)
             newPos += new Vector3(0, -halfRoomHeight + offset, 0);
         else if (enteredFromDirection == Vector2Int.down)
@@ -229,6 +240,7 @@ public class RoomManager : MonoBehaviour
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         newRoom.GetComponent<Room>().SetRoomType(chosenType);
+      
 
         roomObjects.Add(newRoom);
 
@@ -271,8 +283,11 @@ public class RoomManager : MonoBehaviour
 
             // Instantiate the boss room prefab at the same position
             var newBossRoom = Instantiate(bossRoomPrefab, GetPositionFromGridIndex(bossRoomIndex), Quaternion.identity);
-            newBossRoom.GetComponent<Room>().RoomIndex = bossRoomIndex;
-            newBossRoom.name = "BossRoom";
+            Room bossRoomScript = newBossRoom.GetComponent<Room>();
+            bossRoomScript.RoomIndex = bossRoomIndex;
+            bossRoomScript.name = "BossRoom";
+            bossRoomScript.SetRoomType(RoomType.Boss);  
+
 
             roomObjects.Remove(furthestRoom);
             roomObjects.Add(newBossRoom);

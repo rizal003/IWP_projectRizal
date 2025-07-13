@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: demon_smash_14_3
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 1
+        width: 196
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7351cc28738c07a408f551a337381805
+      internalID: 984543791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +127,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      demon_smash_14_0: -103851227
+      demon_smash_14_1: 1028254301
+      demon_smash_14_10: -1180982880
+      demon_smash_14_11: -688176371
+      demon_smash_14_12: -422549504
+      demon_smash_14_13: -1799454256
+      demon_smash_14_14: -1423426290
+      demon_smash_14_15: 1846606299
+      demon_smash_14_16: -840298556
+      demon_smash_14_17: 411160251
+      demon_smash_14_2: 1759984521
+      demon_smash_14_3: 984543791
+      demon_smash_14_4: 2042135467
+      demon_smash_14_5: -1386704808
+      demon_smash_14_6: 171794962
+      demon_smash_14_7: 328592168
+      demon_smash_14_8: 2055605434
+      demon_smash_14_9: 1134985435
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

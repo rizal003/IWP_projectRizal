@@ -108,7 +108,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: demon_cleave_10_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1
+        width: 154
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50de02ff38ab9c643a30eb63bb4202ea
+      internalID: -105499234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +140,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      demon_cleave_10_0: -579114167
+      demon_cleave_10_1: 180892551
+      demon_cleave_10_2: 1032467089
+      demon_cleave_10_3: -105499234
+      demon_cleave_10_4: -769604807
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

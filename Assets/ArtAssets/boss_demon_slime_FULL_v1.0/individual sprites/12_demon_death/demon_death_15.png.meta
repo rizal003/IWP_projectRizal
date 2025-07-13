@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: demon_death_15_11
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 1
+        width: 119
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed3eb59e79d3d944198bb85c56e75aaa
+      internalID: 439409017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +127,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      demon_death_15_0: -1602752148
+      demon_death_15_1: -1255619314
+      demon_death_15_10: -1772857480
+      demon_death_15_11: 439409017
+      demon_death_15_12: -1324572423
+      demon_death_15_13: 868677173
+      demon_death_15_14: -1523239532
+      demon_death_15_15: 1617859776
+      demon_death_15_16: 157049514
+      demon_death_15_2: 1428186430
+      demon_death_15_3: 1703313742
+      demon_death_15_4: -1445171455
+      demon_death_15_5: -1202693585
+      demon_death_15_6: -2081097039
+      demon_death_15_7: -406239886
+      demon_death_15_8: -1139394020
+      demon_death_15_9: 2023514797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

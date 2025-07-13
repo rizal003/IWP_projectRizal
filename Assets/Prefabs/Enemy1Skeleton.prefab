@@ -293,9 +293,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  patrolPoints: []
   patrolPauseTime: 2
 --- !u!58 &2920635966595953362
 CircleCollider2D:

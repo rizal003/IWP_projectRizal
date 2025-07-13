@@ -13,8 +13,8 @@ public class Room : MonoBehaviour
     [Header("Enemy Spawning")]
     [SerializeField] private GameObject enemyPrefab; 
     [SerializeField] private Transform patrolPointsParent; 
-    [SerializeField] private GameObject vampirePrefab; 
-
+    [SerializeField] private GameObject vampirePrefab;
+    [SerializeField] private GameObject bossPrefab;
     private RoomType roomType;
     public RoomType RoomType { get { return roomType; } private set { roomType = value; } }
     public bool IsExplored { get; set; } = false;
@@ -33,6 +33,10 @@ public class Room : MonoBehaviour
         {
             Debug.Log($"Attempting to spawn vampires in vampire room. Prefab: {vampirePrefab != null}, Points: {patrolPointsParent?.childCount ?? 0}");
             SpawnVampireWithSpecificPatrol();
+        }
+        else if (roomType == RoomType.Boss)  
+        {
+            SpawnBoss();
         }
     }
 
@@ -183,6 +187,40 @@ public class Room : MonoBehaviour
 
         Debug.Log("2 Vampires spawned successfully!");
     }
+    private void SpawnBoss()
+    {
+        if (bossPrefab == null)
+        {
+            Debug.LogError("Boss prefab is not assigned!");
+            return;
+        }
+
+        Vector3 spawnPosition = transform.position;
+        GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity, transform);
+        boss.SetActive(false); // Boss starts inactive until triggered
+        LockAllDoors();
+        Debug.Log("Boss spawned but inactive.");
+    }
+
+    public void ActivateBoss()
+    {
+        DemonSlimeBoss boss = GetComponentInChildren<DemonSlimeBoss>(true);
+        if (boss != null)
+        {
+            boss.gameObject.SetActive(true);  // Activate GameObject itself!
+        
+            Debug.Log("Boss GameObject and components activated!");
+        }
+        else
+        {
+            Debug.LogError("No boss found in room!");
+        }
+    }
+
+
+
+
+
 
     public void LockAllDoors()
     {

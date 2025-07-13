@@ -7296,6 +7296,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4974549164914727581, guid: 29741e02467beeb40ad47ed64b69ade5, type: 3}
   patrolPointsParent: {fileID: 5936759446568029606}
   vampirePrefab: {fileID: 7400122643832118337, guid: ae9200dc0ec40f14faee4e6246f9fc5f, type: 3}
+  bossPrefab: {fileID: 8184528726446240878, guid: 9e5cd4bac4de8814398f107a2e0601bb, type: 3}
   spawnVampireHere: 0
 --- !u!114 &4311475099240233521
 MonoBehaviour:

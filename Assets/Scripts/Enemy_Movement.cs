@@ -42,7 +42,11 @@ public class Enemy_Movement : MonoBehaviour
     {
         if (attackCooldownTimer > 0)
             attackCooldownTimer -= Time.deltaTime;
-
+        if (patrolPoints == null || patrolPoints.Length == 0)
+        {
+            ChangeState(EnemyState.Idle);
+            return;
+        }
         if (enemyState == EnemyState.Chasing)
         {
             Chase();
@@ -89,6 +93,7 @@ public class Enemy_Movement : MonoBehaviour
         {
             ChangeState(EnemyState.Patrol);
         }
+
     }
 
 

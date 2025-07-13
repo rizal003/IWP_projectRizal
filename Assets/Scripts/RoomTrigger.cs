@@ -23,13 +23,20 @@ public class RoomTrigger : MonoBehaviour
             {
                 currentRoom.IsExplored = true;
 
-                if (currentRoom.RoomType == RoomType.PressurePlatePuzzle)
+                if (currentRoom.RoomType == RoomType.Boss)
                 {
-                    currentRoom.LockAllDoors(); // Lock until puzzle solved
+                    currentRoom.ActivateBoss();
+                    currentRoom.LockAllDoors();
+                    Debug.Log("Player entered boss room, activated boss.");
+                }
+
+                else if (currentRoom.RoomType == RoomType.PressurePlatePuzzle)
+                {
+                    currentRoom.LockAllDoors();
                 }
                 else
                 {
-                    currentRoom.UnlockConnectedDoors(); // Open connected ones immediately
+                    currentRoom.UnlockConnectedDoors();
                 }
             }
 

@@ -5,7 +5,7 @@ public class Enemy_Health : MonoBehaviour
 {
     [Header("Settings")]
     public int maxHealth = 3;
-    [SerializeField] private int currentHealth;
+    [SerializeField] public int currentHealth;
 
     [Header("Effects")]
     public SpriteRenderer spriteRenderer;
@@ -38,6 +38,9 @@ public class Enemy_Health : MonoBehaviour
         currentHealth -= amount;
         animator.SetTrigger("Hit");
         StartCoroutine(FlashRed());
+
+        var boss = GetComponent<DemonSlimeBoss>();
+        if (boss != null) boss.OnTakeDamage();
 
         if (currentHealth <= 0)
             Die();
