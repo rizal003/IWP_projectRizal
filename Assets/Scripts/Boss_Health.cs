@@ -132,7 +132,7 @@ public class Boss_Health : MonoBehaviour
         animator.ResetTrigger("Attack");
         animator.SetTrigger("Die");
         if (deathEffect) Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject, 2f); // Delay for death animation
+        Destroy(gameObject, 1.5f); // Delay for death animation
     }
 
 }
