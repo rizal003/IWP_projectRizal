@@ -14,7 +14,7 @@ public class DemonSlimeBoss : MonoBehaviour
     public Collider2D slimeCollider;
     public Collider2D demonCollider;
     [Header("Attacks")]
-    public float[] attackCooldowns = { 1f, 2f, 3f }; 
+    public float[] attackCooldowns = { 1.5f, 2.5f, 3.5f }; 
     private float attackTimer;
 
     [Header("References")]
@@ -31,6 +31,8 @@ public class DemonSlimeBoss : MonoBehaviour
     public float flashDuration = 0.1f;
     private float hitAnimCooldown = 0.3f;   
     private float lastFlinchTime = -1f;
+    public TMPro.TextMeshProUGUI bossNameText;
+
     void Awake()
     {
         health = GetComponent<Boss_Health>();
@@ -103,6 +105,8 @@ public class DemonSlimeBoss : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(1).IsTag("Attack") && Time.time - lastFlinchTime > hitAnimCooldown)
         {
             animator.SetTrigger("SlimeHit");
+            CameraShake shake = Camera.main.GetComponent<CameraShake>();
+            if (shake != null) shake.Shake(0.2f, 0.15f);
             StartCoroutine(FlashRed());
             lastFlinchTime = Time.time;
         }
@@ -118,9 +122,26 @@ public class DemonSlimeBoss : MonoBehaviour
             health.currentHealth = demonFormMaxHealth;
         }
     }
+    IEnumerator EntranceScalePunch()
+    {
+        Vector3 originalScale = transform.localScale;
+        Vector3 punchScale = originalScale * 1.35f;
+        float t = 0f;
+        while (t < 0.18f)
+        {
+            t += Time.deltaTime;
+            transform.localScale = Vector3.Lerp(originalScale, punchScale, Mathf.Sin((t / 0.18f) * Mathf.PI));
+            yield return null;
+        }
+        transform.localScale = originalScale;
+    }
 
     public void FinishTransformation()
     {
+        CameraShake shake = Camera.main.GetComponent<CameraShake>();
+        if (shake != null) shake.Shake(0.4f, 0.2f);
+        StartCoroutine(EntranceScalePunch());
+
         animator.SetLayerWeight(1, 1);
         animator.SetLayerWeight(0, 0);
 
@@ -172,7 +193,8 @@ public class DemonSlimeBoss : MonoBehaviour
     }
     public void OnDemonHit()
     {
-        animator.SetTrigger("DemonHit");      // Trigger demon hit anim
+        animator.SetTrigger("DemonHit");
+        // Trigger demon hit anim
         StartCoroutine(FlashRed());           // Also flash red
     }
 
@@ -184,5 +206,5 @@ public class DemonSlimeBoss : MonoBehaviour
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = original;
     }
-
+   
 }

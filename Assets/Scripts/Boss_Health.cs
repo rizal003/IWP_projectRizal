@@ -50,6 +50,7 @@ public class Boss_Health : MonoBehaviour
 
         currentHealth -= damage;
         if (healthBar) healthBar.value = currentHealth;
+        StartCoroutine(ShakeHealthBar());
 
         if (currentHealth > 0)
         {
@@ -70,6 +71,21 @@ public class Boss_Health : MonoBehaviour
         {
             Die(); // Don't play hit, just die!
         }
+    }
+    public IEnumerator ShakeHealthBar(float shakeAmount = 10f, float duration = 0.18f)
+    {
+        if (healthBar == null) yield break;
+        RectTransform rt = healthBar.GetComponent<RectTransform>();
+        Vector3 originalPos = rt.anchoredPosition;
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float offset = Mathf.Sin(t * 30f) * shakeAmount * (1f - t / duration);
+            rt.anchoredPosition = originalPos + Vector3.right * offset;
+            yield return null;
+        }
+        rt.anchoredPosition = originalPos;
     }
 
     public void SetHealthBar(Slider s)

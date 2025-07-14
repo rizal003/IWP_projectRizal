@@ -93,9 +93,24 @@ public class RoomManager : MonoBehaviour
 
     }
 
+    IEnumerator SlideCamera(Vector3 from, Vector3 to, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            // Ease in-out (smoothstep)
+            t = t * t * (3f - 2f * t);
+            mainCamera.transform.position = Vector3.Lerp(from, to, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        mainCamera.transform.position = to;
+    }
 
     public void MovePlayerToRoom(Vector2Int newRoomIndex, Vector2Int enteredFromDirection)
     {
+    
         // Find the new room
         GameObject newRoom = roomObjects.Find(room => room.GetComponent<Room>().RoomIndex == newRoomIndex);
         if (newRoom == null)
@@ -110,7 +125,10 @@ public class RoomManager : MonoBehaviour
             newRoom.transform.position.y,
             mainCamera.transform.position.z
         );
+      ;
 
+        StopAllCoroutines(); // Stops any ongoing camera slide
+        StartCoroutine(SlideCamera(mainCamera.transform.position, newCameraPos, 0.35f));
         // Update camera shake with new room position
         CameraShake cameraShake = mainCamera.GetComponent<CameraShake>();
         if (cameraShake != null)
@@ -170,7 +188,6 @@ public class RoomManager : MonoBehaviour
         int x = roomIndex.x;
         int y = roomIndex.y;
 
-        // ✅ Prevent duplicate generation in the same grid cell
         if (roomGrid[x, y] != 0 || roomCount >= maxRooms)
             return false;
 
