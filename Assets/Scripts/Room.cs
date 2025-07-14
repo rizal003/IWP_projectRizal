@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Room : MonoBehaviour
 {
@@ -198,6 +199,20 @@ public class Room : MonoBehaviour
         Vector3 spawnPosition = transform.position;
         GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity, transform);
         boss.SetActive(false); // Boss starts inactive until triggered
+
+        // ----> Find the health bar slider in the scene and assign it:
+        Slider bossSlider = GameObject.Find("Slider 1").GetComponent<Slider>();
+        Boss_Health bossHealth = boss.GetComponent<Boss_Health>();
+        if (bossHealth != null && bossSlider != null)
+        {
+            bossHealth.SetHealthBar(bossSlider);
+            Debug.Log("Assigned boss slider reference to boss health script.");
+        }
+        else
+        {
+            Debug.LogWarning("Couldn't find boss slider or boss health script!");
+        }
+
         LockAllDoors();
         Debug.Log("Boss spawned but inactive.");
     }

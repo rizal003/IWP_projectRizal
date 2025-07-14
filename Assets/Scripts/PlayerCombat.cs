@@ -58,23 +58,33 @@ public class PlayerCombat : MonoBehaviour
 
     public void DealDamage()
     {
-        _cameraShake?.Shake(0.1f, 0.15f); // Null-conditional operator
-
+        _cameraShake?.Shake(0.1f, 0.15f);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit: " + enemy.name); // See what it hits
+            Debug.Log("Hit: " + enemy.name);
+
+            // First check for Enemy_Health
             Enemy_Health eh = enemy.GetComponentInParent<Enemy_Health>();
             if (eh != null)
             {
                 eh.TakeDamage(1);
+                continue; // Skip to next enemy after damaging
+            }
+
+            // Now check for Boss_Health
+            Boss_Health bh = enemy.GetComponentInParent<Boss_Health>();
+            if (bh != null)
+            {
+                bh.TakeDamage(1);
+                continue;
             }
         }
-
     }
 
-   
+
+
     public void SpawnSlash()
     {
         GameObject slash = Instantiate(slashPrefab, attackPoint.position, Quaternion.identity);

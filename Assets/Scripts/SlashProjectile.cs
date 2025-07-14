@@ -39,16 +39,26 @@ public class SlashProjectile : MonoBehaviour
     {
         Debug.Log("Slash hit: " + collision.name);
 
-        if (collision.CompareTag("Enemy"))
+        // Check for Enemy_Health
+        Enemy_Health eh = collision.GetComponentInParent<Enemy_Health>();
+        if (eh != null)
         {
-            Enemy_Health eh = collision.GetComponentInParent<Enemy_Health>();
-            if (eh != null)
-            {
-                eh.TakeDamage(damage);
-                Destroy(gameObject); 
-            }
+            eh.TakeDamage(damage);
+            Destroy(gameObject);
+            return;
+        }
+
+        // Check for Boss_Health
+        Boss_Health bh = collision.GetComponentInParent<Boss_Health>();
+        if (bh != null)
+        {
+            bh.TakeDamage(damage);
+            Destroy(gameObject);
+            return;
         }
     }
+
+
 
 
 
