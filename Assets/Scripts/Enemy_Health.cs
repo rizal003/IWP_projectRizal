@@ -39,9 +39,6 @@ public class Enemy_Health : MonoBehaviour
         animator.SetTrigger("Hit");
         StartCoroutine(FlashRed());
 
-        var boss = GetComponent<DemonSlimeBoss>();
-        if (boss != null) boss.OnTakeDamage();
-
         if (currentHealth <= 0)
             Die();
     }
