@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; 
 
 public class Boss_Health : MonoBehaviour
 {
@@ -149,6 +150,25 @@ public class Boss_Health : MonoBehaviour
         animator.SetTrigger("Die");
         if (deathEffect) Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject, 1.5f); // Delay for death animation
+
+        Room myRoom = GetComponentInParent<Room>();
+        if (myRoom != null)
+        {
+            myRoom.UnlockConnectedDoors();
+            Debug.Log("Boss defeated: doors unlocked!");
+        }
+
+        // Load next scene (replace "Dungeon2" with your actual scene name)
+        StartCoroutine(LoadNextScene());
+    }
+
+    private IEnumerator LoadNextScene()
+    {
+        // Wait for animation or effect to complete
+        yield return new WaitForSeconds(1f); // Adjust as needed
+
+        // Load the next scene (you can pass the scene name here)
+        SceneManager.LoadScene("SceneVision"); // Replace with your next scene
     }
 
 }

@@ -71,6 +71,19 @@ public class Room : MonoBehaviour
         if (direction == Vector2Int.left) leftDoor.SetActive(true);
         if (direction == Vector2Int.right) rightDoor.SetActive(true);
     }
+    public void OpenExitDoor()
+    {
+        if (topDoor != null)
+            topDoor.SetActive(true);  // Or whichever door you choose as the exit door
+    }
+    public void UnlockExitDoor()
+    {
+        // Unlock the door that leads to the next scene (e.g., top door in this case)
+        if (topDoor != null)
+        {
+            topDoor.SetActive(true); // Activate the door, so the player can move through
+        }
+    }
 
     private void SpawnEnemyWithPatrol()
     {

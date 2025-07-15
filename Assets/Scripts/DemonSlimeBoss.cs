@@ -14,7 +14,7 @@ public class DemonSlimeBoss : MonoBehaviour
     public Collider2D slimeCollider;
     public Collider2D demonCollider;
     [Header("Attacks")]
-    public float[] attackCooldowns = { 1.5f, 2.5f, 3.5f }; 
+    public float[] attackCooldowns = { 1.75f, 2.75f, 3.75f }; 
     private float attackTimer;
 
     [Header("References")]

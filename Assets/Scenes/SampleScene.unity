@@ -144,7 +144,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackCooldown: 1.5
+  attackCooldown: 1
   slashPrefab: {fileID: 7105280897961025419, guid: 85a5e19754ca1c24cbe604855d043fde, type: 3}
   hitStopDuration: 0.05
 --- !u!114 &110918893 stripped

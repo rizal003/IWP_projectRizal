@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   slimeFormHitsNeeded: 3
-  demonFormMaxHealth: 3
+  demonFormMaxHealth: 6
   transformDuration: 2
   slimeCollider: {fileID: 4901570660572769605}
   demonCollider: {fileID: 772845973993294436}
@@ -411,6 +411,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 848497727858643106}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.2
+  bossNameText: {fileID: 0}
 --- !u!50 &6823801772201130796
 Rigidbody2D:
   serializedVersion: 4
