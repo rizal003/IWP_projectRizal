@@ -733,6 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: {x: -1, y: 0}
   CurrentRoom: {fileID: -6384553891512109565}
+  isExitDoor: 0
 --- !u!1 &764045517742494541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 1}
   CurrentRoom: {fileID: -6384553891512109565}
+  isExitDoor: 1
 --- !u!1 &1180985541664849650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,6 +2150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: {x: 1, y: 0}
   CurrentRoom: {fileID: -6384553891512109565}
+  isExitDoor: 0
 --- !u!1 &2633096806234260623
 GameObject:
   m_ObjectHideFlags: 0
@@ -6668,6 +6671,8 @@ MonoBehaviour:
   vampirePrefab: {fileID: 7400122643832118337, guid: ae9200dc0ec40f14faee4e6246f9fc5f, type: 3}
   bossPrefab: {fileID: 8184528726446240878, guid: 9e5cd4bac4de8814398f107a2e0601bb, type: 3}
   spawnVampireHere: 0
+  bossDefeated: 0
+  isBossRoom: 0
 --- !u!114 &4311475099240233521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7108,3 +7113,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: -1}
   CurrentRoom: {fileID: -6384553891512109565}
+  isExitDoor: 0

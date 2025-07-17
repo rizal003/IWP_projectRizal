@@ -22,6 +22,10 @@ public class Room : MonoBehaviour
     public Vector2Int RoomIndex { get; set; }
     private static bool vampireSpawned = false;
     public bool spawnVampireHere = false;
+    public bool bossDefeated = false;
+    public bool isBossRoom = false; // You can set this in SetRoomType if type==Boss
+
+
     private void Start()
     {
         Debug.Log($"Room initialization - Type: {roomType}, VampirePrefab: {vampirePrefab != null}, PatrolPoints: {patrolPointsParent != null}");
@@ -45,6 +49,7 @@ public class Room : MonoBehaviour
     public void SetRoomType(RoomType type)
     {
         RoomType = type;
+        isBossRoom = (type == RoomType.Boss);  // <-- Set this flag automatically
 
         switch (RoomType)
         {
@@ -71,19 +76,19 @@ public class Room : MonoBehaviour
         if (direction == Vector2Int.left) leftDoor.SetActive(true);
         if (direction == Vector2Int.right) rightDoor.SetActive(true);
     }
-    public void OpenExitDoor()
-    {
-        if (topDoor != null)
-            topDoor.SetActive(true);  // Or whichever door you choose as the exit door
-    }
-    public void UnlockExitDoor()
-    {
-        // Unlock the door that leads to the next scene (e.g., top door in this case)
-        if (topDoor != null)
-        {
-            topDoor.SetActive(true); // Activate the door, so the player can move through
-        }
-    }
+    //public void OpenExitDoor()
+    //{
+    //    if (topDoor != null)
+    //        topDoor.SetActive(true);  // Or whichever door you choose as the exit door
+    //}
+    //public void UnlockExitDoor()
+    //{
+    //    // Unlock the door that leads to the next scene (e.g., top door in this case)
+    //    if (topDoor != null)
+    //    {
+    //        topDoor.SetActive(true); // Activate the door, so the player can move through
+    //    }
+    //}
 
     private void SpawnEnemyWithPatrol()
     {
@@ -246,8 +251,19 @@ public class Room : MonoBehaviour
     }
 
 
+    public void BossDefeated()
+    {
+        bossDefeated = true;
+        OpenExitDoor();
+    }
 
 
+    public void OpenExitDoor()
+    {
+        // Only open topDoor as the exit (or whichever you want)
+        if (topDoor != null)
+            topDoor.SetActive(true);
+    }
 
 
     public void LockAllDoors()
