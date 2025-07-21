@@ -111,11 +111,7 @@ public class Boss_Movement : MonoBehaviour
         }
     }
 
-    void Idle()
-    {
-        anim.SetBool("isMoving", false);
-        rb.velocity = Vector2.zero;
-    }
+ 
 
     public bool InAttackRange() => inAttackRange;
 }

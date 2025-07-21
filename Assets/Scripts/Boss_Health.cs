@@ -154,19 +154,11 @@ public class Boss_Health : MonoBehaviour
         Room myRoom = GetComponentInParent<Room>();
         if (myRoom != null)
         {
-            myRoom.BossDefeated();  // <<-- Call this new method in Room.cs
+            myRoom.BossDefeated(); 
             Debug.Log("Boss defeated: exit door unlocked!");
         }
     }
 
 
-    private IEnumerator LoadNextScene()
-    {
-        // Wait for animation or effect to complete
-        yield return new WaitForSeconds(1f); // Adjust as needed
-
-        // Load the next scene (you can pass the scene name here)
-        SceneManager.LoadScene("SceneVision"); // Replace with your next scene
-    }
 
 }

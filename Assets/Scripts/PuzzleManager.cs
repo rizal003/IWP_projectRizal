@@ -6,6 +6,8 @@ public class PuzzleManager : MonoBehaviour
 {
     [SerializeField] private PressurePlate[] plates;
     private bool puzzleSolved = false;
+    [SerializeField] private GameObject keyPrefab;
+    [SerializeField] private Transform keySpawnPoint;
 
     private void Update()
     {
@@ -36,6 +38,10 @@ public class PuzzleManager : MonoBehaviour
             {
                 Debug.LogWarning("Room component not found on parent.");
             }
+            // Spawn the key at the designated location
+            if (keyPrefab != null && keySpawnPoint != null)
+                Instantiate(keyPrefab, keySpawnPoint.position, Quaternion.identity);
+
         }
     }
 }

@@ -26,6 +26,8 @@ public class RoomManager : MonoBehaviour
     private List<GameObject> roomObjects = new List<GameObject>();
 
     private Queue<Vector2Int> roomQueue = new Queue<Vector2Int>();
+    private Dictionary<Vector2Int, RoomType> allRoomsDict = new Dictionary<Vector2Int, RoomType>();
+    private List<Vector2Int> exploredRooms = new List<Vector2Int>();
 
     private int[,] roomGrid;
 
@@ -39,6 +41,11 @@ public class RoomManager : MonoBehaviour
 
     private Camera mainCamera;
     public bool IsExplored { get; set; } = false;
+    public MinimapManager minimapManager;
+    private bool spawnedTreasureRoom = false;
+    private bool spawnedPuzzleRoom = false;
+    private int shopRoomCount = 0;
+    private int minShopRooms = 3;
 
 
     private void Awake()
@@ -89,8 +96,27 @@ public class RoomManager : MonoBehaviour
             Debug.Log($"Generation complete, {roomCount} rooms created");
             generationComplete = true;
             AssignBossRoom();
-        }
+            GenerateMinimapForPlayer();
 
+        }
+  
+
+
+    }
+    private void GenerateMinimapForPlayer()
+    {
+        // Collect all rooms and their types
+        Dictionary<Vector2Int, RoomType> allRooms = new Dictionary<Vector2Int, RoomType>();
+        foreach (GameObject roomObj in roomObjects)
+        {
+            Room room = roomObj.GetComponent<Room>();
+            if (room != null)
+            {
+                allRooms.Add(room.RoomIndex, room.RoomType);
+            }
+        }
+        Vector2Int startRoom = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
+        MinimapManager.Instance.GenerateMinimap(allRooms, startRoom);
     }
 
     IEnumerator SlideCamera(Vector3 from, Vector3 to, float duration)
@@ -156,10 +182,23 @@ public class RoomManager : MonoBehaviour
             newPos += new Vector3(-halfRoomWidth + offset, 0, 0);
 
         player.transform.position = newPos;
+
+        // Mark this room as explored
+        exploredRooms.Add(newRoomIndex);
+
+        // Update the minimap (after moving the player)
+        MinimapManager.Instance.UpdateMinimap(newRoomIndex, new List<Vector2Int>(exploredRooms));
+
     }
     public void SetCurrentRoom(Room room)
     {
         CurrentRoom = room;
+        // Track explored room if not already in the list
+        if (!exploredRooms.Contains(room.RoomIndex))
+            exploredRooms.Add(room.RoomIndex);
+
+        if (MinimapManager.Instance != null)
+            MinimapManager.Instance.UpdateMinimap(room.RoomIndex, exploredRooms);
     }
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
     {
@@ -180,6 +219,9 @@ public class RoomManager : MonoBehaviour
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
         initialRoom.GetComponent<Room>().SetRoomType(RoomType.Vampire); //CHANGE HERE
         roomObjects.Add(initialRoom);
+
+        allRoomsDict[roomIndex] = RoomType.Vampire;
+
     }
 
 
@@ -201,7 +243,6 @@ public class RoomManager : MonoBehaviour
                 return false;
         }
 
-        // ✅ Mark grid occupied before spawning
         roomQueue.Enqueue(roomIndex);
         roomGrid[x, y] = 1;
         roomCount++;
@@ -210,23 +251,37 @@ public class RoomManager : MonoBehaviour
 
         if (roomIndex == Vector2Int.zero)
         {
-            chosenType = RoomType.PressurePlatePuzzle; 
+            chosenType = RoomType.PressurePlatePuzzle;
         }
         else
         {
-            float rand = Random.value;
-
-            if (rand > 0.95f)        
+            // Check how many rooms left to place
+            int roomsLeft = maxRooms - roomCount;
+            // Force-spawn if almost done and haven't placed one yet
+            if (!spawnedTreasureRoom && roomsLeft <= 4)
                 chosenType = RoomType.Treasure;
-            else if (rand > 0.65f)  
-                chosenType = RoomType.Vampire;
-            else if (rand > 0.60f)   
+            else if (!spawnedPuzzleRoom && roomsLeft <= 3)
                 chosenType = RoomType.PressurePlatePuzzle;
-            else if (rand > 0.55f)  
+            else if (shopRoomCount < minShopRooms && roomsLeft <= (minShopRooms - shopRoomCount))
                 chosenType = RoomType.Shop;
-            else                   
-                chosenType = RoomType.Normal;
+            else
+            {
+                float rand = Random.value;
+                if (rand > 0.85f)                     
+                    chosenType = RoomType.Treasure;
+                else if (rand > 0.70f)                
+                    chosenType = RoomType.Vampire;
+                else if (rand > 0.55f)                
+                    chosenType = RoomType.PressurePlatePuzzle;
+                else if (rand > 0.30f)                
+                    chosenType = RoomType.Shop;
+                else
+                    chosenType = RoomType.Normal;     // 30% Normal
+            }
+
+
         }
+
 
         GameObject prefabToSpawn;
 
@@ -252,20 +307,21 @@ public class RoomManager : MonoBehaviour
                 prefabToSpawn = roomPrefab;
                 break;
         }
-
+        allRoomsDict[roomIndex] = chosenType;
         GameObject newRoom = Instantiate(prefabToSpawn, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         newRoom.GetComponent<Room>().SetRoomType(chosenType);
-      
+        if (chosenType == RoomType.Treasure) spawnedTreasureRoom = true;
+        if (chosenType == RoomType.PressurePlatePuzzle) spawnedPuzzleRoom = true;
+        if (chosenType == RoomType.Shop) shopRoomCount++;
+
+
+
 
         roomObjects.Add(newRoom);
 
-        // Only open doors immediately if not a puzzle room
-        if (chosenType != RoomType.PressurePlatePuzzle)
-        {
-            OpenDoors(newRoom, x, y);
-        }
+        OpenDoors(newRoom, x, y); // Always open doors on both sides!
 
         return true;
     }
@@ -320,9 +376,27 @@ public class RoomManager : MonoBehaviour
         roomQueue.Clear();
         roomCount = 0;
         generationComplete = false;
+        spawnedTreasureRoom = false;
+        spawnedPuzzleRoom = false;
+        shopRoomCount = 0;
+
 
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
+
+        // Add this (after rooms have been re-created)
+        if (MinimapManager.Instance != null)
+        {
+            // Create a dictionary of all room positions and their types
+            Dictionary<Vector2Int, RoomType> allRooms = new Dictionary<Vector2Int, RoomType>();
+            foreach (var obj in roomObjects)
+            {
+                Room r = obj.GetComponent<Room>();
+                if (r != null)
+                    allRooms[r.RoomIndex] = r.RoomType;
+            }
+            MinimapManager.Instance.GenerateMinimap(allRooms, initialRoomIndex);
+        }
     }
 
     public void OpenDoors(GameObject room, int x, int y)

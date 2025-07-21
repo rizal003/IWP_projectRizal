@@ -15,10 +15,15 @@ public class PlayerHealth : MonoBehaviour
     private const int DEATH_UP = 2;
     private const int DEATH_DOWN = 3;
     private CameraShake _cameraShake;
+    public PlayerStats playerStats; 
 
     void Start()
     {
         _cameraShake = Camera.main?.GetComponent<CameraShake>();
+        if (playerStats == null)
+            playerStats = GetComponent<PlayerStats>();
+        maxHealth = playerStats.maxHealth; 
+        currentHealth = maxHealth;         
     }
     public void ChangeHealth(int amount)
     {
@@ -27,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
             _cameraShake.Shake(0.3f, 0.35f); 
         }
         currentHealth += amount;
+        maxHealth = playerStats.maxHealth; 
 
         if (currentHealth <= 0)
         {

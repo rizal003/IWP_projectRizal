@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd2428448f1f2f4082c9fd5f1aad332, type: 3}
+  m_Name: Attack Damage
+  m_EditorClassIdentifier: 
+  buffName: Attack Damage
+  buffIcon: {fileID: -1688098784, guid: 9127a0004b360a84596adacdcb2a6e70, type: 3}
+  buffType: 1
+  buffValue: 1

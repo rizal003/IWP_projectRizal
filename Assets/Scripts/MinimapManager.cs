@@ -11,58 +11,96 @@ public class MinimapManager : MonoBehaviour
 
     private Dictionary<Vector2Int, GameObject> minimapSquares = new Dictionary<Vector2Int, GameObject>();
     private Vector2Int currentRoomIndex = Vector2Int.zero;
-
-    public void GenerateMinimap(Dictionary<Vector2Int, RoomType> allRooms, Vector2Int startRoom)
+    public static MinimapManager Instance; // <-- Add this line!
+    private void Awake()
     {
-        // Clear previous minimap
+        Instance = this;
+    }
+    public void GenerateMinimap(Dictionary<Vector2Int, RoomType> allRooms, Vector2Int centerRoom)
+    {
         foreach (Transform child in minimapParent) Destroy(child.gameObject);
         minimapSquares.Clear();
 
+        // 1. Find bounds
+        int minX = int.MaxValue, maxX = int.MinValue, minY = int.MaxValue, maxY = int.MinValue;
+        foreach (var kvp in allRooms)
+        {
+            Vector2Int pos = kvp.Key;
+            if (pos.x < minX) minX = pos.x;
+            if (pos.x > maxX) maxX = pos.x;
+            if (pos.y < minY) minY = pos.y;
+            if (pos.y > maxY) maxY = pos.y;
+        }
+        int countX = maxX - minX + 1;
+        int countY = maxY - minY + 1;
+
+        RectTransform panelRect = minimapParent.GetComponent<RectTransform>();
+        float panelWidth = panelRect.rect.width;
+        float panelHeight = panelRect.rect.height;
+
+        float margin = 25f;
+        float cellSizeX = (panelWidth - margin * 2) / countX;
+        float cellSizeY = (panelHeight - margin * 2) / countY;
+        float cellSize = Mathf.Min(cellSizeX, cellSizeY);
+
+        // 2. ***CENTER the minimap grid!***
+        float mapWidth = countX * cellSize;
+        float mapHeight = countY * cellSize;
+
+        float centerOffsetX = -panelWidth / 2 + (panelWidth - mapWidth) / 2 + cellSize / 2;
+        float centerOffsetY = -panelHeight / 2 + (panelHeight - mapHeight) / 2 + cellSize / 2;
+
+        // 3. Draw each square
         foreach (var kvp in allRooms)
         {
             Vector2Int pos = kvp.Key;
             RoomType type = kvp.Value;
             GameObject square = Instantiate(minimapSquarePrefab, minimapParent);
-            square.GetComponent<RectTransform>().anchoredPosition = new Vector2(pos.x * 24, pos.y * 24); // 24 = icon size/spacing
 
-            // Set default unexplored sprite
+            RectTransform rect = square.GetComponent<RectTransform>();
+            rect.sizeDelta = new Vector2(cellSize, cellSize);
+
+            // Relative position from minX/minY
+            int gridX = pos.x - minX;
+            int gridY = pos.y - minY;
+
+            // Now, center the whole block
+            rect.anchoredPosition = new Vector2(
+                centerOffsetX + gridX * cellSize,
+                centerOffsetY + gridY * cellSize
+            );
+
+            // (Your sprite/icon code here)
             square.GetComponent<Image>().sprite = unexploredSprite;
 
-            // Add overlay icon if needed
-            Transform iconHolder = square.transform.Find("Icon");
+            Transform iconHolder = square.transform.Find("Item");
             if (iconHolder != null)
             {
                 Image iconImage = iconHolder.GetComponent<Image>();
                 iconImage.enabled = false;
-
-                // Show correct icon based on room type
                 if (type == RoomType.Boss)
                 {
-                    iconImage.sprite = bossIcon;
-                    iconImage.enabled = true;
+                    iconImage.sprite = bossIcon; iconImage.enabled = true; 
                 }
-                else if (type == RoomType.Treasure)
+                else if (type == RoomType.Treasure) 
                 {
-                    iconImage.sprite = crownIcon;
-                    iconImage.enabled = true;
+                    iconImage.sprite = chestIcon; iconImage.enabled = true;
+                }
+                else if (type == RoomType.PressurePlatePuzzle) 
+                { 
+                    iconImage.sprite = keyIcon; iconImage.enabled = true;
                 }
                 else if (type == RoomType.Shop)
                 {
-                    iconImage.sprite = keyIcon;
-                    iconImage.enabled = true;
+                    iconImage.sprite = heartIcon; iconImage.enabled = true; 
                 }
-                else if (type == RoomType.Enemy)
-                {
-                    iconImage.sprite = heartIcon;
-                    iconImage.enabled = true;
-                }
-                // Add more types as needed...
             }
             minimapSquares.Add(pos, square);
         }
 
-        UpdateMinimap(startRoom, new List<Vector2Int>()); // At start, only current room is explored
+        UpdateMinimap(centerRoom, new List<Vector2Int>() { centerRoom });
     }
+
 
     public void UpdateMinimap(Vector2Int currentRoom, List<Vector2Int> exploredRooms)
     {

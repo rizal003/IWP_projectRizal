@@ -132,7 +132,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.62, y: 0.92, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7767807078552278605}
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2376a1dd7dd94d743b1e447ecba0d24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 3
   attackRange: 1.1
   attackCooldown: 1
   playerDetectRange: 5
@@ -363,8 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d79d7945257c49bbed0d50d9357cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  currentHealth: 5
+  maxHealth: 4
+  currentHealth: 4
   spriteRenderer: {fileID: 8786890776393184230}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.3

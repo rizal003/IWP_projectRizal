@@ -16,6 +16,7 @@ public class PlayerCombat : MonoBehaviour
 
     public float hitStopDuration = 0.05f;
     private CameraShake _cameraShake;
+    public PlayerStats playerStats; 
 
     void Start()
     {
@@ -69,7 +70,7 @@ public class PlayerCombat : MonoBehaviour
             Enemy_Health eh = enemy.GetComponentInParent<Enemy_Health>();
             if (eh != null)
             {
-                eh.TakeDamage(1);
+                eh.TakeDamage(Mathf.RoundToInt(playerStats.attackDamage));
                 continue; // Skip to next enemy after damaging
             }
 
@@ -77,7 +78,7 @@ public class PlayerCombat : MonoBehaviour
             Boss_Health bh = enemy.GetComponentInParent<Boss_Health>();
             if (bh != null)
             {
-                bh.TakeDamage(1);
+                eh.TakeDamage(Mathf.RoundToInt(playerStats.attackDamage));
                 continue;
             }
         }
