@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    public int healAmount = 2; 
-    public Sprite pickupIcon; 
+    public int healAmount = 2;
+    public Sprite pickupIcon;
 
     private bool pickedUp = false;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void TryPickup(GameObject player)
     {
         if (pickedUp) return;
-        if (other.CompareTag("Player"))
+        PlayerHealth health = player.GetComponent<PlayerHealth>();
+        if (health != null && health.currentHealth < health.maxHealth)
         {
             pickedUp = true;
-
-            // Heal the player
-            var health = other.GetComponent<PlayerHealth>();
-            if (health != null)
-            {
-                health.ChangeHealth(healAmount);
-            }
-
-            // Optional: Show pickup popup!
+            health.ChangeHealth(healAmount);
+            // Show popup if desired
             var popup = FindObjectOfType<PickupPopup>();
             if (popup != null)
             {
@@ -33,9 +27,8 @@ public class HealthPickup : MonoBehaviour
                     $"+{healAmount / 2} Heart" + (healAmount > 2 ? "s!" : "!")
                 );
             }
-
-            // Destroy this pickup
             Destroy(gameObject);
         }
     }
+
 }

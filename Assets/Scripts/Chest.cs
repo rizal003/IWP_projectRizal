@@ -17,14 +17,14 @@ public class Chest : MonoBehaviour
             spriteRenderer.sprite = closedSprite;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void TryOpenChest(GameObject player)
     {
-        if (!isOpened && other.CompareTag("Player"))
+        if (!isOpened)
         {
-            PlayerInventory inventory = other.GetComponent<PlayerInventory>();
+            PlayerInventory inventory = player.GetComponent<PlayerInventory>();
             if (inventory != null && inventory.UseKey())
             {
-                OpenChest(other.gameObject);
+                OpenChest(player);
             }
         }
     }

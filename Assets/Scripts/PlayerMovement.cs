@@ -6,23 +6,41 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
    [SerializeField] public float moveSpeed = 5f;
+    [SerializeField] private LayerMask pushableLayer;
+    [SerializeField] private float dashDistance = 3f;
+    [SerializeField] private float dashDuration = 0.15f;
+    [SerializeField] private float dashCooldown = 0.5f;
+    [SerializeField] private GameObject afterimagePrefab;
+    [SerializeField] private float afterimageInterval = 0.04f;
+    [SerializeField] private GameObject interactPrompt;
+    [SerializeField] private Vector3 promptOffset = new Vector3(0, 1.2f, 0);
+    [SerializeField] private GameObject healthInteractPrompt; 
+    [SerializeField] private Vector3 healthPromptOffset = new Vector3(0, 1.0f, 0);
+    [SerializeField] private GameObject keyInteractPrompt;
+    [SerializeField] private Vector3 keyPromptOffset = new Vector3(0, 1.0f, 0);
+
+    private Transform keyPromptTarget;
+    private KeyPickup currentKeyInRange;
+    private Transform promptTarget;
+    private Transform healthPromptTarget;
+    private HealthPickup currentHealthInRange;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
     private Vector2 lastDirection = Vector2.down;
     private bool isKnockedBack;
-    [SerializeField] private LayerMask pushableLayer;
+
     public PlayerStats playerStats;
-    [SerializeField] private float dashDistance = 3f;    
-    [SerializeField] private float dashDuration = 0.15f; 
-    [SerializeField] private float dashCooldown = 0.5f;  
+    private Chest currentChestInRange;
     private bool isDashing = false;
     private float lastDashTime = -10f;
-
+    private CameraShake _cameraShake;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();
+        _cameraShake = Camera.main?.GetComponent<CameraShake>();
+
     }
 
     void Update()
@@ -107,6 +125,96 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(KnockbackCounter(stunTime));
     }
 
+    public void SetNearbyKey(Transform keyTransform, KeyPickup keyScript)
+    {
+        keyPromptTarget = keyTransform;
+        currentKeyInRange = keyScript;
+
+        if (keyTransform != null && keyInteractPrompt != null)
+            keyInteractPrompt.SetActive(true);
+        else if (keyInteractPrompt != null)
+            keyInteractPrompt.SetActive(false);
+    }
+
+    public void SetNearbyChest(Transform chestTransform, Chest chestScript)
+    {
+        promptTarget = chestTransform;
+        currentChestInRange = chestScript;
+
+        if (chestTransform != null && interactPrompt != null)
+            interactPrompt.SetActive(true);
+        else if (interactPrompt != null)
+            interactPrompt.SetActive(false);
+    }
+
+    public void SetNearbyHealth(Transform pickupTransform, HealthPickup healthScript)
+    {
+        healthPromptTarget = pickupTransform;
+        currentHealthInRange = healthScript;
+
+        if (pickupTransform != null && healthInteractPrompt != null)
+            healthInteractPrompt.SetActive(true);
+        else if (healthInteractPrompt != null)
+            healthInteractPrompt.SetActive(false);
+    }
+
+    void LateUpdate()
+    {
+        // Chest Prompt
+        if (interactPrompt != null && interactPrompt.activeSelf && promptTarget != null)
+        {
+            Vector3 worldPos = promptTarget.position + promptOffset;
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+            RectTransform promptRect = interactPrompt.GetComponent<RectTransform>();
+            promptRect.position = screenPos;
+        }
+
+        // Health Prompt
+        if (healthInteractPrompt != null && healthInteractPrompt.activeSelf && healthPromptTarget != null)
+        {
+            Vector3 worldPos = healthPromptTarget.position + healthPromptOffset;
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+            RectTransform promptRect = healthInteractPrompt.GetComponent<RectTransform>();
+            promptRect.position = screenPos;
+        }
+
+        if (keyInteractPrompt != null && keyInteractPrompt.activeSelf && keyPromptTarget != null)
+        {
+            Vector3 worldPos = keyPromptTarget.position + keyPromptOffset;
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+            RectTransform promptRect = keyInteractPrompt.GetComponent<RectTransform>();
+            promptRect.position = screenPos;
+        }
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (currentChestInRange != null)
+            {
+                currentChestInRange.TryOpenChest(gameObject);
+                if (interactPrompt != null) interactPrompt.SetActive(false);
+                promptTarget = null;
+                currentChestInRange = null;
+            }
+            else if (currentHealthInRange != null)
+            {
+                currentHealthInRange.TryPickup(gameObject);
+                if (healthInteractPrompt != null) healthInteractPrompt.SetActive(false);
+                healthPromptTarget = null;
+                currentHealthInRange = null;
+            }
+            else if (currentKeyInRange != null)
+            {
+                currentKeyInRange.TryPickup(gameObject);
+                if (keyInteractPrompt != null) keyInteractPrompt.SetActive(false);
+                keyPromptTarget = null;
+                currentKeyInRange = null;
+            }
+        }
+    }
+
     IEnumerator KnockbackCounter(float stunTime)
     {
         yield return new WaitForSeconds(stunTime);
@@ -118,20 +226,46 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         lastDashTime = Time.time;
-        animator.SetTrigger("Dash"); // Only if you have a dash anim trigger
+        if (_cameraShake != null)
+            _cameraShake.Shake(0.2f, 0.22f);
 
-        Vector2 dashDir = (moveInput != Vector2.zero) ? moveInput.normalized : lastDirection.normalized;
-        Vector2 originalVelocity = rb.velocity;
+    
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
 
+        Vector2 dashDir = lastDirection.normalized;
         float elapsed = 0f;
+        float afterimageTimer = 0f;
+
         while (elapsed < dashDuration)
         {
             rb.velocity = dashDir * dashDistance / dashDuration;
+
+            // Afterimage code
+            afterimageTimer += Time.deltaTime;
+            if (afterimageTimer >= afterimageInterval)
+            {
+                CreateAfterimage();
+                afterimageTimer = 0f;
+            }
+
             elapsed += Time.deltaTime;
             yield return null;
         }
         rb.velocity = Vector2.zero;
+
+       
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
+
         isDashing = false;
+    }
+
+    void CreateAfterimage()
+    {
+        if (afterimagePrefab == null) return;
+        var obj = Instantiate(afterimagePrefab, transform.position, Quaternion.identity);
+        var sr = GetComponent<SpriteRenderer>();
+        var ghost = obj.GetComponent<PlayerDashAfterimage>();
+        ghost.Set(sr.sprite, transform.position, sr.flipX, new Color(1f, 1f, 1f, 0.45f));
     }
 
 }

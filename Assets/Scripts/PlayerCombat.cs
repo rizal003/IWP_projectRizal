@@ -1,6 +1,7 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
 public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
@@ -31,17 +32,26 @@ public class PlayerCombat : MonoBehaviour
         {
             attackCooldownTimer -= Time.deltaTime;
         }
+
+        UpdateAttackPoint(playerMovement.GetLastDirection());
     }
 
+
+    void UpdateAttackPoint(Vector2 direction)
+    {
+        direction = direction.normalized;
+        float distance = 0.5f; 
+        attackPoint.localPosition = new Vector3(direction.x, direction.y, 0) * distance;
+    }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (!context.performed || attackCooldownTimer > 0f) return;
 
         attackCooldownTimer = attackCooldown;
-
-        // Get last direction
         lastDirection = playerMovement.GetLastDirection();
+
+  
 
         int direction = 3; // default = down
         if (Mathf.Abs(lastDirection.x) > Mathf.Abs(lastDirection.y))
@@ -64,7 +74,6 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit: " + enemy.name);
 
             // First check for Enemy_Health
             Enemy_Health eh = enemy.GetComponentInParent<Enemy_Health>();

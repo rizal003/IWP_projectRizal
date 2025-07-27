@@ -23,7 +23,7 @@ public class Room : MonoBehaviour
     private static bool vampireSpawned = false;
     public bool spawnVampireHere = false;
     public bool bossDefeated = false;
-    public bool isBossRoom = false; // You can set this in SetRoomType if type==Boss
+    public bool isBossRoom = false; 
 
 
     private void Start()
@@ -204,7 +204,7 @@ public class Room : MonoBehaviour
             }
         }
 
-        Debug.Log("2 Vampires spawned successfully!");
+  
     }
     private void SpawnBoss()
     {
@@ -216,9 +216,8 @@ public class Room : MonoBehaviour
 
         Vector3 spawnPosition = transform.position;
         GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity, transform);
-        boss.SetActive(false); // Boss starts inactive until triggered
+        boss.SetActive(false);
 
-        // ----> Find the health bar slider in the scene and assign it:
         Slider bossSlider = GameObject.Find("Slider 1").GetComponent<Slider>();
         Boss_Health bossHealth = boss.GetComponent<Boss_Health>();
         if (bossHealth != null && bossSlider != null)
@@ -260,7 +259,6 @@ public class Room : MonoBehaviour
 
     public void OpenExitDoor()
     {
-        // Only open topDoor as the exit (or whichever you want)
         if (topDoor != null)
             topDoor.SetActive(true);
     }
@@ -286,7 +284,46 @@ public class Room : MonoBehaviour
         if (rm.GetRoomScriptAt(RoomIndex + Vector2Int.down) != null)
             bottomDoor.SetActive(true);
     }
+    public Transform GetSpawnPoint(Vector2Int enteredFromDirection)
+    {
+        string spawnName = "";
+        if (enteredFromDirection == Vector2Int.up)
+            spawnName = "PlayerSpawn_South";
+        else if (enteredFromDirection == Vector2Int.down)
+            spawnName = "PlayerSpawn_North";
+        else if (enteredFromDirection == Vector2Int.left)
+            spawnName = "PlayerSpawn_East";
+        else if (enteredFromDirection == Vector2Int.right)
+            spawnName = "PlayerSpawn_West";
+
+        // Only call Find if the name is not empty
+        if (!string.IsNullOrEmpty(spawnName))
+            return transform.Find(spawnName);
+
+        return null; // fallback: room center will be used by your manager
+    }
+    public void OnEnemyDied()
+    {
+        // Find all living enemies in this room (make sure Enemy_Health is the correct script)
+        Enemy_Health[] remainingEnemies = GetComponentsInChildren<Enemy_Health>();
+        int aliveCount = 0;
+        foreach (var e in remainingEnemies)
+        {
+            if (e != null && !e.isDead) // or whatever flag you use for death
+                aliveCount++;
+        }
+
+        if (aliveCount == 0)
+        {
+            UnlockConnectedDoors();
+            Debug.Log($"All enemies defeated in room {name}, doors unlocked!");
+        }
+    }
 
 
+    private int GetRemainingEnemies()
+    {
+        return GetComponentsInChildren<Enemy_Health>().Length;
+    }
 
 }

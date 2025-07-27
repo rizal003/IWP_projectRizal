@@ -40,7 +40,7 @@ public class PickupPopup : MonoBehaviour
 
         StopAllCoroutines();
         StartCoroutine(FadeInPopup(0.3f));
-        StartCoroutine(HideAfterDelay(3.5f)); // Popup lasts for 2s + 0.2s fadeout
+        StartCoroutine(HideAfterDelay(1.4f)); 
     }
 
     IEnumerator FadeInPopup(float fadeTime)

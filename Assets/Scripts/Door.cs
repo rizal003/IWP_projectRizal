@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
             if (isExitDoor && CurrentRoom.isBossRoom && CurrentRoom.bossDefeated)
             {
                 Debug.Log("Player entered boss exit, loading next scene...");
-                UnityEngine.SceneManagement.SceneManager.LoadScene("SceneVision"); 
+                UnityEngine.SceneManagement.SceneManager.LoadScene("SceneVision");
                 return;
             }
 
@@ -25,7 +25,8 @@ public class Door : MonoBehaviour
 
             if (nextRoom != null)
             {
-                RoomManager.Instance.MovePlayerToRoom(nextRoomIndex, Direction);
+                // Pass -Direction here!
+                RoomManager.Instance.MovePlayerToRoom(nextRoomIndex, -Direction);
             }
             else
             {
@@ -33,7 +34,5 @@ public class Door : MonoBehaviour
             }
         }
     }
-
-
 
 }

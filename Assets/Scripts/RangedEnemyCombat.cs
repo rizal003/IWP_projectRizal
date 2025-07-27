@@ -14,11 +14,16 @@ public class RangedEnemyCombat : MonoBehaviour
     private float fireTimer;
     private Transform player;
     private Room enemyRoom;
+    private bool canAttack = false;
+    public float entryDelay = 1.0f;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         enemyRoom = GetComponentInParent<Room>();
     }
+
 
     void Update()
     {
@@ -33,27 +38,41 @@ public class RangedEnemyCombat : MonoBehaviour
             if (hits.Length > 0) player = hits[0].transform;
         }
 
-        if (player != null && fireTimer <= 0f)
+        if (canAttack && player != null && fireTimer <= 0f)
         {
             FireAtPlayer();
             fireTimer = fireCooldown;
         }
+
     }
 
     void FireAtPlayer()
     {
         if (player == null) return;
 
+        // Start attack animation
+        if (animator != null) animator.SetBool("isAttacking", true);
+
         Vector2 dir = (player.position - transform.position).normalized;
 
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         EnemyProjectile projectile = proj.GetComponent<EnemyProjectile>();
         projectile.Initialize(dir, projectileSpeed);
+
+        // Optionally, set isAttacking back to false after a delay or with exit time.
+        StartCoroutine(EndAttackAnim());
     }
+
+    private IEnumerator EndAttackAnim()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (animator != null) animator.SetBool("isAttacking", false);
+    }
+
 
     public void TryFireAtPlayer(Transform player)
     {
-        if (fireTimer <= 0f && player != null)
+        if (canAttack && fireTimer <= 0f && player != null)
         {
             Vector2 dir = (player.position - transform.position).normalized;
             FireProjectile(dir);
@@ -61,11 +80,24 @@ public class RangedEnemyCombat : MonoBehaviour
         }
     }
 
+
     private void FireProjectile(Vector2 dir)
     {
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         EnemyProjectile projectile = proj.GetComponent<EnemyProjectile>();
         projectile.Initialize(dir, projectileSpeed);
+    }
+    public void StartEntryDelay()
+    {
+        canAttack = false;
+        StopAllCoroutines(); // To prevent multiple calls stacking
+        StartCoroutine(EnableAttackAfterDelay());
+    }
+
+    private IEnumerator EnableAttackAfterDelay()
+    {
+        yield return new WaitForSeconds(entryDelay);
+        canAttack = true;
     }
 
 }

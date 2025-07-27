@@ -16,24 +16,17 @@ public class EnemyProjectile : MonoBehaviour
         IgnoreEnemyCollisions();
         Destroy(gameObject, lifetime);
     }
-
     public void Initialize(Vector2 dir, float spd)
     {
         direction = dir.normalized;
         speed = spd;
 
-        // Rotate sprite based on direction
         if (spriteRenderer != null)
         {
-            // Flip sprite if moving left
-            spriteRenderer.flipX = direction.x < 0;
-
-            // Optional: Rotate for diagonal shots
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Euler(0, 0, angle); // Now works!
         }
     }
-
     void Update()
     {
         transform.Translate(direction * speed * Time.deltaTime);

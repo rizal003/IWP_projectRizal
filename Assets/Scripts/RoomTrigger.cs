@@ -29,18 +29,28 @@ public class RoomTrigger : MonoBehaviour
                     currentRoom.LockAllDoors();
                     Debug.Log("Player entered boss room, activated boss.");
                 }
-
                 else if (currentRoom.RoomType == RoomType.PressurePlatePuzzle)
                 {
                     currentRoom.LockAllDoors();
                 }
                 else
                 {
-                    currentRoom.UnlockConnectedDoors();
+                    if (currentRoom.RoomType == RoomType.Normal || currentRoom.RoomType == RoomType.Vampire)
+                    {
+                        currentRoom.LockAllDoors();
+                    }
+                    else
+                    {
+                        // Non-combat rooms open doors immediately
+                        currentRoom.UnlockConnectedDoors();
+                    }
                 }
             }
 
-            RoomManager.Instance.MovePlayerToRoom(currentRoom.RoomIndex, entryDirection);
+            foreach (var ranged in currentRoom.GetComponentsInChildren<RangedEnemyCombat>())
+            {
+                ranged.StartEntryDelay();
+            }
         }
     }
 }

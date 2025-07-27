@@ -26,6 +26,7 @@ public class Enemy_Movement : MonoBehaviour
     private float patrolPauseTimer = 0f;
     private bool isPausingAtPoint = false;
     private bool overrideAnimation = false;
+    public bool facesRight = true; 
 
     private RangedEnemyCombat rangedCombat;
 
@@ -157,12 +158,15 @@ public class Enemy_Movement : MonoBehaviour
         }
     }
 
-
     void Flip()
     {
         facingDirection *= -1;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        if (facesRight)
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * facingDirection, transform.localScale.y, transform.localScale.z);
+        else
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x) * facingDirection, transform.localScale.y, transform.localScale.z);
     }
+
 
     public void EndAttack()
     {
@@ -183,7 +187,7 @@ public class Enemy_Movement : MonoBehaviour
 
     void ChangeState(EnemyState newState)
     {
-        if (overrideAnimation) return; // prevent animation reset while overriding
+        if (overrideAnimation) return; 
 
         if (enemyState == EnemyState.Idle)
             anim.SetBool("isIdle", false);

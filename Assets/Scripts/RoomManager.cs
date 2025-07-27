@@ -167,22 +167,15 @@ public class RoomManager : MonoBehaviour
             mainCamera.transform.position = newCameraPos;
         }
 
-        // Position player (your existing code)
-        Vector3 newPos = newRoom.transform.position;
-        float halfRoomWidth = roomWidth * 0.5f;
-        float halfRoomHeight = roomHeight * 0.5f;
-        float offset = 3.5f;
+        Room roomScript = newRoom.GetComponent<Room>();
+        Transform spawnPoint = roomScript.GetSpawnPoint(-enteredFromDirection);
 
-        if (enteredFromDirection == Vector2Int.up)
-            newPos += new Vector3(0, -halfRoomHeight + offset, 0);
-        else if (enteredFromDirection == Vector2Int.down)
-            newPos += new Vector3(0, halfRoomHeight - offset, 0);
-        else if (enteredFromDirection == Vector2Int.left)
-            newPos += new Vector3(halfRoomWidth - offset, 0, 0);
-        else if (enteredFromDirection == Vector2Int.right)
-            newPos += new Vector3(-halfRoomWidth + offset, 0, 0);
+        // Place the player at the correct spawn point if found, or fallback to room center
+        if (spawnPoint != null)
+            player.transform.position = spawnPoint.position;
+        else
+            player.transform.position = newRoom.transform.position;
 
-        player.transform.position = newPos;
 
         // Mark this room as explored
         exploredRooms.Add(newRoomIndex);

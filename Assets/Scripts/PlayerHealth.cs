@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class PlayerHealth : MonoBehaviour
         maxHealth = playerStats.maxHealth; 
         currentHealth = maxHealth;         
     }
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu"); 
+    }
+
     public void ChangeHealth(int amount)
     {
         if (amount < 0 && _cameraShake != null)
@@ -43,26 +49,28 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Vector2 lastDir = playerMovement.GetLastDirection();
-
-        int deathDir = DEATH_DOWN; 
+        int deathDir = DEATH_DOWN;
 
         if (Mathf.Abs(lastDir.x) > Mathf.Abs(lastDir.y))
-        {
             deathDir = lastDir.x > 0 ? DEATH_RIGHT : DEATH_LEFT;
-        }
         else
-        {
             deathDir = lastDir.y > 0 ? DEATH_UP : DEATH_DOWN;
-        }
 
-        // Set the death direction parameter
         animator.SetInteger("DeathDirection", deathDir);
-        // Trigger the death animation
         animator.SetTrigger("Die");
 
         playerMovement.enabled = false;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GetComponent<Collider2D>().enabled = false; 
+        GetComponent<Collider2D>().enabled = false;
+
+        StartCoroutine(ReturnToMainMenuAfterDelay(2f));
     }
+
+    private IEnumerator ReturnToMainMenuAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("MainMenu");
+    }
+
 
 }

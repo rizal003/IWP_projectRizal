@@ -12,10 +12,13 @@ public class Enemy_Health : MonoBehaviour
     public Color hitColor = Color.red;
     public float flashDuration = 0.1f;
     public GameObject deathEffect;
+    private Coroutine flashCoroutine;
 
     private Animator animator;
-    private bool isDead = false;
+    public bool isDead = false;
     private CameraShake _cameraShake;
+    private Color originalColor; 
+
     void Start()
     {
         _cameraShake = Camera.main?.GetComponent<CameraShake>();
@@ -27,17 +30,20 @@ public class Enemy_Health : MonoBehaviour
         currentHealth = maxHealth;
 
         if (!spriteRenderer) spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
-    
+
     public void TakeDamage(int amount)
     {
-        _cameraShake?.Shake(0.1f, 0.15f); // Null-conditional operator
+        _cameraShake?.Shake(0.1f, 0.15f); 
 
         if (isDead) return;
 
         currentHealth -= amount;
         animator.SetTrigger("Hit");
-        StartCoroutine(FlashRed());
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+        flashCoroutine = StartCoroutine(FlashRed());
 
         if (currentHealth <= 0)
             Die();
@@ -47,7 +53,9 @@ public class Enemy_Health : MonoBehaviour
     {
         isDead = true;
         animator.SetTrigger("die");
-
+        Room parentRoom = GetComponentInParent<Room>();
+        if (parentRoom != null)
+            parentRoom.OnEnemyDied();
         // Disable components
         GetComponent<Collider2D>().enabled = false;
         if (TryGetComponent<Rigidbody2D>(out var rb)) rb.simulated = false;
@@ -65,9 +73,10 @@ public class Enemy_Health : MonoBehaviour
     {
         if (!spriteRenderer) yield break;
 
-        Color original = spriteRenderer.color;
         spriteRenderer.color = hitColor;
         yield return new WaitForSeconds(flashDuration);
-        spriteRenderer.color = original;
+        spriteRenderer.color = originalColor;
+        flashCoroutine = null;
     }
+
 }

@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   slimeFormHitsNeeded: 3
-  demonFormMaxHealth: 6
+  demonFormMaxHealth: 8
   transformDuration: 2
   slimeCollider: {fileID: 4901570660572769605}
   demonCollider: {fileID: 772845973993294436}
@@ -458,7 +458,7 @@ MonoBehaviour:
   deathEffect: {fileID: 8510529645783170190, guid: 815ade46da2e18443a8e216c4344b2d6, type: 3}
   spriteRenderer: {fileID: 848497727858643106}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.1
+  flashDuration: 0.2
 --- !u!114 &6977338121689497459
 MonoBehaviour:
   m_ObjectHideFlags: 0
