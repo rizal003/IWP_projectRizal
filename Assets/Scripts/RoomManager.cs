@@ -11,7 +11,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject puzzleRoomPrefab;    
     [SerializeField] GameObject treasureRoomPrefab;  
     [SerializeField] GameObject PressurePlatePuzzlePrefab;     
-    [SerializeField] GameObject VampireRoomPrefab;     
+    [SerializeField] GameObject VampireRoomPrefab;
+    [SerializeField] GameObject tutorialRoomPrefab;
 
 
     [SerializeField] private int maxRooms = 11;
@@ -214,13 +215,14 @@ public class RoomManager : MonoBehaviour
         roomGrid[x, y] = 1;
         roomCount++;
 
-        var initialRoom = Instantiate(VampireRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity); //CHANGE HERE THE ROOM PREFABN TO ANOTHER PREFAB
+        var initialRoom = Instantiate(tutorialRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
-        initialRoom.GetComponent<Room>().SetRoomType(RoomType.Vampire); //CHANGE HERE
+        initialRoom.GetComponent<Room>().SetRoomType(RoomType.Tutorial); // Set as tutorial type
         roomObjects.Add(initialRoom);
 
-        allRoomsDict[roomIndex] = RoomType.Vampire;
+        allRoomsDict[roomIndex] = RoomType.Tutorial;
+
 
     }
 

@@ -8,7 +8,7 @@ public class PlayerBuff : ScriptableObject
     public string buffName;
     public Sprite buffIcon;
     public BuffType buffType;
-    public float buffValue = 1f; // e.g. speed increase, attack up, health up, etc.
+    public float buffValue = 1f; 
 
-    public enum BuffType { Speed, Attack, Health }
+    public enum BuffType { Speed, Attack, Health, SlashSpeed }
 }

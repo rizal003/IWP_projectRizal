@@ -6758,7 +6758,7 @@ Transform:
   - {fileID: 5362097153610158554}
   - {fileID: 3401784413112186743}
   - {fileID: 374245567724608030}
-  - {fileID: 9003092319993281906}
+  - {fileID: 6250750019939297908}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6384553891512109565
@@ -7359,7 +7359,7 @@ MonoBehaviour:
   Direction: {x: 0, y: -1}
   CurrentRoom: {fileID: -6384553891512109565}
   isExitDoor: 0
---- !u!1001 &762972568500690906
+--- !u!1001 &2366878308384737500
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -7385,7 +7385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8532059879968793256, guid: 2a5653d13b3ecd343a8a31fbf2ad52ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.85
       objectReference: {fileID: 0}
     - target: {fileID: 8532059879968793256, guid: 2a5653d13b3ecd343a8a31fbf2ad52ae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7425,29 +7425,29 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6923000579029269557, guid: 2a5653d13b3ecd343a8a31fbf2ad52ae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1842099690171929099}
+      addedObject: {fileID: 3003143423798826435}
   m_SourcePrefab: {fileID: 100100000, guid: 2a5653d13b3ecd343a8a31fbf2ad52ae, type: 3}
---- !u!1 &7675804863296775151 stripped
+--- !u!1 &4669009190973699305 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6923000579029269557, guid: 2a5653d13b3ecd343a8a31fbf2ad52ae, type: 3}
-  m_PrefabInstance: {fileID: 762972568500690906}
+  m_PrefabInstance: {fileID: 2366878308384737500}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1842099690171929099
+--- !u!114 &3003143423798826435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7675804863296775151}
+  m_GameObject: {fileID: 4669009190973699305}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 461aa712ea3b2224d8df526870b535a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.12
-  frequency: 2.2
---- !u!4 &9003092319993281906 stripped
+  amplitude: 0.16
+  frequency: 2.8
+--- !u!4 &6250750019939297908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8532059879968793256, guid: 2a5653d13b3ecd343a8a31fbf2ad52ae, type: 3}
-  m_PrefabInstance: {fileID: 762972568500690906}
+  m_PrefabInstance: {fileID: 2366878308384737500}
   m_PrefabAsset: {fileID: 0}

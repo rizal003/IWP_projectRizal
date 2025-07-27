@@ -8,6 +8,7 @@ public class StatsPanelUI : MonoBehaviour
     public TextMeshProUGUI moveSpeedText;
     public TextMeshProUGUI attackDamageText;
     public TextMeshProUGUI maxHealthText;
+    public TextMeshProUGUI slashSpeedText;
 
     private PlayerStats playerStats;
 
@@ -22,6 +23,7 @@ public class StatsPanelUI : MonoBehaviour
         moveSpeedText.text = playerStats.moveSpeed.ToString("0.00");
         attackDamageText.text = playerStats.attackDamage.ToString("0.00");
         maxHealthText.text = playerStats.maxHealth.ToString("0.00");
+        slashSpeedText.text = playerStats.slashSpeed.ToString("0.00");
     }
     public void AnimateStat(TextMeshProUGUI statText)
     {

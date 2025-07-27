@@ -89,8 +89,13 @@ public class PlayerCombat : MonoBehaviour
     public void SpawnSlash()
     {
         GameObject slash = Instantiate(slashPrefab, attackPoint.position, Quaternion.identity);
-        slash.GetComponent<SlashProjectile>().direction = lastDirection.normalized;
+        var slashProj = slash.GetComponent<SlashProjectile>();
+        slashProj.direction = lastDirection.normalized;
+
+        // Set slash speed from player stats
+        slashProj.speed = playerStats.slashSpeed;
     }
 
-  
+
+
 }

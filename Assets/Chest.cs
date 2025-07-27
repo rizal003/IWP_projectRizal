@@ -66,7 +66,11 @@ public class Chest : MonoBehaviour
                 case PlayerBuff.BuffType.Health:
                     statString = $"+{(int)buff.buffValue} Max Health!";
                     break;
+                case PlayerBuff.BuffType.SlashSpeed:
+                    statString = $"+{buff.buffValue} Slash Speed!";
+                    break;
             }
+
             popup.Show(buff.buffIcon, buff.buffName, statString);
         }
         // Apply the permanent buff effect
@@ -113,6 +117,9 @@ public class Chest : MonoBehaviour
                 stats?.IncreaseMaxHealth((int)buff.buffValue);
                 // Optionally heal the player by new max:
                 player.GetComponent<PlayerHealth>()?.ChangeHealth((int)buff.buffValue);
+                break;
+            case PlayerBuff.BuffType.SlashSpeed:
+                stats?.IncreaseSlashSpeed(buff.buffValue); 
                 break;
         }
     }

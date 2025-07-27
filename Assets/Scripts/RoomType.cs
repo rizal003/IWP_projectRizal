@@ -12,5 +12,7 @@ public enum RoomType
     Enemy,
     PressurePlatePuzzle,
     Puzzle,
-    Vampire
+    Vampire,
+    Tutorial,
+    TorchPuzzle     
 }
