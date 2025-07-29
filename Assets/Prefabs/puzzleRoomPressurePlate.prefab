@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3155511135169769929}
   m_Layer: 0
   m_Name: mainlevbuild_40 (2)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5926962852444815160}
   m_Layer: 0
   m_Name: mainlevbuild_40 (5)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 4134009986050337220}
   m_Layer: 0
   m_Name: mainlevbuild_39 (21)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 8132568812665647174}
   m_Layer: 0
   m_Name: mainlevbuild_40
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 7481267120482643112}
   m_Layer: 0
   m_Name: mainlevbuild_39 (17)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 5539618546750343477}
   m_Layer: 0
   m_Name: mainlevbuild_39 (9)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 7379393907881104440}
   m_Layer: 0
   m_Name: mainlevbuild_40 (16)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1174,7 +1174,7 @@ GameObject:
   - component: {fileID: 5424244706645155856}
   m_Layer: 0
   m_Name: mainlevbuild_39 (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1388,7 +1388,7 @@ GameObject:
   - component: {fileID: 4866523096573900133}
   m_Layer: 0
   m_Name: mainlevbuild_39 (12)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1602,7 +1602,7 @@ GameObject:
   - component: {fileID: 8097510036265307947}
   m_Layer: 0
   m_Name: mainlevbuild_40 (20)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1686,7 +1686,7 @@ GameObject:
   - component: {fileID: 4295114947553856055}
   m_Layer: 0
   m_Name: mainlevbuild_39 (6)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1770,7 +1770,7 @@ GameObject:
   - component: {fileID: 467182355431945881}
   m_Layer: 0
   m_Name: mainlevbuild_40 (12)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1984,7 +1984,7 @@ GameObject:
   - component: {fileID: 1024782983837292883}
   m_Layer: 0
   m_Name: mainlevbuild_40 (21)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2214,7 +2214,7 @@ GameObject:
   - component: {fileID: 6852155986397624677}
   m_Layer: 0
   m_Name: mainlevbuild_39 (22)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2491,7 +2491,7 @@ GameObject:
   - component: {fileID: 4287855781479340903}
   m_Layer: 0
   m_Name: mainlevbuild_40 (14)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2997,7 +2997,7 @@ GameObject:
   - component: {fileID: 7887785198309664232}
   m_Layer: 0
   m_Name: mainlevbuild_39 (16)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3157,7 +3157,7 @@ GameObject:
   - component: {fileID: 2317027716262860894}
   m_Layer: 0
   m_Name: mainlevbuild_40 (15)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3241,7 +3241,7 @@ GameObject:
   - component: {fileID: 3578534805333595801}
   m_Layer: 0
   m_Name: mainlevbuild_39 (14)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3455,7 +3455,7 @@ GameObject:
   - component: {fileID: 1284077377958615218}
   m_Layer: 0
   m_Name: mainlevbuild_60
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3539,7 +3539,7 @@ GameObject:
   - component: {fileID: 6570918463096205965}
   m_Layer: 0
   m_Name: mainlevbuild_40 (17)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3790,7 +3790,7 @@ GameObject:
   - component: {fileID: 665591406101552896}
   m_Layer: 0
   m_Name: mainlevbuild_39 (10)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4004,7 +4004,7 @@ GameObject:
   - component: {fileID: 8969359131157419683}
   m_Layer: 0
   m_Name: mainlevbuild_39 (3)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4088,7 +4088,7 @@ GameObject:
   - component: {fileID: 7783429569578349952}
   m_Layer: 0
   m_Name: mainlevbuild_39 (11)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4203,7 +4203,7 @@ GameObject:
   - component: {fileID: 4954431349367324987}
   m_Layer: 0
   m_Name: mainlevbuild_40 (19)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4417,7 +4417,7 @@ GameObject:
   - component: {fileID: 4396898616344261271}
   m_Layer: 0
   m_Name: mainlevbuild_39 (5)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4647,7 +4647,7 @@ GameObject:
   - component: {fileID: 4855293682942476527}
   m_Layer: 0
   m_Name: mainlevbuild_60 (4)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4731,7 +4731,7 @@ GameObject:
   - component: {fileID: 1498518096454413403}
   m_Layer: 0
   m_Name: mainlevbuild_39 (18)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5091,7 +5091,7 @@ GameObject:
   - component: {fileID: 925274520807754492}
   m_Layer: 0
   m_Name: mainlevbuild_60 (3)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5175,7 +5175,7 @@ GameObject:
   - component: {fileID: 1101366869872853914}
   m_Layer: 0
   m_Name: mainlevbuild_40 (3)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5259,7 +5259,7 @@ GameObject:
   - component: {fileID: 7148047067806702728}
   m_Layer: 0
   m_Name: mainlevbuild_40 (18)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5911,7 +5911,7 @@ GameObject:
   - component: {fileID: 3856626068684152857}
   m_Layer: 0
   m_Name: mainlevbuild_39 (4)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6125,7 +6125,7 @@ GameObject:
   - component: {fileID: 2696880682214398193}
   m_Layer: 0
   m_Name: mainlevbuild_40 (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6209,7 +6209,7 @@ GameObject:
   - component: {fileID: 5500388781896379886}
   m_Layer: 0
   m_Name: mainlevbuild_40 (8)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6474,7 +6474,7 @@ GameObject:
   - component: {fileID: 1376228420467197613}
   m_Layer: 0
   m_Name: mainlevbuild_39 (20)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6558,7 +6558,7 @@ GameObject:
   - component: {fileID: 5637711818027216069}
   m_Layer: 0
   m_Name: mainlevbuild_39 (13)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6642,7 +6642,7 @@ GameObject:
   - component: {fileID: 1973634534672178665}
   m_Layer: 0
   m_Name: mainlevbuild_40 (10)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6760,7 +6760,7 @@ GameObject:
   - component: {fileID: 1610535547816359215}
   m_Layer: 0
   m_Name: mainlevbuild_39 (2)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6844,7 +6844,7 @@ GameObject:
   - component: {fileID: 5205632800935210619}
   m_Layer: 0
   m_Name: mainlevbuild_40 (6)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6928,7 +6928,7 @@ GameObject:
   - component: {fileID: 6642283446279680885}
   m_Layer: 0
   m_Name: mainlevbuild_39 (19)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7012,7 +7012,7 @@ GameObject:
   - component: {fileID: 1656768244452206017}
   m_Layer: 0
   m_Name: mainlevbuild_40 (11)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7391,7 +7391,7 @@ GameObject:
   - component: {fileID: 980018691301749754}
   m_Layer: 0
   m_Name: mainlevbuild_39 (8)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7475,7 +7475,7 @@ GameObject:
   - component: {fileID: 6560557388728835406}
   m_Layer: 0
   m_Name: mainlevbuild_39 (15)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7997,7 +7997,7 @@ GameObject:
   - component: {fileID: 8215514119662208634}
   m_Layer: 0
   m_Name: mainlevbuild_60 (5)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8116,7 +8116,7 @@ GameObject:
   - component: {fileID: 3389553814999893191}
   m_Layer: 0
   m_Name: mainlevbuild_40 (13)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8200,7 +8200,7 @@ GameObject:
   - component: {fileID: 367777318346100358}
   m_Layer: 0
   m_Name: mainlevbuild_39 (7)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -3306,7 +3306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609b05ec9cf693144b6dfc64f90ab0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorNumber: 1
+  floorNumber: 3
 --- !u!4 &1338204983
 Transform:
   m_ObjectHideFlags: 0
@@ -4200,6 +4200,7 @@ MonoBehaviour:
   underwaterTilePrefab: {fileID: 7874145351024028952, guid: 7a41f6ca216a3a345a4a6f70b6c7eca6, type: 3}
   gridSizeX: 15
   gridSizeY: 15
+  roomObjects: []
   player: {fileID: 110918890}
   minimapManager: {fileID: 1998942858}
   environmentType: 0
@@ -4895,6 +4896,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6200000, guid: 98523139140c0114db6b2080b594a44b, type: 2}
     - target: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
+      propertyPath: iceDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -4934,6 +4939,10 @@ PrefabInstance:
       propertyPath: keyInteractPrompt
       value: 
       objectReference: {fileID: 1022421530}
+    - target: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
+      propertyPath: iceSpeedMultiplier
+      value: 1.08
+      objectReference: {fileID: 0}
     - target: {fileID: 7126668944858144663, guid: 64d0fda62845023489881a09b0107959, type: 3}
       propertyPath: healthInteractPrompt
       value: 

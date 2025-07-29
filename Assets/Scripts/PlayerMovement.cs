@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem dustParticles; 
     [SerializeField] private float walkEmissionRate = 10f;
     [SerializeField] private float dashEmissionRate = 30f;
+    [SerializeField] private float iceSpeedMultiplier = 1.4f;  // Increased speed when sliding
+    [SerializeField] private float iceDrag = 0.2f;           // Lower = more slippery
+    [SerializeField] private float iceAngularDrag = 0.05f;
+    private bool isIceFloor = false;
     private ParticleSystem.EmissionModule dustEmission;
 
     private Transform keyPromptTarget;
@@ -60,48 +64,81 @@ public class PlayerMovement : MonoBehaviour
             dustEmission = dustParticles.emission;
             dustEmission.rateOverTime = 0f; // Start disabled
         }
+        isIceFloor = GameManager.Instance.floorNumber >= 3 &&
+                     GameManager.Instance.floorNumber <= 4;
+
+        if (isIceFloor)
+        {
+            rb.drag = 0.05f;  // Extremely slippery
+            rb.angularDrag = 0.05f;
+            rb.angularDrag = iceAngularDrag; 
+            Debug.Log("ICE PHYSICS ACTIVATED: Drag set to 0.05");
+        }
+        if (isIceFloor && rb != null) // Null check for safety
+        {
+            rb.drag = Mathf.Clamp(iceDrag, 0.02f, 0.2f); // Force reasonable range
+        }
 
     }
-
     void Update()
     {
         if (isKnockedBack || isDashing) return;
 
-        Vector2 targetVelocity = moveInput * playerStats.moveSpeed; // Use PlayerStats here!
-        UpdateDust();
+        // Calculate movement parameters
+        float speed = playerStats.moveSpeed * (isIceFloor ? iceSpeedMultiplier : 1f);
+        Vector2 moveDirection = moveInput.normalized;
+        Vector2 targetVelocity = moveInput * speed;
 
+        UpdateDust();
 
         if (moveInput != Vector2.zero)
         {
-            // Try to detect a pushable object in front
-            RaycastHit2D hit = Physics2D.Raycast(rb.position, moveInput, 0.6f, pushableLayer);
+            // Check for pushable objects first
+            RaycastHit2D hit = Physics2D.Raycast(rb.position, moveDirection, 0.6f, pushableLayer);
             if (hit.collider != null && hit.collider.CompareTag("Pushable"))
             {
+                // Pushing behavior (unchanged from your original)
                 Rigidbody2D pushRb = hit.collider.attachedRigidbody;
                 if (pushRb != null)
                 {
                     float pushSpeed = 2f;
-
-                    Vector2 pushDir = moveInput.normalized;
+                    Vector2 pushDir = moveDirection;
                     pushRb.velocity = pushDir * pushSpeed;
-
-                    // Let player keep moving while pushing
                     rb.velocity = targetVelocity * 0.9f;
                 }
             }
             else
             {
-                rb.velocity = targetVelocity;
+                // ICE PHYSICS
+                if (isIceFloor && moveInput != Vector2.zero)
+                {
+                    rb.AddForce(targetVelocity * 7f * Time.deltaTime * 60f); // Framerate-independent
+                    if (rb.velocity.magnitude > speed * 1.8f)
+                    {
+                        rb.velocity = rb.velocity.normalized * speed * 1.8f;
+                    }
+                }
+                // NORMAL PHYSICS
+                else
+                {
+                    rb.velocity = targetVelocity;
+                }
             }
         }
         else
         {
-            rb.velocity = Vector2.zero;
+            // ICE PHYSICS: Gradual slowdown
+            if (isIceFloor)
+            {
+                rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.03f); // Smooth decay
+            }
+            // NORMAL PHYSICS: Instant stop
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
         }
     }
-
-
-
     public void Move(InputAction.CallbackContext context)
     {
         if (isKnockedBack == false)
@@ -282,25 +319,37 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     {
+        // Store original movement state
+        bool wasOnIce = isIceFloor;
+        float originalDrag = rb.drag;
+
+        // Start dash
         isDashing = true;
         lastDashTime = Time.time;
+
+        // Cancel ice physics during dash
+        if (wasOnIce) rb.drag = 1f; // Normal friction during dash
+
+        // Visual/audio effects
         if (_cameraShake != null)
             _cameraShake.Shake(0.2f, 0.22f);
-        // Dust burst at dash start
+
         if (dustParticles != null)
             dustParticles.Emit(15);
 
+        // Safety collision ignore
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
 
         Vector2 dashDir = lastDirection.normalized;
         float elapsed = 0f;
         float afterimageTimer = 0f;
 
+        // Dash movement
         while (elapsed < dashDuration)
         {
             rb.velocity = dashDir * dashDistance / dashDuration;
 
-            // Afterimage code
+            // Afterimages
             afterimageTimer += Time.deltaTime;
             if (afterimageTimer >= afterimageInterval)
             {
@@ -311,10 +360,13 @@ public class PlayerMovement : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        rb.velocity = Vector2.zero;
 
-       
+        // End dash
+        rb.velocity = Vector2.zero;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
+
+        // Restore ice physics if needed
+        if (wasOnIce) rb.drag = iceDrag;
 
         isDashing = false;
     }

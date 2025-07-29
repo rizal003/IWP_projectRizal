@@ -167,20 +167,17 @@ public class DemonSlimeBoss : MonoBehaviour
 
     public void OnBossDeath()
     {
-        Debug.Log($"OnBossDeath called! isDemon={isDemon}, bossRoom={bossRoom}");
         if (isDemon && bossRoom != null)
         {
             bossRoom.BossDefeated();
-            Debug.Log("Final demon form defeated! Room unlocks.");
         }
         else if (!isDemon)
         {
-            // Start the transformation, don't unlock yet!
+            // Transform to demon phase instead of dying
+            currentState = BossState.Transforming;
+            animator.SetTrigger("Transform");
             StartCoroutine(TransformToDemonPhase());
-        }
-        else if (bossRoom == null)
-        {
-            Debug.LogError("BossRoom reference not set on DemonSlimeBoss!");
+            health.currentHealth = demonFormMaxHealth;
         }
     }
 

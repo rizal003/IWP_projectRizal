@@ -28,7 +28,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] int gridSizeX = 10;
     [SerializeField] int gridSizeY = 10;
 
-    private List<GameObject> roomObjects = new List<GameObject>();
+    public List<GameObject> roomObjects = new List<GameObject>();
 
     private Queue<Vector2Int> roomQueue = new Queue<Vector2Int>();
     private Dictionary<Vector2Int, RoomType> allRoomsDict = new Dictionary<Vector2Int, RoomType>();
@@ -126,6 +126,8 @@ public class RoomManager : MonoBehaviour
             AssignBossRoom();
             GenerateMinimapForPlayer();
             MovePlayerToStartRoom();
+            ApplyEnvironmentEffects(); 
+
         }
 
 
@@ -565,8 +567,88 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
+    // In RoomManager.cs
+    public void RegenerateDungeon()
+    {
+        // Save the tutorial room position before clearing everything
+        GameObject oldTutorialRoom = roomObjects.Find(r =>
+            r.GetComponent<Room>().RoomType == RoomType.Tutorial);
+        Vector3? tutorialSpawnPosition = null;
 
+        if (oldTutorialRoom != null)
+        {
+            Transform spawn = oldTutorialRoom.transform.Find("SpawnPoint");
+            tutorialSpawnPosition = spawn != null ? spawn.position : oldTutorialRoom.transform.position;
+        }
 
+        // Clear existing rooms
+        roomObjects.ForEach(Destroy);
+        roomObjects.Clear();
+
+        // Reset generation parameters
+        roomGrid = new int[gridSizeX, gridSizeY];
+        roomQueue.Clear();
+        roomCount = 0;
+        generationComplete = false;
+        spawnedTreasureRoom = false;
+        spawnedPressurePlatePuzzleRoom = false;
+        spawnedTorchPuzzleRoom = false;
+        shopRoomCount = 0;
+
+        // Update environment based on new floor
+        environmentType = GetEnvironmentTypeForFloor(GameManager.Instance.floorNumber);
+
+        // Generate new dungeon
+        Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
+        StartRoomGenerationFromRoom(initialRoomIndex);
+
+        // Add this coroutine to apply environment effects after generation completes
+        StartCoroutine(ApplyEnvironmentAfterGeneration());
+
+        // After generation, move player to tutorial room if we have a saved position
+        if (tutorialSpawnPosition.HasValue)
+        {
+            StartCoroutine(MovePlayerToTutorialAfterGeneration(tutorialSpawnPosition.Value));
+        }
+    }
+
+    private IEnumerator ApplyEnvironmentAfterGeneration()
+    {
+        yield return new WaitUntil(() => generationComplete);
+
+        // ADD THIS SAFETY CHECK:
+        if (this == null) yield break; // Prevents rare null reference
+
+        ApplyEnvironmentEffects();
+    }
+    private void ApplyEnvironmentEffects()
+    {
+        bool isIceFloor = environmentType == EnvironmentType.Ice;
+
+        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Floor"))
+        {
+            // Visual feedback only
+            var renderer = tile.GetComponent<SpriteRenderer>();
+            if (renderer != null)
+            {
+                renderer.color = isIceFloor ? new Color(0.8f, 0.9f, 1f) : Color.white;
+            }
+        }
+    }
+    private IEnumerator MovePlayerToTutorialAfterGeneration(Vector3 spawnPosition)
+    {
+        yield return new WaitUntil(() => generationComplete);
+
+        if (player != null)
+        {
+            player.transform.position = spawnPosition;
+            Camera.main.transform.position = new Vector3(
+                spawnPosition.x,
+                spawnPosition.y,
+                Camera.main.transform.position.z
+            );
+        }
+    }
 }
 public enum EnvironmentType
 {
