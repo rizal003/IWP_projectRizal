@@ -9,10 +9,18 @@ public class KeyCounterUI : MonoBehaviour
     public TextMeshProUGUI keyText;
     public Image keyIcon;
 
-    private void Awake()
+    private void Start()
     {
+        // Always try to find the persistent inventory
+        if (playerInventory == null)
+        {
+            playerInventory = FindObjectOfType<PlayerInventory>();
+        }
+
         if (playerInventory != null)
         {
+            // Remove listener first, just in case, to prevent duplicates
+            playerInventory.OnKeyCountChanged.RemoveListener(OnKeyCountChanged);
             playerInventory.OnKeyCountChanged.AddListener(OnKeyCountChanged);
             UpdateKeyUI(playerInventory.keyCount, false);
         }

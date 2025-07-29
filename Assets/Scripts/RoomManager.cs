@@ -8,15 +8,19 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject roomPrefab;
     [SerializeField] GameObject bossRoomPrefab;
     [SerializeField] GameObject shopRoomPrefab;
-    [SerializeField] GameObject puzzleRoomPrefab;    
     [SerializeField] GameObject treasureRoomPrefab;  
     [SerializeField] GameObject PressurePlatePuzzlePrefab;     
     [SerializeField] GameObject VampireRoomPrefab;
     [SerializeField] GameObject tutorialRoomPrefab;
+    [SerializeField] GameObject torchPuzzleRoomPrefab;
 
 
     [SerializeField] private int maxRooms = 11;
     [SerializeField] private int minRooms = 7;
+    [SerializeField] GameObject iceTilePrefab;
+    [SerializeField] GameObject lavaTilePrefab;
+    [SerializeField] GameObject underwaterTilePrefab;
+    // Add more as needed
 
     int roomWidth = 20;
     int roomHeight = 12;
@@ -44,19 +48,43 @@ public class RoomManager : MonoBehaviour
     public bool IsExplored { get; set; } = false;
     public MinimapManager minimapManager;
     private bool spawnedTreasureRoom = false;
-    private bool spawnedPuzzleRoom = false;
-    private int shopRoomCount = 0;
-    private int minShopRooms = 3;
+   
+    private bool spawnedPressurePlatePuzzleRoom = false;
+    private bool spawnedTorchPuzzleRoom = false;
+ 
 
+    private int shopRoomCount = 0;
+
+    private int minShopRooms = 2; // for minimum shops, if needed
+    public EnvironmentType environmentType = EnvironmentType.Normal; 
 
     private void Awake()
     {
         Instance = this;
     }
+    private EnvironmentType GetEnvironmentTypeForFloor(int floor)
+    {
+        if (floor == 1 || floor == 2)
+            return EnvironmentType.Normal;
+        else if 
+            (floor == 3 || floor == 4)
+            return EnvironmentType.Ice;
+        else if 
+            (floor == 5 || floor == 6)
+            return EnvironmentType.Lava;
+        else if 
+            (floor == 7 || floor == 8)
+            return EnvironmentType.Underwater;
+        else
+            return EnvironmentType.Normal; 
+    }
+
+
     private void Start()
     {
         mainCamera = Camera.main;
-
+        int floor = GameManager.Instance != null ? GameManager.Instance.floorNumber : 1;
+        environmentType = GetEnvironmentTypeForFloor(floor);
         //initialize the 2D grid to track room placement
         roomGrid = new int[gridSizeX, gridSizeY];
 
@@ -91,19 +119,61 @@ public class RoomManager : MonoBehaviour
             Debug.Log("Roomcount was less than min amt of rooms, try again");
             RegenerateRooms();
         }
-        //if generating room hits max or min, good
         else if (!generationComplete)
         {
             Debug.Log($"Generation complete, {roomCount} rooms created");
             generationComplete = true;
             AssignBossRoom();
             GenerateMinimapForPlayer();
-
+            MovePlayerToStartRoom();
         }
-  
 
 
     }
+    public void MovePlayerToStartRoom()
+    {
+        Vector2Int startRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
+        GameObject startRoomObj = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == startRoomIndex);
+
+        if (startRoomObj == null)
+        {
+            Debug.LogWarning("Start room not found!");
+            return;
+        }
+
+        Transform spawn = startRoomObj.transform.Find("SpawnPoint");
+        if (spawn != null && player != null)
+        {
+            player.transform.position = spawn.position;
+            Debug.Log($"Player moved to SpawnPoint at position: {spawn.position}");
+        }
+        else if (player != null)
+        {
+            player.transform.position = startRoomObj.transform.position;
+            Debug.Log($"Player moved to Room center at position: {startRoomObj.transform.position}");
+        }
+        else
+        {
+            Debug.LogWarning("Player GameObject is null.");
+            return;
+        }
+
+        if (Camera.main != null && player != null)
+        {
+            Camera.main.transform.position = new Vector3(
+                player.transform.position.x,
+                player.transform.position.y,
+                Camera.main.transform.position.z);
+            Debug.Log($"Camera moved to position: {Camera.main.transform.position}");
+        }
+        else
+        {
+            Debug.LogWarning("Main Camera or Player is null, cannot move camera.");
+        }
+    }
+
+
+
     private void GenerateMinimapForPlayer()
     {
         // Collect all rooms and their types
@@ -219,7 +289,6 @@ public class RoomManager : MonoBehaviour
 
     }
 
-
     private bool TryGenerateRoom(Vector2Int roomIndex)
     {
         int x = roomIndex.x;
@@ -244,39 +313,41 @@ public class RoomManager : MonoBehaviour
 
         RoomType chosenType;
 
+        // Spawn a PressurePlatePuzzle in the starting room
         if (roomIndex == Vector2Int.zero)
         {
             chosenType = RoomType.PressurePlatePuzzle;
         }
         else
         {
-            // Check how many rooms left to place
             int roomsLeft = maxRooms - roomCount;
-            // Force-spawn if almost done and haven't placed one yet
+
             if (!spawnedTreasureRoom && roomsLeft <= 4)
                 chosenType = RoomType.Treasure;
-            else if (!spawnedPuzzleRoom && roomsLeft <= 3)
+            else if (!spawnedPressurePlatePuzzleRoom && roomsLeft <= 3)
                 chosenType = RoomType.PressurePlatePuzzle;
+            else if (!spawnedTorchPuzzleRoom && roomsLeft <= 2)
+                chosenType = RoomType.TorchPuzzle;
             else if (shopRoomCount < minShopRooms && roomsLeft <= (minShopRooms - shopRoomCount))
                 chosenType = RoomType.Shop;
             else
             {
                 float rand = Random.value;
-                if (rand > 0.85f)                     
-                    chosenType = RoomType.Treasure;
-                else if (rand > 0.70f)                
-                    chosenType = RoomType.Vampire;
-                else if (rand > 0.55f)                
-                    chosenType = RoomType.PressurePlatePuzzle;
-                else if (rand > 0.30f)                
-                    chosenType = RoomType.Shop;
+                if (rand > 0.95f)
+                    chosenType = RoomType.Treasure;               // 0.95–1.00: 5%
+                else if (rand > 0.90f)
+                    chosenType = RoomType.PressurePlatePuzzle;    // 0.90–0.95: 5%
+                else if (rand > 0.85f)
+                    chosenType = RoomType.TorchPuzzle;            // 0.85–0.90: 5%
+                else if (rand > 0.70f)
+                    chosenType = RoomType.Shop;                   // 0.70–0.85: 15%
+                else if (rand > 0.35f)
+                    chosenType = RoomType.Vampire;                // 0.35–0.70: 35%
                 else
-                    chosenType = RoomType.Normal;     // 30% Normal
+                    chosenType = RoomType.Normal;                 // 0.00–0.35: 35%
             }
 
-
         }
-
 
         GameObject prefabToSpawn;
 
@@ -284,9 +355,6 @@ public class RoomManager : MonoBehaviour
         {
             case RoomType.Treasure:
                 prefabToSpawn = treasureRoomPrefab;
-                break;
-            case RoomType.Puzzle:
-                prefabToSpawn = puzzleRoomPrefab;
                 break;
             case RoomType.Vampire:
                 prefabToSpawn = VampireRoomPrefab;
@@ -297,22 +365,29 @@ public class RoomManager : MonoBehaviour
             case RoomType.PressurePlatePuzzle:
                 prefabToSpawn = PressurePlatePuzzlePrefab;
                 break;
+            case RoomType.TorchPuzzle:
+                prefabToSpawn = torchPuzzleRoomPrefab;
+                break;
             case RoomType.Normal:
             default:
                 prefabToSpawn = roomPrefab;
                 break;
         }
+
         allRoomsDict[roomIndex] = chosenType;
         GameObject newRoom = Instantiate(prefabToSpawn, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         newRoom.GetComponent<Room>().SetRoomType(chosenType);
-        if (chosenType == RoomType.Treasure) spawnedTreasureRoom = true;
-        if (chosenType == RoomType.PressurePlatePuzzle) spawnedPuzzleRoom = true;
-        if (chosenType == RoomType.Shop) shopRoomCount++;
 
-
-
+        if (chosenType == RoomType.Treasure)
+            spawnedTreasureRoom = true;
+        if (chosenType == RoomType.PressurePlatePuzzle)
+            spawnedPressurePlatePuzzleRoom = true;
+        if (chosenType == RoomType.TorchPuzzle)
+            spawnedTorchPuzzleRoom = true;
+        if (chosenType == RoomType.Shop)
+            shopRoomCount++;
 
         roomObjects.Add(newRoom);
 
@@ -320,8 +395,6 @@ public class RoomManager : MonoBehaviour
 
         return true;
     }
-
-
 
     private void AssignBossRoom()
     {
@@ -372,7 +445,8 @@ public class RoomManager : MonoBehaviour
         roomCount = 0;
         generationComplete = false;
         spawnedTreasureRoom = false;
-        spawnedPuzzleRoom = false;
+        spawnedPressurePlatePuzzleRoom = false;
+        spawnedTorchPuzzleRoom = false;
         shopRoomCount = 0;
 
 
@@ -493,4 +567,12 @@ public class RoomManager : MonoBehaviour
     }
 
 
+}
+public enum EnvironmentType
+{
+    Normal,
+    Lava,
+    Ice,
+    Underwater,
+    VisionCone
 }

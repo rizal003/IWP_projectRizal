@@ -12,13 +12,13 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Check for boss exit door!
             if (isExitDoor && CurrentRoom.isBossRoom && CurrentRoom.bossDefeated)
             {
-                Debug.Log("Player entered boss exit, loading next scene...");
-                UnityEngine.SceneManagement.SceneManager.LoadScene("SceneVision");
+                Debug.Log("Player entered boss exit, going to next floor...");
+                GameManager.Instance.NextFloor();
                 return;
             }
+
 
             Vector2Int nextRoomIndex = CurrentRoom.RoomIndex + Direction;
             Room nextRoom = RoomManager.Instance.GetRoomScriptAt(nextRoomIndex);

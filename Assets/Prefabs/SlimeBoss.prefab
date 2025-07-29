@@ -412,6 +412,7 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.2
   bossNameText: {fileID: 0}
+  bossRoom: {fileID: -6384553891512109565, guid: 7d595ca886eef2441a685716fa984af4, type: 3}
 --- !u!50 &6823801772201130796
 Rigidbody2D:
   serializedVersion: 4

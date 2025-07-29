@@ -28,20 +28,32 @@ public class Boss_Health : MonoBehaviour
 
     void Awake()
     {
+        // Initialize components
         if (animator == null)
             animator = GetComponent<Animator>();
         if (!spriteRenderer)
             spriteRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log("Awake called, hiding slider " + healthBar);
 
-        if (healthBar)
-            healthBar.gameObject.SetActive(false);  
-        currentHealth = maxHealth;
-        if (healthBar)
+        // Health bar initialization
+        if (healthBar != null)
         {
+            // Get or add CanvasGroup first
+            canvasGroup = healthBar.GetComponent<CanvasGroup>();
+            if (canvasGroup == null)
+                canvasGroup = healthBar.gameObject.AddComponent<CanvasGroup>();
+
+            // Hide immediately using CanvasGroup (no 1-frame flash)
+            canvasGroup.alpha = 0f;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+
+            // Still keep the object active for initialization
+            healthBar.gameObject.SetActive(true);
             healthBar.maxValue = maxHealth;
             healthBar.value = maxHealth;
         }
+
+        currentHealth = maxHealth;
     }
     public void TakeDamage(int damage)
     {
@@ -70,7 +82,7 @@ public class Boss_Health : MonoBehaviour
         }
         else
         {
-            Die(); // Don't play hit, just die!
+            Die(); 
         }
     }
     public IEnumerator ShakeHealthBar(float shakeAmount = 10f, float duration = 0.18f)
@@ -151,12 +163,22 @@ public class Boss_Health : MonoBehaviour
         if (deathEffect) Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject, 1.5f); // Delay for death animation
 
-        Room myRoom = GetComponentInParent<Room>();
-        if (myRoom != null)
+        DemonSlimeBoss bossAI = GetComponent<DemonSlimeBoss>();
+        if (bossAI != null)
         {
-            myRoom.BossDefeated(); 
-            Debug.Log("Boss defeated: exit door unlocked!");
+            bossAI.OnBossDeath();
         }
+        else
+        {
+            // For non-phase bosses, fallback to old logic
+            Room myRoom = GetComponentInParent<Room>();
+            if (myRoom != null)
+            {
+                myRoom.BossDefeated();
+                Debug.Log("Boss defeated: exit door unlocked!");
+            }
+        }
+
     }
 
 

@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class MinimapManager : MonoBehaviour
 {
-    public GameObject minimapSquarePrefab; // Assign in Inspector (must have Image component)
-    public Transform minimapParent; // The panel in your Canvas
+    public GameObject minimapSquarePrefab; 
+    public Transform minimapParent; 
     public Sprite unexploredSprite, exploredSprite, currentSprite;
     public Sprite bossIcon, keyIcon, heartIcon, chestIcon, crownIcon;
 
     private Dictionary<Vector2Int, GameObject> minimapSquares = new Dictionary<Vector2Int, GameObject>();
     private Vector2Int currentRoomIndex = Vector2Int.zero;
-    public static MinimapManager Instance; // <-- Add this line!
+    public static MinimapManager Instance;
     private void Awake()
     {
         Instance = this;
@@ -93,6 +93,10 @@ public class MinimapManager : MonoBehaviour
                 else if (type == RoomType.Shop)
                 {
                     iconImage.sprite = heartIcon; iconImage.enabled = true; 
+                }
+                else if (type == RoomType.TorchPuzzle)
+                {
+                    iconImage.sprite = keyIcon; iconImage.enabled = true;
                 }
             }
             minimapSquares.Add(pos, square);

@@ -216,7 +216,15 @@ public class Room : MonoBehaviour
 
         Vector3 spawnPosition = transform.position;
         GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity, transform);
-        boss.SetActive(false);
+
+        // Assign this Room as the bossRoom reference
+        DemonSlimeBoss bossAI = boss.GetComponent<DemonSlimeBoss>();
+        if (bossAI != null)
+        {
+            bossAI.bossRoom = this;
+        }
+
+        boss.SetActive(false); // (if you want to activate later with ActivateBoss)
 
         Slider bossSlider = GameObject.Find("Slider 1").GetComponent<Slider>();
         Boss_Health bossHealth = boss.GetComponent<Boss_Health>();
@@ -233,6 +241,7 @@ public class Room : MonoBehaviour
         LockAllDoors();
         Debug.Log("Boss spawned but inactive.");
     }
+
 
     public void ActivateBoss()
     {
@@ -252,9 +261,11 @@ public class Room : MonoBehaviour
 
     public void BossDefeated()
     {
+        Debug.Log("BossDefeated called, unlocking exit door.");
         bossDefeated = true;
         OpenExitDoor();
     }
+
 
 
     public void OpenExitDoor()
@@ -284,24 +295,38 @@ public class Room : MonoBehaviour
         if (rm.GetRoomScriptAt(RoomIndex + Vector2Int.down) != null)
             bottomDoor.SetActive(true);
     }
-    public Transform GetSpawnPoint(Vector2Int enteredFromDirection)
+    public Transform GetSpawnPoint(Vector2Int? enteredFromDirection = null)
     {
-        string spawnName = "";
-        if (enteredFromDirection == Vector2Int.up)
-            spawnName = "PlayerSpawn_South";
-        else if (enteredFromDirection == Vector2Int.down)
-            spawnName = "PlayerSpawn_North";
-        else if (enteredFromDirection == Vector2Int.left)
-            spawnName = "PlayerSpawn_East";
-        else if (enteredFromDirection == Vector2Int.right)
-            spawnName = "PlayerSpawn_West";
+        // Only check direction if provided
+        if (enteredFromDirection.HasValue)
+        {
+            string spawnName = "";
+            if (enteredFromDirection == Vector2Int.up)
+                spawnName = "PlayerSpawn_South";
+            else if (enteredFromDirection == Vector2Int.down)
+                spawnName = "PlayerSpawn_North";
+            else if (enteredFromDirection == Vector2Int.left)
+                spawnName = "PlayerSpawn_East";
+            else if (enteredFromDirection == Vector2Int.right)
+                spawnName = "PlayerSpawn_West";
+            if (!string.IsNullOrEmpty(spawnName))
+            {
+                Transform directional = transform.Find(spawnName);
+                if (directional != null)
+                    return directional;
+            }
+        }
 
-        // Only call Find if the name is not empty
-        if (!string.IsNullOrEmpty(spawnName))
-            return transform.Find(spawnName);
+        // Try default spawn
+        Transform defaultSpawn = transform.Find("SpawnPoint");
+        if (defaultSpawn != null)
+            return defaultSpawn;
 
-        return null; // fallback: room center will be used by your manager
+        // Fallback to room center
+        return this.transform;
     }
+
+
     public void OnEnemyDied()
     {
         // Find all living enemies in this room (make sure Enemy_Health is the correct script)
@@ -316,14 +341,10 @@ public class Room : MonoBehaviour
         if (aliveCount == 0)
         {
             UnlockConnectedDoors();
-            Debug.Log($"All enemies defeated in room {name}, doors unlocked!");
         }
     }
 
 
-    private int GetRemainingEnemies()
-    {
-        return GetComponentsInChildren<Enemy_Health>().Length;
-    }
+  
 
 }

@@ -32,6 +32,7 @@ public class DemonSlimeBoss : MonoBehaviour
     private float hitAnimCooldown = 0.3f;   
     private float lastFlinchTime = -1f;
     public TMPro.TextMeshProUGUI bossNameText;
+    public Room bossRoom; 
 
     void Awake()
     {
@@ -114,13 +115,13 @@ public class DemonSlimeBoss : MonoBehaviour
         {
             StartCoroutine(FlashRed());
         }
-
         if (hitCount >= slimeFormHitsNeeded && !isDemon)
         {
+            currentState = BossState.Transforming;
             animator.SetTrigger("Transform");
-            health.maxHealth = demonFormMaxHealth;
-            health.currentHealth = demonFormMaxHealth;
+            StartCoroutine(TransformToDemonPhase());
         }
+
     }
     IEnumerator EntranceScalePunch()
     {
@@ -162,6 +163,35 @@ public class DemonSlimeBoss : MonoBehaviour
         slimeCollider.enabled = false;
         demonCollider.enabled = true;
     }
+
+
+    public void OnBossDeath()
+    {
+        Debug.Log($"OnBossDeath called! isDemon={isDemon}, bossRoom={bossRoom}");
+        if (isDemon && bossRoom != null)
+        {
+            bossRoom.BossDefeated();
+            Debug.Log("Final demon form defeated! Room unlocks.");
+        }
+        else if (!isDemon)
+        {
+            // Start the transformation, don't unlock yet!
+            StartCoroutine(TransformToDemonPhase());
+        }
+        else if (bossRoom == null)
+        {
+            Debug.LogError("BossRoom reference not set on DemonSlimeBoss!");
+        }
+    }
+
+    private IEnumerator TransformToDemonPhase()
+    {
+        // You can play a sound, particle, etc here
+        yield return new WaitForSeconds(transformDuration); // Wait for animation
+
+        FinishTransformation(); // Set demon stats, collider, state, etc
+    }
+
 
 
     public void EnableCleaveHitbox()

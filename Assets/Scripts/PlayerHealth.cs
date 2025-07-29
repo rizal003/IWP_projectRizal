@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,29 +16,42 @@ public class PlayerHealth : MonoBehaviour
     private const int DEATH_UP = 2;
     private const int DEATH_DOWN = 3;
     private CameraShake _cameraShake;
-    public PlayerStats playerStats; 
+
+    public PlayerStats playerStats;
+    public float freezeFrameDuration = 0.05f;
+    public HealthDisplay healthDisplay;
+    public ScreenTint screenTint;
 
     void Start()
     {
         _cameraShake = Camera.main?.GetComponent<CameraShake>();
         if (playerStats == null)
             playerStats = GetComponent<PlayerStats>();
-        maxHealth = playerStats.maxHealth; 
-        currentHealth = maxHealth;         
+        maxHealth = playerStats.maxHealth;
+        currentHealth = maxHealth;
     }
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu"); 
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ChangeHealth(int amount)
     {
-        if (amount < 0 && _cameraShake != null)
+        if (amount < 0)
         {
-            _cameraShake.Shake(0.3f, 0.35f); 
+            if (_cameraShake != null)
+                _cameraShake.Shake(0.3f, 0.35f);
+
+            StartCoroutine(FreezeFrame());
+            if (screenTint != null) screenTint.Flash();
+            int damagedHeart = (currentHealth - 1) / 2; // Which heart to pulse
+            bool isRow1 = damagedHeart < 10;
+            int heartIndex = isRow1 ? damagedHeart : damagedHeart - 10;
+            StartCoroutine(healthDisplay.PulseHeart(heartIndex, isRow1));
+
         }
-        currentHealth += amount;
-        maxHealth = playerStats.maxHealth; 
+
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -72,5 +85,11 @@ public class PlayerHealth : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    IEnumerator FreezeFrame()
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSecondsRealtime(freezeFrameDuration);
+        Time.timeScale = 1f;
+    }
 
 }

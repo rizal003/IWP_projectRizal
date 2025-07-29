@@ -10,6 +10,7 @@ public class SlashProjectile : MonoBehaviour
     public Vector2 direction;
 
     private Animator animator;
+    public LayerMask targetLayers; 
 
     void Start()
     {
@@ -37,31 +38,20 @@ public class SlashProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Skip if not in target layers
+        if ((targetLayers.value & (1 << collision.gameObject.layer)) == 0) return;
+
         Debug.Log("Slash hit: " + collision.name);
 
-        // Check for Enemy_Health
+        // Rest of your damage logic...
         Enemy_Health eh = collision.GetComponentInParent<Enemy_Health>();
-        if (eh != null)
-        {
-            eh.TakeDamage(damage);
-            Destroy(gameObject);
-            return;
-        }
+        if (eh != null) eh.TakeDamage(damage);
 
-        // Check for Boss_Health
         Boss_Health bh = collision.GetComponentInParent<Boss_Health>();
-        if (bh != null)
-        {
-            bh.TakeDamage(damage);
-            Destroy(gameObject);
-            return;
-        }
+        if (bh != null) bh.TakeDamage(damage);
+
+        Destroy(gameObject);
     }
-
-
-
-
-
 
 }
 

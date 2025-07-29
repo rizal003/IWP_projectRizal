@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 healthPromptOffset = new Vector3(0, 1.0f, 0);
     [SerializeField] private GameObject keyInteractPrompt;
     [SerializeField] private Vector3 keyPromptOffset = new Vector3(0, 1.0f, 0);
+    [SerializeField] private ParticleSystem dustParticles; 
+    [SerializeField] private float walkEmissionRate = 10f;
+    [SerializeField] private float dashEmissionRate = 30f;
+    private ParticleSystem.EmissionModule dustEmission;
 
     private Transform keyPromptTarget;
     private KeyPickup currentKeyInRange;
@@ -29,17 +33,33 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private Vector2 lastDirection = Vector2.down;
     private bool isKnockedBack;
+    private bool wasMovingLastFrame = false;
 
     public PlayerStats playerStats;
     private Chest currentChestInRange;
     private bool isDashing = false;
     private float lastDashTime = -10f;
     private CameraShake _cameraShake;
+    private void Awake()
+    {
+        if (FindObjectsOfType<PlayerMovement>().Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _cameraShake = Camera.main?.GetComponent<CameraShake>();
+        if (dustParticles != null)
+        {
+            dustEmission = dustParticles.emission;
+            dustEmission.rateOverTime = 0f; // Start disabled
+        }
 
     }
 
@@ -48,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         if (isKnockedBack || isDashing) return;
 
         Vector2 targetVelocity = moveInput * playerStats.moveSpeed; // Use PlayerStats here!
+        UpdateDust();
 
 
         if (moveInput != Vector2.zero)
@@ -116,6 +137,43 @@ public class PlayerMovement : MonoBehaviour
     {
         return lastDirection;
     }
+
+
+    private void UpdateDust()
+    {
+        if (dustParticles == null) return;
+
+        bool isMoving = moveInput != Vector2.zero && !isKnockedBack && !isDashing;
+
+        // Play or stop particles as needed
+        if (isMoving)
+        {
+            if (!dustParticles.isPlaying)
+                dustParticles.Play();
+            dustEmission.rateOverTime = walkEmissionRate;
+
+            // Emit a small burst if player JUST started moving
+            if (!wasMovingLastFrame)
+            {
+                dustParticles.Emit(5);
+            }
+        }
+        else if (isDashing)
+        {
+            if (!dustParticles.isPlaying)
+                dustParticles.Play();
+            dustEmission.rateOverTime = dashEmissionRate;
+        }
+        else
+        {
+            dustEmission.rateOverTime = 0f;
+            if (dustParticles.isPlaying)
+                dustParticles.Stop();
+        }
+
+        wasMovingLastFrame = isMoving;
+    }
+
     public void Knockback(Transform enemy, float force, float stunTime)
     {
         isKnockedBack = true;
@@ -228,8 +286,10 @@ public class PlayerMovement : MonoBehaviour
         lastDashTime = Time.time;
         if (_cameraShake != null)
             _cameraShake.Shake(0.2f, 0.22f);
+        // Dust burst at dash start
+        if (dustParticles != null)
+            dustParticles.Emit(15);
 
-    
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
 
         Vector2 dashDir = lastDirection.normalized;

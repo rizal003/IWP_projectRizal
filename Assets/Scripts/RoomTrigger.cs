@@ -29,7 +29,7 @@ public class RoomTrigger : MonoBehaviour
                     currentRoom.LockAllDoors();
                     Debug.Log("Player entered boss room, activated boss.");
                 }
-                else if (currentRoom.RoomType == RoomType.PressurePlatePuzzle)
+                else if (currentRoom.RoomType == RoomType.PressurePlatePuzzle || currentRoom.RoomType == RoomType.TorchPuzzle)
                 {
                     currentRoom.LockAllDoors();
                 }
@@ -45,6 +45,7 @@ public class RoomTrigger : MonoBehaviour
                         currentRoom.UnlockConnectedDoors();
                     }
                 }
+
             }
 
             foreach (var ranged in currentRoom.GetComponentsInChildren<RangedEnemyCombat>())

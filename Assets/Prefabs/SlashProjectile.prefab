@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3840984115302395768}
   - component: {fileID: 2733517314258594384}
   - component: {fileID: 5128530923301976782}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SlashProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,6 +152,9 @@ MonoBehaviour:
   lifetime: 0.5
   damage: 1
   direction: {x: 0, y: 0}
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!70 &5128530923301976782
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

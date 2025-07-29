@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3215019118425335886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: -0.39, z: 0}
+  m_LocalPosition: {x: 1.48, y: -0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66,7 +66,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.04, y: -0.51}
   serializedVersion: 2
-  m_Radius: 2.68
+  m_Radius: 3.44
 --- !u!1 &4849273161283881676
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +297,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   patrolPauseTime: 2
+  facesRight: 1
 --- !u!58 &2920635966595953362
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -371,3 +372,4 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.3
   deathEffect: {fileID: 8510529645783170190, guid: 815ade46da2e18443a8e216c4344b2d6, type: 3}
+  isDead: 0

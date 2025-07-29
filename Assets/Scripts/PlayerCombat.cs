@@ -42,6 +42,8 @@ public class PlayerCombat : MonoBehaviour
         direction = direction.normalized;
         float distance = 0.5f; 
         attackPoint.localPosition = new Vector3(direction.x, direction.y, 0) * distance;
+        Debug.DrawRay(attackPoint.position, lastDirection * attackRange, Color.red, 1f);
+
     }
 
     public void OnAttack(InputAction.CallbackContext context)
@@ -72,23 +74,30 @@ public class PlayerCombat : MonoBehaviour
         _cameraShake?.Shake(0.1f, 0.15f);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
         foreach (Collider2D enemy in hitEnemies)
         {
+            // Check if the enemy is in front of the player
+            Vector2 enemyDirection = (enemy.transform.position - transform.position).normalized;
+            float dotProduct = Vector2.Dot(lastDirection.normalized, enemyDirection);
 
-            // First check for Enemy_Health
-            Enemy_Health eh = enemy.GetComponentInParent<Enemy_Health>();
-            if (eh != null)
+            if (dotProduct > 0.7f) 
             {
-                eh.TakeDamage(Mathf.RoundToInt(playerStats.attackDamage));
-                continue; // Skip to next enemy after damaging
-            }
+                // First check for Enemy_Health
+                Enemy_Health eh = enemy.GetComponentInParent<Enemy_Health>();
+                if (eh != null)
+                {
+                    eh.TakeDamage(Mathf.RoundToInt(playerStats.attackDamage));
+                    continue;
+                }
 
-            // Now check for Boss_Health
-            Boss_Health bh = enemy.GetComponentInParent<Boss_Health>();
-            if (bh != null)
-            {
-                eh.TakeDamage(Mathf.RoundToInt(playerStats.attackDamage));
-                continue;
+                // Now check for Boss_Health
+                Boss_Health bh = enemy.GetComponentInParent<Boss_Health>();
+                if (bh != null)
+                {
+                    bh.TakeDamage(Mathf.RoundToInt(playerStats.attackDamage));
+                    continue;
+                }
             }
         }
     }
