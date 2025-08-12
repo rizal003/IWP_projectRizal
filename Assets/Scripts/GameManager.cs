@@ -6,6 +6,12 @@ public class GameManager : MonoBehaviour
     public int floorNumber = 1;
     public Vector3? savedPlayerPosition = null;
 
+    void Start()
+    {
+        // Start dungeon ambience right away
+        AudioManager.I?.SetAmbience(AudioManager.I?.ambNormal, 0.25f);
+    }
+
     private void Awake()
     {
         if (Instance == null)

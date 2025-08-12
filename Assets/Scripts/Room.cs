@@ -247,6 +247,7 @@ public class Room : MonoBehaviour
     public void ActivateBoss()
     {
         DemonSlimeBoss boss = GetComponentInChildren<DemonSlimeBoss>(true);
+        AudioManager.I?.PlayOneShot(AudioManager.I?.bossRoar, 1f);
         if (boss != null)
         {
             boss.gameObject.SetActive(true);  // Activate GameObject itself!

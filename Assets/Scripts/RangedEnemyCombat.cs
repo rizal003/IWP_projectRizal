@@ -58,6 +58,7 @@ public class RangedEnemyCombat : MonoBehaviour
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         EnemyProjectile projectile = proj.GetComponent<EnemyProjectile>();
         projectile.Initialize(dir, projectileSpeed);
+        AudioManager.I?.PlayOneShot(AudioManager.I?.fireball, 1f);
 
         // Optionally, set isAttacking back to false after a delay or with exit time.
         StartCoroutine(EndAttackAnim());

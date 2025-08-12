@@ -159,7 +159,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 35c586f3db846a94ead82700318a6d7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -372,4 +372,8 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.3
   deathEffect: {fileID: 8510529645783170190, guid: 815ade46da2e18443a8e216c4344b2d6, type: 3}
+  healthBarPrefab: {fileID: 0}
+  healthBarOffset: {x: 0, y: -0.5, z: 0}
+  healthBarFadeDelay: 1
+  healthBarFadeSpeed: 2
   isDead: 0

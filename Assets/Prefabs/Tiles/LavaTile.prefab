@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6889928720636922341}
   - component: {fileID: 2281316038203045993}
   - component: {fileID: 4422210262964744930}
+  - component: {fileID: 4366292794793550341}
   m_Layer: 0
   m_Name: LavaTile
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,3 +131,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &4366292794793550341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6692446620897366950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4087be6aa2c372f49b6d965075559dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePerTick: 1
+  tickInterval: 0.25
+  lavaColor: {r: 1, g: 0.35, b: 0.25, a: 1}
+  smokeParticles: {fileID: 0}
+  playerTag: Player

@@ -45,6 +45,7 @@ public class TorchPuzzleRoom : MonoBehaviour
 
 
         puzzleSolved = true;
+        AudioManager.I?.PlayOneShot(AudioManager.I?.puzzleSolved, 1f);
         Room room = GetComponentInParent<Room>();
         if (room != null)
         {

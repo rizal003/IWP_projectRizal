@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Rendering.Universal; 
 
 public class RoomManager : MonoBehaviour
 {
@@ -20,7 +22,13 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject iceTilePrefab;
     [SerializeField] GameObject lavaTilePrefab;
     [SerializeField] GameObject underwaterTilePrefab;
-    // Add more as needed
+
+    //lava
+    [SerializeField] private float lavaDensity = 0.05f; 
+    [SerializeField] private float lavaExclusionRadius = 1.2f; 
+    [SerializeField] private Color lavaTint = new Color(1f, 0.35f, 0.25f, 1f);
+
+    [SerializeField] private Color iceTint = new Color(0.80f, 0.90f, 1f, 1f);
 
     int roomWidth = 20;
     int roomHeight = 12;
@@ -29,6 +37,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] int gridSizeY = 10;
 
     public List<GameObject> roomObjects = new List<GameObject>();
+    public static event System.Action<EnvironmentType> OnEnvironmentApplied;
 
     private Queue<Vector2Int> roomQueue = new Queue<Vector2Int>();
     private Dictionary<Vector2Int, RoomType> allRoomsDict = new Dictionary<Vector2Int, RoomType>();
@@ -71,10 +80,10 @@ public class RoomManager : MonoBehaviour
             return EnvironmentType.Ice;
         else if 
             (floor == 5 || floor == 6)
-            return EnvironmentType.Lava;
+            return EnvironmentType.VisionCone;
         else if 
             (floor == 7 || floor == 8)
-            return EnvironmentType.Underwater;
+            return EnvironmentType.Lava;
         else
             return EnvironmentType.Normal; 
     }
@@ -123,11 +132,13 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log($"Generation complete, {roomCount} rooms created");
             generationComplete = true;
+
             AssignBossRoom();
             GenerateMinimapForPlayer();
             MovePlayerToStartRoom();
-            ApplyEnvironmentEffects(); 
 
+            ApplyEnvironmentEffects();                 // visuals
+            OnEnvironmentApplied?.Invoke(environmentType); // behaviour hook (see #4)
         }
 
 
@@ -254,7 +265,9 @@ public class RoomManager : MonoBehaviour
 
         // Update the minimap (after moving the player)
         MinimapManager.Instance.UpdateMinimap(newRoomIndex, new List<Vector2Int>(exploredRooms));
-
+        // Hazard grace after room enter (e.g., 0.6s)
+        var ph = player.GetComponent<PlayerHealth>();
+        if (ph) ph.GrantHazardGrace(0.6f);
     }
     public void SetCurrentRoom(Room room)
     {
@@ -615,26 +628,144 @@ public class RoomManager : MonoBehaviour
     private IEnumerator ApplyEnvironmentAfterGeneration()
     {
         yield return new WaitUntil(() => generationComplete);
-
-        // ADD THIS SAFETY CHECK:
-        if (this == null) yield break; // Prevents rare null reference
+        if (this == null) yield break;
 
         ApplyEnvironmentEffects();
+        OnEnvironmentApplied?.Invoke(environmentType);
     }
+
     private void ApplyEnvironmentEffects()
     {
-        bool isIceFloor = environmentType == EnvironmentType.Ice;
+        bool isIceFloor = (environmentType == EnvironmentType.Ice);
+        bool isLavaFloor = (environmentType == EnvironmentType.Lava);
+        bool isVision = (environmentType == EnvironmentType.VisionCone);
+        var pvc = FindObjectOfType<PlayerVisionController>();
+        if (pvc != null)
+            pvc.EnableVisionCone(isVision);
 
-        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Floor"))
+        // 0) Gather all rooms once
+        Room[] rooms = FindObjectsOfType<Room>();
+
+        // 1) Build exclusion points (door/entry spawns)
+        List<Vector3> exclusion = new List<Vector3>();
+        string[] spawnNames = { "SpawnPoint", "PlayerSpawn_North", "PlayerSpawn_South", "PlayerSpawn_East", "PlayerSpawn_West" };
+        for (int r = 0; r < rooms.Length; r++)
         {
-            // Visual feedback only
-            var renderer = tile.GetComponent<SpriteRenderer>();
-            if (renderer != null)
+            Transform rt = rooms[r].transform;
+            for (int i = 0; i < spawnNames.Length; i++)
             {
-                renderer.color = isIceFloor ? new Color(0.8f, 0.9f, 1f) : Color.white;
+                var t = rt.Find(spawnNames[i]);
+                if (t != null) exclusion.Add(t.position);
             }
         }
+
+        // 2) Collect ALL floor sprites (child SpriteRenderers with tag "Floor")
+        List<SpriteRenderer> allFloorSprites = new List<SpriteRenderer>();
+        for (int r = 0; r < rooms.Length; r++)
+        {
+            var srs = rooms[r].GetComponentsInChildren<SpriteRenderer>(true);
+            for (int i = 0; i < srs.Length; i++)
+                if (srs[i].CompareTag("Floor")) allFloorSprites.Add(srs[i]);
+        }
+
+        // 3) Clear/normalize from previous environment
+        //    - reset color (we’ll re-tint below)
+        //    - remove LavaTile if we’re NOT on a lava floor
+        for (int i = 0; i < allFloorSprites.Count; i++)
+        {
+            var sr = allFloorSprites[i];
+            if (!isLavaFloor)
+            {
+                var lt = sr.GetComponent<LavaTile>();
+                if (lt) Destroy(lt);
+                // if we added a trigger before, leaving the collider is fine; trigger won’t harm when no LavaTile.
+            }
+            // base visual reset
+            sr.color = Color.white;
+        }
+
+        // 4) ICE: tint everything blue + ensure IceTile
+        if (isIceFloor)
+        {
+            for (int i = 0; i < allFloorSprites.Count; i++)
+            {
+                var sr = allFloorSprites[i];
+                sr.color = iceTint;
+
+                if (sr.GetComponent<IceTile>() == null)
+                    sr.gameObject.AddComponent<IceTile>(); // your IceTile handles visuals/particles
+            }
+
+            Debug.Log($"[Env] ICE applied to {allFloorSprites.Count} floor tiles");
+            return;
+        }
+
+        // 5) NORMAL (no lava, no ice): we’re already back to white & removed LavaTile above
+        if (!isLavaFloor)
+        {
+            Debug.Log($"[Env] NORMAL applied to {allFloorSprites.Count} floor tiles");
+            return;
+        }
+
+        // 6) LAVA: scatter on child floor sprites (works in every room type)
+        // Shuffle helpers
+        void Shuffle(List<SpriteRenderer> list)
+        {
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                var tmp = list[i]; list[i] = list[j]; list[j] = tmp;
+            }
+        }
+
+        int totalCandidates = allFloorSprites.Count;
+        int maxPlaced = Mathf.CeilToInt(totalCandidates * lavaDensity);
+        int placed = 0;
+
+        Shuffle(allFloorSprites);
+
+        // Optional: set a consistent physics layer for hazards (only if you created one)
+        int hazardLayer = LayerMask.NameToLayer("Hazard"); // returns -1 if it doesn't exist
+
+        for (int i = 0; i < allFloorSprites.Count && placed < maxPlaced; i++)
+        {
+            // density roll
+            if (Random.value > lavaDensity) continue;
+
+            var sr = allFloorSprites[i];
+            var go = sr.gameObject;
+            var pos = go.transform.position;
+
+            // exclusion near spawns/doorways
+            bool nearSpawn = false;
+            for (int e = 0; e < exclusion.Count; e++)
+                if (Vector2.Distance(pos, exclusion[e]) <= lavaExclusionRadius) { nearSpawn = true; break; }
+            if (nearSpawn) continue;
+
+            // Tint red
+            sr.color = lavaTint;
+
+            // Ensure a trigger collider on THIS tile (don’t rely on room parent)
+            var col = go.GetComponent<BoxCollider2D>();
+            if (col == null) col = go.AddComponent<BoxCollider2D>();
+            col.isTrigger = true;
+
+            // Force reliable layer if available
+            if (hazardLayer != -1) go.layer = hazardLayer;
+
+            // Add/ensure LavaTile (idempotent)
+            var lava = go.GetComponent<LavaTile>();
+            if (lava == null) lava = go.AddComponent<LavaTile>();
+            lava.lavaColor = lavaTint;
+            lava.tickInterval = 0.9f; // your cadence
+
+            placed++;
+        }
+
+        Debug.Log($"[Env] LAVA scattered {placed}/{totalCandidates} tiles (density target {lavaDensity})");
     }
+
+
     private IEnumerator MovePlayerToTutorialAfterGeneration(Vector3 spawnPosition)
     {
         yield return new WaitUntil(() => generationComplete);

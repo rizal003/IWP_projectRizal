@@ -21,6 +21,9 @@ public class PlayerHealth : MonoBehaviour
     public float freezeFrameDuration = 0.05f;
     public HealthDisplay healthDisplay;
     public ScreenTint screenTint;
+    private float nextHazardTickTime = 0f;
+    private float hazardGraceUntil = 0f;
+    private float _lastHazardTickTime;
 
     void Start()
     {
@@ -37,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ChangeHealth(int amount)
     {
+        AudioManager.I?.PlayOneShot(AudioManager.I?.playerHit, 0.9f, Random.Range(0.9f, 1.1f));
         if (amount < 0)
         {
             if (_cameraShake != null)
@@ -55,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            AudioManager.I?.PlayOneShot(AudioManager.I?.death, 0.9f, Random.Range(0.9f, 1.1f));
             Die();
         }
     }
@@ -91,5 +96,20 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSecondsRealtime(freezeFrameDuration);
         Time.timeScale = 1f;
     }
+    public bool TryApplyHazardTick(int halfHearts, float interval)
+    {
+        if (Time.time < hazardGraceUntil) return false;
+        if (Time.time < nextHazardTickTime) return false;
 
+        ChangeHealth(-Mathf.Abs(halfHearts));           
+        nextHazardTickTime = Time.time + Mathf.Max(0.1f, interval);
+        return true;
+    }
+
+    public void GrantHazardGrace(float seconds)
+    {
+        float until = Time.time + Mathf.Max(0f, seconds);
+        hazardGraceUntil = Mathf.Max(hazardGraceUntil, until);
+        nextHazardTickTime = Mathf.Max(nextHazardTickTime, hazardGraceUntil); 
+    }
 }

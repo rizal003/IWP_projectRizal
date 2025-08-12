@@ -10,6 +10,7 @@ public class KeyPickup : MonoBehaviour
     {
         if (pickedUp) return;
         pickedUp = true;
+        AudioManager.I?.PlayOneShot(AudioManager.I?.keyPickup, 0.9f);
 
         PlayerInventory inventory = player.GetComponent<PlayerInventory>();
         if (inventory != null)

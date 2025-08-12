@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float iceAngularDrag = 0.05f;
     private bool isIceFloor = false;
     private ParticleSystem.EmissionModule dustEmission;
+    float footTimer;
+    [SerializeField] float footInterval = 0.28f; // tweak per feel
 
     private Transform keyPromptTarget;
     private KeyPickup currentKeyInRange;
@@ -44,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private float lastDashTime = -10f;
     private CameraShake _cameraShake;
-    private void Awake()
+   private void Awake()
     {
         if (FindObjectsOfType<PlayerMovement>().Length > 1)
         {
@@ -53,33 +55,59 @@ public class PlayerMovement : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _cameraShake = Camera.main?.GetComponent<CameraShake>();
+
         if (dustParticles != null)
         {
             dustEmission = dustParticles.emission;
-            dustEmission.rateOverTime = 0f; // Start disabled
-        }
-        isIceFloor = GameManager.Instance.floorNumber >= 3 &&
-                     GameManager.Instance.floorNumber <= 4;
-
-        if (isIceFloor)
-        {
-            rb.drag = 0.05f;  // Extremely slippery
-            rb.angularDrag = 0.05f;
-            rb.angularDrag = iceAngularDrag; 
-            Debug.Log("ICE PHYSICS ACTIVATED: Drag set to 0.05");
-        }
-        if (isIceFloor && rb != null) // Null check for safety
-        {
-            rb.drag = Mathf.Clamp(iceDrag, 0.02f, 0.2f); // Force reasonable range
+            dustEmission.rateOverTime = 0f;
         }
 
+        if (RoomManager.Instance != null)
+        {
+            HandleEnvironmentChanged(RoomManager.Instance.environmentType);
+        }
+        else
+        {
+            bool iceNow = GameManager.Instance &&
+                          GameManager.Instance.floorNumber >= 3 &&
+                          GameManager.Instance.floorNumber <= 4;
+            ApplyIcePhysics(iceNow);
+        }
     }
+    private void HandleEnvironmentChanged(EnvironmentType env)
+    {
+        bool iceNow = (env == EnvironmentType.Ice);
+        ApplyIcePhysics(iceNow);
+    }
+
+    private void ApplyIcePhysics(bool enable)
+    {
+        isIceFloor = enable;
+        if (rb == null) return;
+
+        if (enable)
+        {
+            // kill carry-over momentum so ice starts from the same baseline
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+
+            rb.drag = Mathf.Clamp(iceDrag, 0.02f, 0.2f);
+            rb.angularDrag = iceAngularDrag;
+            Debug.Log($"[Player] Ice ON drag={rb.drag} vel={rb.velocity}");
+        }
+        else
+        {
+            rb.drag = 0.5f;        // your normal values
+            rb.angularDrag = 0.05f;
+            Debug.Log($"[Player] Ice OFF drag={rb.drag}");
+        }
+    }
+
     void Update()
     {
         if (isKnockedBack || isDashing) return;
@@ -319,6 +347,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     {
+        AudioManager.I?.PlayOneShot(AudioManager.I?.dash, 0.9f, 1.0f);
         // Store original movement state
         bool wasOnIce = isIceFloor;
         float originalDrag = rb.drag;
@@ -370,7 +399,15 @@ public class PlayerMovement : MonoBehaviour
 
         isDashing = false;
     }
+    private void OnEnable()
+    {
+        RoomManager.OnEnvironmentApplied += HandleEnvironmentChanged;
+    }
 
+    private void OnDisable()
+    {
+        RoomManager.OnEnvironmentApplied -= HandleEnvironmentChanged;
+    }
     void CreateAfterimage()
     {
         if (afterimagePrefab == null) return;

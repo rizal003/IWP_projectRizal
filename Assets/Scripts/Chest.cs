@@ -32,6 +32,7 @@ public class Chest : MonoBehaviour
     private void OpenChest(GameObject player)
     {
         isOpened = true;
+        AudioManager.I?.PlayOneShot(AudioManager.I?.chestOpen, 0.9f);
         if (spriteRenderer && openSprite)
             spriteRenderer.sprite = openSprite;
 

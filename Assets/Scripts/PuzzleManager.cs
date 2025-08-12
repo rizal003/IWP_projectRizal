@@ -28,6 +28,7 @@ public class PuzzleManager : MonoBehaviour
         {
             puzzleSolved = true;
             Debug.Log("Puzzle Solved!");
+            AudioManager.I?.PlayOneShot(AudioManager.I?.puzzleSolved, 1f);
 
             Room room = GetComponentInParent<Room>(); 
             if (room != null)
