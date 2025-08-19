@@ -477,7 +477,7 @@ public class RoomManager : MonoBehaviour
             {
                 Room r = obj.GetComponent<Room>();
                 if (r != null)
-                    allRooms[r.RoomIndex] = r.RoomType;
+                    allRooms[r.RoomIndex] = r.RoomType; 
             }
             MinimapManager.Instance.GenerateMinimap(allRooms, initialRoomIndex);
         }

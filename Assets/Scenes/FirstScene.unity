@@ -634,7 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   attackDamage: 4
-  maxHealth: 18
+  maxHealth: 24
   slashSpeed: 10
 --- !u!1 &125306879
 GameObject:
@@ -3564,7 +3564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609b05ec9cf693144b6dfc64f90ab0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorNumber: 5
+  floorNumber: 1
 --- !u!4 &1338204983
 Transform:
   m_ObjectHideFlags: 0
